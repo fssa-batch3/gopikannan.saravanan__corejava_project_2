@@ -31,11 +31,6 @@
 			<version>8.0.33</version>
 		</dependency>
 
-		<dependency>
-			<groupId>com.fssa.corejava</groupId>
-			<artifactId>template</artifactId>
-			<version>1.0.0</version>
-		</dependency>
 	</dependencies>
 
 </project>
