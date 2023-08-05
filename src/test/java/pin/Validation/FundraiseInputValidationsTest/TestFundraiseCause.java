@@ -1,14 +1,12 @@
 package pin.Validation.FundraiseInputValidationsTest;
 
+
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
-
-import com.google.protobuf.ServiceException;
-
 import pin.validation.FundraiseValidation;
 import pin.validation.exceptions.InvalidFundraiseException;
 
-public class TestFundraiseCause {
+ class TestFundraiseCause {
 
 	@Test
 	void testValidCause() {

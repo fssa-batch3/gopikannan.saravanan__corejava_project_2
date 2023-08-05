@@ -9,7 +9,7 @@ import pin.model.Fundraise;
 import pin.service.exception.ServiceException;
 import pin.service.*;
 
-public class TestFunsdraiseCreateFeature {
+ class TestFunsdraiseCreateFeature {
  
 	@Test
 	void testCreateValid() {

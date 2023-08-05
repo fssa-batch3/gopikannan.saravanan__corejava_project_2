@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import pin.validation.FundraiseValidation;
 import pin.validation.exceptions.InvalidFundraiseException;
 
-public class TestFundraiseStory {
+ class TestFundraiseStory {
 
 	@Test
 	void testValidStory() {

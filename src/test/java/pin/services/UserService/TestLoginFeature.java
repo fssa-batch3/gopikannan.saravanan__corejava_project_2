@@ -7,11 +7,11 @@ import pin.service.*;
 import pin.service.exception.ServiceException;
 import pin.model.*;
 
-public class TestLoginFeature {
+ class TestLoginFeature {
 
 	@Test
 
-	public void loginSuccess() {
+	 void loginSuccess() {
 		UserService userService = new UserService();
 
 		User user1 = new User("soffan2906@gmail.com",  "Wow@2002");
@@ -27,7 +27,7 @@ public class TestLoginFeature {
  
 	@Test
 
-	public void loginFailed() {
+	 void loginFailed() {
 		UserService userService = new UserService();
 		User user1 = new User("vicky2001@gmail.com",  "Vick@2002");
 		try {

@@ -10,9 +10,9 @@ import pin.model.*;
 import pin.service.*;
 import pin.service.exception.ServiceException;
 
-public class TestRegisterFeature {
+ class TestRegisterFeature {
 	@Test
-	public void testRegistrationSuccess() {
+	 void testRegistrationSuccess() {
 
 		UserService userservice = new UserService();
 		User user1 = new User("soffan2906@gmail.com", "Soffan", "Wow@2002", "9092500612");
@@ -28,7 +28,7 @@ public class TestRegisterFeature {
 	}
 
 	@Test
-	public void testRegistrationFail() {
+	 void testRegistrationFail() {
 
 		UserService userservice = new UserService();
 		User user1 = new User("soffafuywg892698gmail.com", "Soffan", "Wow@2002", "9092500612");
@@ -43,7 +43,7 @@ public class TestRegisterFeature {
 	}
 
 	@Test
-	public void testUserNull() {
+	 void testUserNull() {
 
 		UserService userservice = new UserService();
 		User user1 = null;

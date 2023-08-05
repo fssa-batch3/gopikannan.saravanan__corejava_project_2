@@ -12,7 +12,7 @@ import pin.service.FundraiseService;
 import pin.dao.FundraiseDAO;
 import pin.dao.exceptions.DAOException;
 
-public class TestFundraiseViewFeature {
+ class TestFundraiseViewFeature {
 
 	@Test
 	void testGetFundraisesValid() throws DAOException, ServiceException {

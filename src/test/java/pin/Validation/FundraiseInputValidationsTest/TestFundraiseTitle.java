@@ -1,14 +1,11 @@
 package pin.Validation.FundraiseInputValidationsTest;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
+import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
-
 import pin.validation.FundraiseValidation;
 import pin.validation.exceptions.InvalidFundraiseException;
 
-public class TestFundraiseTitle {
+ class TestFundraiseTitle {
 	@Test
 	void testValidTitle() {
 		try {

@@ -1,16 +1,12 @@
 package pin.Validation.FundraiseInputValidationsTest;
 
 import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.Test;
-
-import org.junit.jupiter.api.Test;
-
 import pin.validation.FundraiseValidation;
 import pin.validation.exceptions.InvalidFundraiseException;
 
 
-public class TestFundraiseImageUrl {
+ class TestFundraiseImageUrl {
 	@Test
 
 	void ValidProductImage() {
