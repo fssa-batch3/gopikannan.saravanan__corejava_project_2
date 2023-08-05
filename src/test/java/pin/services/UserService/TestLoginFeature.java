@@ -14,23 +14,25 @@ public class TestLoginFeature {
 	public void loginSuccess() {
 		UserService userService = new UserService();
 
-		User user1 = new User("soffan2906@gmail.com", "Soffan", "Wow@2002", "9092500612");
+		User user1 = new User("soffan2906@gmail.com",  "Wow@2002");
 		try {
-			System.out.println("Login successfully. Welcome, " + user1.getMail() + "!");
+			
 			assertTrue(userService.loginUser(user1));
+			throw new ServiceException("Login successfully. Welcome, " + user1.getMail() + "!");
 		} catch (ServiceException e) {
 
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
-	}
+	} 
  
 	@Test
 
 	public void loginFailed() {
 		UserService userService = new UserService();
-		User user1 = new User("vicky2001@gmail.com", "Vicky", "Vick@2002", "9092500612");
+		User user1 = new User("vicky2001@gmail.com",  "Vick@2002");
 		try {
 			assertFalse(userService.loginUser(user1));
+			throw new ServiceException("Login Failed.Kindly Register");
 		} catch (ServiceException e) {
 			System.out.println(e.getMessage());
 		}

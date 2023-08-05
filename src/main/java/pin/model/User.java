@@ -1,25 +1,36 @@
 package pin.model;
 
 public class User {
-	public String getMobileno() {
-		return mobileno;
-	}
 
-	public void setMobileno(String mobileno) {
-		this.mobileno = mobileno;
-	}
- 
 	private String mail;
 	private String username;
 	private String password;
 	private String mobileno;
+	private int accNo;
+	private String ifscNo;
+	private String accName;
 
-	public User(String mail, String username, String password,String mobileno) {
-		super();
+	public User() {
+	};
+
+	public User(String mail, String username, String password, String mobileno) {
+
 		this.mail = mail;
 		this.username = username;
 		this.password = password;
-		this.mobileno  = mobileno;
+		this.mobileno = mobileno;
+	}
+
+	public User(String mail, String username, String password, String mobileno, int accNo, String ifscNo,
+			String accName) {
+
+		this.mail = mail;
+		this.username = username;
+		this.password = password;
+		this.mobileno = mobileno;
+		this.accNo = accNo;
+		this.ifscNo = ifscNo;
+		this.accName = accName;
 	}
 
 	public User(String user_mail, String user_pwd) {
@@ -51,10 +62,44 @@ public class User {
 		this.password = password;
 	}
 
-	@Override
-	public String toString() {
-	    return "User [mail=" + mail + ", username=" + username + ", password=" + password + ", mobileNo=" + mobileno + "]";
+	public String getMobileno() {
+		return mobileno;
 	}
 
+	public void setMobileno(String mobileno) {
+		this.mobileno = mobileno;
+	}
+
+	public int getAccNo() {
+		return accNo;
+	}
+
+	public void setAccNo(int accNo) {
+		this.accNo = accNo;
+	}
+
+	public String getIfscNo() {
+		return ifscNo;
+	}
+
+	public void setIfscNo(String ifscNo) {
+		this.ifscNo = ifscNo;
+	}
+
+	public String getAccName() {
+		return accName;
+	}
+
+	public void setAccName(String accName) {
+		this.accName = accName;
+	}
+
+	@Override
+	public String toString() {
+		return "User [mail=" + mail + ", username=" + username + ", password=" + password + ", mobileNo=" + mobileno
+				+ "]";
+	}
+
+	
 
 }

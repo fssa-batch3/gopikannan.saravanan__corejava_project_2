@@ -26,7 +26,7 @@ public class UserDAO {
 		}
 
 		String query = "INSERT INTO userdata (user_name, user_mail, user_pwd, mobileno) VALUES (?, ?, ?, ?);";
-		try (Connection connection = getConnection(); PreparedStatement pst = connection.prepareStatement(query);) {
+		try (PreparedStatement pst = getConnection().prepareStatement(query);) {
 			pst.setString(1, user.getUsername());
 			pst.setString(2, user.getMail());
 			pst.setString(3, user.getPassword());
@@ -42,54 +42,60 @@ public class UserDAO {
 
 //  login user
 
-	public boolean deleteUser(String email) throws DAOException {
+//	public boolean deleteUser(String email) throws DAOException {
+//
+//		String DELETEQUERY = "DELETE FROM userdata where user_mail=?";
+//
+//		int row = 0;
+//
+//		try (PreparedStatement std = getConnection().prepareStatement(DELETEQUERY)) {
+//
+//			std.setString(1, email);
+//
+//			row = std.executeUpdate();
+//
+//			System.out.println("Deleted row: " + row);
+//
+//		} catch (SQLException e) {
+//			throw new DAOException("Error in deleting the user");
+//		}
+//
+//		return row > 0;
+//
+//	}
 
-		String DELETEQUERY = "DELETE FROM userdata where user_mail=?";
+//	update user
 
-		int row = 0;
+	public boolean updateUser(User user) throws SQLException, DAOException {
+		final String query = "UPDATE userdata SET user_name = ?, user_pwd = ?, mobileno = ?, user_account_no = ?, user_ifsc = ?, user_account_holder = ? WHERE user_mail = ?;";
 
-		try (PreparedStatement std = getConnection().prepareStatement(DELETEQUERY)) {
+		try (PreparedStatement pst = getConnection().prepareStatement(query)) {
 
-			std.setString(1, email);
-
-			row = std.executeUpdate();
-
-			System.out.println("Deleted row: " + row);
-
-		} catch (SQLException e) {
-			throw new DAOException("Error in deleting the user");
-		}
-
-		return row > 0;
-
-	}
-
-	// login user
-
-	public boolean loginUser(User user) throws DAOException {
-		String email = user.getMail();
-		String password = user.getPassword();
-
-		String query = "SELECT user_mail,user_pwd FROM userdata WHERE user_mail = ? AND user_pwd = ?";
-		try (Connection connection = getConnection(); PreparedStatement pst = connection.prepareStatement(query)) {
-			pst.setString(1, email);
-			pst.setString(2, password);
-			try (ResultSet rs = pst.executeQuery()) {
-
-				// User found, login successful else
-				return rs.next();
-
+			pst.setString(1, user.getUsername());
+			pst.setString(2, user.getPassword());
+			pst.setString(3, user.getMobileno());
+			pst.setInt(4, user.getAccNo());
+			pst.setString(5, user.getIfscNo());
+			pst.setString(6, user.getAccName());
+			pst.setString(7, user.getMail());
+			int rows = pst.executeUpdate();
+			if (rows == 0) {
+				throw new DAOException("User with email: " + user.getMail() + " not found in the database.");
 			}
+			return (rows==1);
+			
 		} catch (SQLException e) {
-			throw new DAOException(e);
+			
+			throw new DAOException("Error updating user in the database");
 		}
-	}
+		
+	} 
 
 	// check email is already exist
 	public boolean isEmailAlreadyRegistered(String email) throws DAOException {
-		final String SELECTQUERY = "SELECT user_mail FROM userdata WHERE user_mail = ?";
+		final String query = "SELECT user_mail FROM userdata WHERE user_mail = ?";
 
-		try (PreparedStatement pstmt = getConnection().prepareStatement(SELECTQUERY)) {
+		try (PreparedStatement pstmt = getConnection().prepareStatement(query)) {
 
 			pstmt.setString(1, email);
 
@@ -101,23 +107,37 @@ public class UserDAO {
 		}
 	}
 
-	public boolean isLogin(User user) throws DAOException {
+	private String userPasswordFromDb;
 
-		final String SELECTQUERY = "SELECT user_mail, user_pwd FROM userdata WHERE user_mail = ? AND user_pwd = ?";
+	public String getUserPasswordFromDb() {
+		return userPasswordFromDb;
+	}
 
-		try (PreparedStatement pstmt = getConnection().prepareStatement(SELECTQUERY)) {
+	public void setUserPasswordFromDb(String userPasswordFromDb) {
+		this.userPasswordFromDb = userPasswordFromDb;
+	}
 
-			pstmt.setString(1, user.getMail());
-			pstmt.setString(2, user.getPassword());
+	// login user
 
-			try (ResultSet rs = pstmt.executeQuery()) {
-				return rs.next(); // Return true if the user email and password exists
+	public boolean loginUser(User user) throws DAOException {
+		String email = user.getMail();
+
+		String query = "SELECT user_mail,user_pwd FROM userdata WHERE user_mail = ?;";
+		try (PreparedStatement pst = getConnection().prepareStatement(query)) {
+			pst.setString(1, email);
+			try (ResultSet rs = pst.executeQuery()) {
+
+				// User found, login successful else
+				if (rs.next()) {
+					String passwordfromDb = rs.getString("user_pwd");
+					setUserPasswordFromDb(passwordfromDb);
+					return true;
+				}
 			}
-
 		} catch (SQLException e) {
 			throw new DAOException("Error in loggin in");
 		}
-
-	}
+		return false;
+	} 
 
 }
