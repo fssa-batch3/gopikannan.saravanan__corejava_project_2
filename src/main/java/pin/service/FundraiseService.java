@@ -6,7 +6,6 @@ import pin.dao.FundraiseDAO;
 
 import pin.dao.exceptions.DAOException;
 import pin.model.Fundraise;
-import pin.model.User;
 import pin.service.exception.ServiceException;
 import pin.validation.FundraiseValidation;
 import pin.validation.exceptions.InvalidFundraiseException;
@@ -32,7 +31,7 @@ public class FundraiseService {
 
 		} catch (DAOException | InvalidFundraiseException | InvalidUserException e) {
 
-			throw new ServiceException(e.getMessage());
+			throw new ServiceException(e.getMessage(), e);
 		}
 	}
 
@@ -46,8 +45,7 @@ public class FundraiseService {
 			throw new ServiceException(e.getMessage(), e);
 		}
 	}
-	
-	
+
 //	public boolean updateUser(User user) throws DAOException {
 //		try {
 //			// Get connection
@@ -77,7 +75,5 @@ public class FundraiseService {
 //			throw new DAOException(e);
 //		}
 //	}
-	
-	
 
 }

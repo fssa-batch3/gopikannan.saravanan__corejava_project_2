@@ -9,6 +9,7 @@ public class User {
 	private int accNo;
 	private String ifscNo;
 	private String accName;
+	private int userid;
 
 	public User() {
 	};
@@ -36,6 +37,20 @@ public class User {
 	public User(String user_mail, String user_pwd) {
 		this.mail = user_mail;
 		this.password = user_pwd;
+	}
+	
+
+	public User(String mail, String username, String password, String mobileno, int accNo, String ifscNo,
+			String accName, int userid) {
+		
+		this.mail = mail;
+		this.username = username;
+		this.password = password;
+		this.mobileno = mobileno;
+		this.accNo = accNo;
+		this.ifscNo = ifscNo;
+		this.accName = accName;
+		this.userid = userid;
 	}
 
 	public String getMail() {
@@ -93,7 +108,17 @@ public class User {
 	public void setAccName(String accName) {
 		this.accName = accName;
 	}
+	
+	
+	public int getUserid() {
+		return userid;
+	}
 
+	public void setUserid(int userid) {
+		this.userid = userid;
+	}
+
+	
 	@Override
 	public String toString() {
 		return "User [mail=" + mail + ", username=" + username + ", password=" + password + ", mobileNo=" + mobileno

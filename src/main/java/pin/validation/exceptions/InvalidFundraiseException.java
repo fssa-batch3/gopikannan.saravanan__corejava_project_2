@@ -16,5 +16,8 @@ public class InvalidFundraiseException extends Exception {
 		super(e);
 
 	}
+	public InvalidFundraiseException(String msg,Throwable e) {
+		super(msg,e);
 
+	}
 }

@@ -2,8 +2,8 @@
 package pin.validation;
 
 import java.util.regex.Matcher;
+
 import java.util.regex.Pattern;
-import java.util.regex.PatternSyntaxException;
 
 import pin.model.*;
 import pin.validation.exceptions.InvalidUserException;
@@ -20,14 +20,22 @@ public class UserValidator {
 		}
 
 	}
-	
+
 	public static boolean validateUpdateUser(User user) throws InvalidUserException {
 
 //		User is Valid if username is valid and email is valid and pwd is valid
-		if (user != null && validateName(user.getUsername()) && validateEmail(user.getMail())
-				&& validatePassword(user.getPassword()) && ValidateMobileNo(user.getMobileno())) {
-			return true && ValidateAccountNo(user.getAccNo())&& ValidateIFSCCode(user.getIfscNo())&& ValidateAccountHolderName(user.getAccName());
-		} else {
+		if (user != null && validateName(user.getUsername()) 
+				&& validateEmail(user.getMail())
+				&& validatePassword(user.getPassword()) 
+				&& ValidateMobileNo(user.getMobileno())
+				&& ValidateAccountNo(user.getAccNo())
+				&& ValidateIFSCCode(user.getIfscNo())
+				&& ValidateAccountHolderName(user.getAccName())) 
+				{
+				return true;}
+			 
+			 
+		 else {
 			throw new InvalidUserException("User details not valid");
 		}
 
@@ -106,21 +114,20 @@ public class UserValidator {
 	}
 
 	public static boolean ValidateAccountNo(int accno) throws InvalidUserException {
-	    String accnoString = String.valueOf(accno); 
-	    boolean isMatch = false;
-	    if (accnoString == null)
-	        return false;
+		String accnoString = String.valueOf(accno);
+		boolean isMatch = false;
+		if (accnoString == null)
+			return false;
 
-	    String regex = "[0-9]{10,}";
-	    isMatch = Pattern.matches(regex, accnoString);
-	    if (isMatch) {
-	        System.out.println("The account number is: Valid");
-	    } else {
-	        throw new InvalidUserException("The account number is: Invalid");
-	    }
-	    return isMatch;
+		String regex = "[0-9]{10,}";
+		isMatch = Pattern.matches(regex, accnoString);
+		if (isMatch) {
+			System.out.println("The account number is: Valid");
+		} else {
+			throw new InvalidUserException("The account number is: Invalid");
+		}
+		return isMatch;
 	}
-
 
 	public static boolean ValidateIFSCCode(String ifscCode) throws InvalidUserException {
 		boolean isMatch = false;

@@ -1,27 +1,30 @@
 package pin.model;
 
 public class Fundraise {
-	@Override
-	public String toString() {
-		return "Fundraise [name=" + name + ", email=" + email + ", phno=" + phno + ", cause=" + cause + ", cover_pic="
-				+ cover_pic + ", title=" + title + ", story=" + story + ", expected_amount=" + expected_amount + "]";
-	}
 
 	private String name;
 	private String email;
 	private String phno;
+	private int accNo;
+	private String ifscNo;
+	private String accName;
 	private String cause;
 	private String cover_pic;
 	private String title;
 	private String story;
 	private int expected_amount;
+	private int userid;
 
-	public Fundraise(String name, String email, String phno, String cause, String cover_pic, String title, String story,
-			int expected_amount) {
+	public Fundraise(String name, String email, String phno, int accNo, String ifscNo, String accName, int userid,
+			String cause, String cover_pic, String title, String story, int expected_amount) {
 
 		this.name = name;
 		this.email = email;
 		this.phno = phno;
+		this.accNo = accNo;
+		this.ifscNo = ifscNo;
+		this.accName = accName;
+		this.userid = userid; 
 		this.cause = cause;
 		this.cover_pic = cover_pic;
 		this.title = title;
@@ -51,6 +54,30 @@ public class Fundraise {
 
 	public void setPhno(String phno) {
 		this.phno = phno;
+	}
+
+	public int getAccNo() {
+		return accNo;
+	}
+
+	public void setAccNo(int accNo) {
+		this.accNo = accNo;
+	}
+
+	public String getIfscNo() {
+		return ifscNo;
+	}
+
+	public void setIfscNo(String ifscNo) {
+		this.ifscNo = ifscNo;
+	}
+
+	public String getAccName() {
+		return accName;
+	}
+
+	public void setAccName(String accName) {
+		this.accName = accName;
 	}
 
 	public String getCause() {
@@ -91,6 +118,21 @@ public class Fundraise {
 
 	public void setExpected_amount(int expected_amount) {
 		this.expected_amount = expected_amount;
+	}
+
+	public int getUserid() {
+		return userid;
+	}
+
+	public void setUserid(int userid) {
+		this.userid = userid;
+	}
+
+	@Override
+	public String toString() {
+		return "Fundraise [name=" + name + ", email=" + email + ", phno=" + phno + ", accNo=" + accNo + ", ifscNo="
+				+ ifscNo + ", accName=" + accName + ", cause=" + cause + ", cover_pic=" + cover_pic + ", title=" + title
+				+ ", story=" + story + ", expected_amount=" + expected_amount + "]";
 	}
 
 }
