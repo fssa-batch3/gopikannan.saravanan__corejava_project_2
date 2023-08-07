@@ -1,9 +1,7 @@
 package pin.service;
 
 import java.util.List;
-
 import pin.dao.FundraiseDAO;
-
 import pin.dao.exceptions.DAOException;
 import pin.model.Fundraise;
 import pin.service.exception.ServiceException;
@@ -12,6 +10,7 @@ import pin.validation.exceptions.InvalidFundraiseException;
 import pin.validation.exceptions.InvalidUserException;
 
 public class FundraiseService {
+//	fundraise createService feature
 
 	public boolean createFundraise(Fundraise fundraise) throws ServiceException {
 
@@ -35,6 +34,7 @@ public class FundraiseService {
 		}
 	}
 
+//	Fundraise view service feature
 	public List<Fundraise> viewFundraisesServices() throws ServiceException {
 		FundraiseDAO fundraiseDAO = new FundraiseDAO();
 
@@ -46,34 +46,47 @@ public class FundraiseService {
 		}
 	}
 
-//	public boolean updateUser(User user) throws DAOException {
-//		try {
-//			// Get connection
-//			Connection connection = getConnection();
-//
-//			// Prepare SQL statement
-//			String updateQuery = "UPDATE user SET username = ?, firstname = ?, lastname = ?, gender = ?, password = ?, nationality = ?, dob = ?, profile_image = ?, age = ?, mobile_number = ? WHERE email = ?";
-//			PreparedStatement statement = connection.prepareStatement(updateQuery);
-//			statement.setString(1, user.getUsername());
-//			statement.setString(2, user.getFirstName());
-//			statement.setString(3, user.getLastName());
-//			statement.setString(4, user.getGender());
-//			statement.setString(5, user.getPassword());
-//			statement.setString(6, user.getNationality());
-//			statement.setDate(7, user.getDob());
-//			statement.setString(8, user.getProfile_image());
-//			statement.setInt(9, user.getAge());
-//			statement.setLong(10, user.getMobile_number());
-//			statement.setString(11, user.getEmail());
-//
-//			// Execute the query
-//			int rows = statement.executeUpdate();
-//
-//			// Return successful or not
-//			return (rows == 1);
-//		} catch (SQLException e) {
-//			throw new DAOException(e);
-//		}
-//	}
+//	Update Fundraise feature Service
+
+	public boolean fundraiseUpdate(Fundraise fundraise) throws ServiceException {
+
+		FundraiseDAO fundraiseDAO = new FundraiseDAO();
+
+		try {
+			FundraiseValidation.validateFundraise(fundraise);
+
+			if (fundraiseDAO.updateFundraise(fundraise)) {
+				throw new DAOException(fundraise.getName() + " successfully fundraise updated");
+
+			} else {
+				System.out.println("Update was not successful");
+				return false;
+			}
+
+		} catch (DAOException | InvalidFundraiseException | InvalidUserException e) {
+			throw new ServiceException(e.getMessage());
+		}
+
+	}
+
+//	delete fundraise service feature
+
+	public boolean fundraiseDelete(int fundraiseId) throws ServiceException {
+		FundraiseDAO fundraiseDAO = new FundraiseDAO();
+		try {
+
+			if (fundraiseDAO.deleteFundraise(fundraiseId)) {
+
+				return true;
+			} else {
+
+				return false;
+			}
+
+		} catch (DAOException e) {
+
+			throw new ServiceException(e.getMessage(), e);
+		}
+	}
 
 }

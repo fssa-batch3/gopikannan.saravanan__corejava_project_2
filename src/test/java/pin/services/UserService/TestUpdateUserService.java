@@ -16,7 +16,7 @@ class TestUpdateUserService {
 
 		UserService userservice = new UserService();
 
-		User user1 = new User("soffan2906@gmail.com", "Soffan", "Wow@2002", "9028848999", 1234567890,
+		User user1 = new User("soffan2906@gmail.com", "Soffan", "Wow@2002", "9092500612", 1234567890,
 				"ABCD0123456", "SOFFAN KANNAN");
 		try {
 			assertTrue(userservice.updateUser(user1));

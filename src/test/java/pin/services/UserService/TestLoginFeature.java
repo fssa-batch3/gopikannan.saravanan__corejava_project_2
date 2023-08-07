@@ -10,7 +10,6 @@ import pin.model.*;
  class TestLoginFeature {
 
 	@Test
-
 	 void loginSuccess() {
 		UserService userService = new UserService();
 
@@ -23,7 +22,7 @@ import pin.model.*;
 
 			System.out.println(e.getMessage());
 		}
-	} 
+	}  
  
 	@Test
 
@@ -36,5 +35,5 @@ import pin.model.*;
 		} catch (ServiceException e) {
 			System.out.println(e.getMessage());
 		}
-	}
+	} 
 }

@@ -42,6 +42,7 @@ public class FundraiseDAO {
 //
 //	}
 
+//	fundraise create method 
 	public boolean createFundraise(Fundraise fundraise) throws DAOException {
 		if (fundraise == null) {
 			System.out.println("Fundraise must not be null");
@@ -69,13 +70,13 @@ public class FundraiseDAO {
 		}
 	}
 
+//	fundraise view method
 	public List<Fundraise> viewFundraises() throws DAOException {
 		List<Fundraise> fundraises = new ArrayList<>();
 
 		String query = "SELECT name, emailid, mobileno, user_account_no, user_ifsc, user_account_holder, cause, image_url, title, story, amount_expected, userid FROM fundraisedetails";
 
 		try (PreparedStatement ps = UserDAO.getConnection().prepareStatement(query); ResultSet rs = ps.executeQuery()) {
-
 			while (rs.next()) {
 				String name = rs.getString("name");
 				String email = rs.getString("emailid");
@@ -102,34 +103,46 @@ public class FundraiseDAO {
 		return fundraises;
 	}
 
-//	public boolean updateUser(User user) throws DAOException {
-//		try {
-//			// Get connection
-//			Connection connection = getConnection();
-//
-//			// Prepare SQL statement
-//			String updateQuery = "UPDATE user SET username = ?, firstname = ?, lastname = ?, gender = ?, password = ?, nationality = ?, dob = ?, profile_image = ?, age = ?, mobile_number = ? WHERE email = ?";
-//			PreparedStatement statement = connection.prepareStatement(updateQuery);
-//			statement.setString(1, user.getUsername());
-//			statement.setString(2, user.getFirstName());
-//			statement.setString(3, user.getLastName());
-//			statement.setString(4, user.getGender());
-//			statement.setString(5, user.getPassword());
-//			statement.setString(6, user.getNationality());
-//			statement.setDate(7, user.getDob());
-//			statement.setString(8, user.getProfile_image());
-//			statement.setInt(9, user.getAge());
-//			statement.setLong(10, user.getMobile_number());
-//			statement.setString(11, user.getEmail());
-//
-//			// Execute the query
-//			int rows = statement.executeUpdate();
-//
-//			// Return successful or not
-//			return (rows == 1);
-//		} catch (SQLException e) {
-//			throw new DAOException(e);
-//		}
-//	}
+//	update fundraise method
+	public boolean updateFundraise(Fundraise fundraise) throws DAOException {
+		try {
+			String updateQuery = "UPDATE fundraisedetails SET name = ?, emailid = ?, mobileno = ?, user_account_no = ?, user_ifsc = ?, user_account_holder = ?, cause = ?, image_url = ?, title = ?, story = ?, amount_expected = ? WHERE userid = ?";
+
+			try (PreparedStatement ps = UserDAO.getConnection().prepareStatement(updateQuery)) {
+				ps.setString(1, fundraise.getName());
+				ps.setString(2, fundraise.getEmail());
+				ps.setString(3, fundraise.getPhno());
+				ps.setInt(4, fundraise.getAccNo());
+				ps.setString(5, fundraise.getIfscNo());
+				ps.setString(6, fundraise.getAccName());
+				ps.setString(7, fundraise.getCause());
+				ps.setString(8, fundraise.getCover_pic());
+				ps.setString(9, fundraise.getTitle());
+				ps.setString(10, fundraise.getStory());
+				ps.setInt(11, fundraise.getExpected_amount());
+				ps.setInt(12, fundraise.getUserid());
+
+				int rows = ps.executeUpdate();
+				return (rows == 1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DAOException("Error updating fundraise in the table");
+		}
+	}
+
+//	delete fundraise method
+	public boolean deleteFundraise(int fundraiseId) throws DAOException {
+		String deleteQuery = "DELETE from fundraisedetails WHERE fundraise_id=?";
+		try (PreparedStatement ps = UserDAO.getConnection().prepareStatement(deleteQuery)) {
+
+			ps.setInt(1, fundraiseId);
+			int rows = ps.executeUpdate();
+			return rows == 1;
+		} catch (SQLException e) {
+			throw new DAOException("Error in delete product method", e);
+		}
+
+	}
 
 }

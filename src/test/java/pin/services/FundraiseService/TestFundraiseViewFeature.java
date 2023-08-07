@@ -3,10 +3,8 @@ package pin.services.FundraiseService;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
-
 import org.junit.jupiter.api.Test;
 import pin.service.exception.*;
-
 import pin.model.Fundraise;
 import pin.model.User;
 import pin.service.FundraiseService;
@@ -47,7 +45,7 @@ class TestFundraiseViewFeature {
 			System.out.println(e.getMessage());
 		}
 	}
-
+ 
 	@Test
 	void testGetFundraisesInValid() {
 		FundraiseService fundraiseService = new FundraiseService();
