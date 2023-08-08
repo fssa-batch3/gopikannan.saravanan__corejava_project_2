@@ -1,25 +1,40 @@
 package pin.dao;
 
 import java.sql.Connection;
+
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import pin.model.User;
-
+import io.github.cdimascio.dotenv.Dotenv;
 import pin.dao.exceptions.DAOException;
+import pin.model.User;
 
 public class UserDAO {
 
 	public static Connection getConnection() throws SQLException {
+		
+		String DB_URL;
+		String DB_USER;
+		String DB_PASSWORD;
+
+		if (System.getenv("CI") != null) {
+			DB_URL = System.getenv("DB_URL");
+			DB_USER = System.getenv("DB_USER");
+			DB_PASSWORD = System.getenv("DB_PASSWORD");
+		} else {
+			Dotenv env = Dotenv.load();
+			DB_URL = env.get("DB_URL");
+			DB_USER = env.get("DB_USER");
+			DB_PASSWORD = env.get("DB_PASSWORD");
+		}
 		// Connecting to DB
-		Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/pin", "root", "123456");
+		Connection con = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
 		return con;
 	}
 
 	// Add new user to DB - register
-	public boolean create(User user) throws DAOException {
+	public boolean createUser(User user) throws DAOException {
 		if (user == null) {
 			System.out.println("User Must not be null");
 			return false;
@@ -40,30 +55,6 @@ public class UserDAO {
 		}
 	}
 
-//  login user
-
-//	public boolean deleteUser(String email) throws DAOException {
-//
-//		String DELETEQUERY = "DELETE FROM userdata where user_mail=?";
-//
-//		int row = 0;
-//
-//		try (PreparedStatement std = getConnection().prepareStatement(DELETEQUERY)) {
-//
-//			std.setString(1, email);
-//
-//			row = std.executeUpdate();
-//
-//			System.out.println("Deleted row: " + row);
-//
-//		} catch (SQLException e) {
-//			throw new DAOException("Error in deleting the user");
-//		}
-//
-//		return row > 0;
-//
-//	}
-
 //	update user
 
 	public boolean updateUser(User user) throws SQLException, DAOException {
@@ -82,14 +73,29 @@ public class UserDAO {
 			if (rows == 0) {
 				throw new DAOException("User with email: " + user.getMail() + " not found in the database.");
 			}
-			return (rows==1);
-			
+			return (rows == 1);
+
 		} catch (SQLException e) {
-			
+
 			throw new DAOException("Error updating user in the database");
 		}
-		
-	} 
+
+	}
+
+//  delete user
+
+	public boolean deleteUser(String email) throws DAOException {
+		String deleteQuery = "DELETE FROM userdata where user_mail=?";
+		try (PreparedStatement ps = UserDAO.getConnection().prepareStatement(deleteQuery)) {
+
+			ps.setString(1, email);
+			int rows = ps.executeUpdate();
+			return (rows == 1);
+		} catch (SQLException e) {
+			throw new DAOException("Error in delete user ", e);
+		}
+
+	}
 
 	// check email is already exist
 	public boolean isEmailAlreadyRegistered(String email) throws DAOException {
@@ -138,6 +144,6 @@ public class UserDAO {
 			throw new DAOException("Error in loggin in");
 		}
 		return false;
-	} 
+	}
 
 }

@@ -22,7 +22,7 @@ public class UserService {
 			if (userDAO.isEmailAlreadyRegistered(user.getMail())) {
 				throw new DAOException("Email already exists");
 			}
-			if (userDAO.create(user)) {
+			if (userDAO.createUser(user)) {
 				System.out.println(user.getUsername() + " Successfully Register");
 				return true;
 			} else {
@@ -74,7 +74,20 @@ public class UserService {
 		} catch (DAOException | InvalidUserException | SQLException e) {
 			throw new ServiceException(e.getMessage());
 		}
-		
+
 	}
 
+//	delete user service logic
+	public boolean deleteUser(String email) throws ServiceException {
+
+		UserDAO userDAO = new UserDAO();
+
+		try {
+			UserValidator.validateEmail(email);
+			return userDAO.deleteUser(email);
+		} catch (DAOException | InvalidUserException e) {
+			throw new ServiceException(e.getMessage());
+		}
+ 
+	}
 }
