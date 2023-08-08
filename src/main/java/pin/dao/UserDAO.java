@@ -11,13 +11,10 @@ import pin.dao.exceptions.DAOException;
 import pin.model.User;
 
 public class UserDAO {
-
 	public static Connection getConnection() throws SQLException {
-		
 		String DB_URL;
 		String DB_USER;
 		String DB_PASSWORD;
-
 		if (System.getenv("CI") != null) {
 			DB_URL = System.getenv("DB_URL");
 			DB_USER = System.getenv("DB_USER");
@@ -45,7 +42,7 @@ public class UserDAO {
 			pst.setString(1, user.getUsername());
 			pst.setString(2, user.getMail());
 			pst.setString(3, user.getPassword());
-			pst.setString(4, user.getMobileno());
+			pst.setString(4, user.getMobileno());   
 
 			int rows = pst.executeUpdate();
 
