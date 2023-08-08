@@ -1,4 +1,4 @@
-package pin.services.FundraiseService;
+package pin.services.fundraiseservice;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;

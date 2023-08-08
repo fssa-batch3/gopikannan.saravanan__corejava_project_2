@@ -1,4 +1,4 @@
-package pin.services.UserService;
+package pin.services.userservice;
 
 import static org.junit.jupiter.api.Assertions.*;
 

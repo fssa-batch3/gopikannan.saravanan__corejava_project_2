@@ -1,19 +1,24 @@
-package pin.services.FundraiseService;
+package pin.services.fundraiseservice;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.List;
 import org.junit.jupiter.api.Test;
-import pin.model.*;
-import pin.service.*;
-import pin.service.exception.ServiceException;
+import pin.service.exception.*;
+import pin.model.Fundraise;
+import pin.model.User;
+import pin.service.FundraiseService;
+import pin.dao.FundraiseDAO;
+import pin.dao.exceptions.DAOException;
 
-class TestFunsdraiseCreateFeature {
+class TestFundraiseViewFeature {
+
 	@Test
-	void testCreateValid() {
+	void testGetFundraisesValid() throws DAOException, ServiceException {
 
 		User user = new User("soffan2906@gmail.com", "Soffan", "Wow@2002", "9028848999", 1234567890, "ABCD0123456",
 				"SOFFAN KANNAN", 12432618);
-
+		FundraiseDAO fundraiseDAO = new FundraiseDAO();
 		FundraiseService fundraiseservice = new FundraiseService();
 		Fundraise fundraise = new Fundraise(user.getUsername(), user.getMail(), user.getMobileno(), user.getAccNo(),
 				user.getIfscNo(), user.getAccName(), user.getUserid(), "Medical",
@@ -23,25 +28,37 @@ class TestFunsdraiseCreateFeature {
 				150000);
 
 		try {
+
 			assertTrue(fundraiseservice.createFundraise(fundraise));
-			System.out.println("Successfully created a fundraise");
-		} catch (ServiceException e) {
+
+			List<Fundraise> fundraises = fundraiseDAO.viewFundraises();
+
+			assertNotNull(fundraises);
+
+			for (Fundraise p : fundraises) {
+				System.out.println(p.toString());
+			}
+
+			System.out.println("Successfully Viewed");
+		} catch (DAOException | ServiceException e) {
+			e.printStackTrace();
 			System.out.println(e.getMessage());
 		}
 	}
-
+ 
 	@Test
-	void testCreateInvalid() {
-
-		Fundraise invalidFundraise = new Fundraise(null, null, null, 0, null, null, 0, null, null, null, null, 0);
-
-		FundraiseService fundraiseservice = new FundraiseService();
+	void testGetFundraisesInValid() {
+		FundraiseService fundraiseService = new FundraiseService();
 
 		try {
 
-			assertFalse(fundraiseservice.createFundraise(invalidFundraise));
+			List<Fundraise> fundraises = fundraiseService.viewFundraisesServices();
+
+			assertFalse(fundraises == null);
+
 		} catch (ServiceException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
+			System.out.println("Fundraise is not null So failed");
 		}
 	}
 

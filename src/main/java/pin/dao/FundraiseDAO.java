@@ -49,9 +49,12 @@ public class FundraiseDAO {
 			return false;
 		}
 
-		String query = "INSERT INTO fundraisedetails (name, emailid, mobileno, user_account_no, user_ifsc, user_account_holder, cause, image_url, title, story, amount_expected, userid) "
-				+ "SELECT userdata.user_name, userdata.user_mail, userdata.mobileno, userdata.user_account_no, userdata.user_ifsc, userdata.user_account_holder, ?, ?, ?, ?, ?, ? "
-				+ "FROM userdata " + "WHERE userdata.userid = ?";
+		String query = 
+			    "INSERT INTO fundraisedetails (name, emailid, mobileno, user_account_no, user_ifsc, user_account_holder, cause, image_url, title, story, amount_expected, userid) " +
+			    "SELECT userdata.user_name, userdata.user_mail, userdata.mobileno, userdata.user_account_no, userdata.user_ifsc, userdata.user_account_holder, ?, ?, ?, ?, ?, ? " +
+			    "FROM userdata " +
+			    "INNER JOIN fundraisedetails ON fundraisedetails.userid = userdata.userid " +
+			    "WHERE userdata.userid = ?";
 
 		try (PreparedStatement ps = UserDAO.getConnection().prepareStatement(query)) {
 			ps.setString(1, fundraise.getCause());

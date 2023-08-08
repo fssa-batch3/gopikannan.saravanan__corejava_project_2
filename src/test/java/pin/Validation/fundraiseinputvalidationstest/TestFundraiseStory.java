@@ -1,4 +1,4 @@
-package pin.Validation.FundraiseInputValidationsTest;
+package pin.Validation.fundraiseinputvalidationstest;
 
 import static org.junit.jupiter.api.Assertions.*;
 

@@ -1,4 +1,4 @@
-package pin.Validation.UserTest;
+package pin.Validation.useretst;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -17,6 +17,7 @@ public class TestValidateEmail {
 			System.out.println("Your email is valid");
 		} catch (InvalidUserException e) {
 			System.out.println(e.getMessage());
+			fail();
 		}
 	}
 

@@ -1,4 +1,4 @@
-package pin.Validation.UserTest;
+package pin.Validation.useretst;
 
 import static org.junit.jupiter.api.Assertions.*;
 
