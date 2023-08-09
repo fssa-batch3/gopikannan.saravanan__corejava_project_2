@@ -7,9 +7,9 @@ import org.junit.jupiter.api.Test;
 import pin.validation.UserValidator;
 import pin.validation.exceptions.InvalidUserException;
 
-public class TestValidatePassword {
+ class TestValidatePassword {
 @Test
-public void TestValidPassword() {
+ void TestValidPassword() {
 	try {
 		
 		assertTrue(UserValidator.validatePassword("Wow@2002"));
@@ -21,7 +21,7 @@ public void TestValidPassword() {
 	
 }
 @Test
-public void TestInValidPassword() {
+ void TestInValidPassword() {
 	try {
 		
 		assertFalse(UserValidator.validatePassword("Wow2002"));
@@ -33,7 +33,7 @@ public void TestInValidPassword() {
 }
 
 @Test
-public void TestInValidPasswordWithoutNumbers() {
+ void TestInValidPasswordWithoutNumbers() {
 	try {
 		
 		assertFalse(UserValidator.validatePassword("Wow@"));
@@ -44,7 +44,7 @@ public void TestInValidPasswordWithoutNumbers() {
 	}
 }
 @Test
-public void TestInValidPasswordWithoutCapitalLetters() {
+ void TestInValidPasswordWithoutCapitalLetters() {
 	try {
 		
 		assertFalse(UserValidator.validatePassword("wow@2002"));
@@ -55,7 +55,7 @@ public void TestInValidPasswordWithoutCapitalLetters() {
 	}
 }
 @Test
-public void TestInValidPasswordWithoutSmallLetters() {
+ void TestInValidPasswordWithoutSmallLetters() {
 	try {
 		
 		assertFalse(UserValidator.validatePassword("WOW@2002"));
@@ -66,7 +66,7 @@ public void TestInValidPasswordWithoutSmallLetters() {
 	}
 }
 @Test
-public void TestInValidPasswordShorterLength() {
+ void TestInValidPasswordShorterLength() {
 	try {
 		
 		assertFalse(UserValidator.validatePassword("W@2002"));

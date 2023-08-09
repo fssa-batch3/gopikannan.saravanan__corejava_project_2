@@ -9,11 +9,12 @@ public class Fundraise {
 	private String ifscNo;
 	private String accName;
 	private String cause;
-	private String cover_pic;
+	private String coverpic;
 	private String title;
 	private String story;
-	private int expected_amount;
+	private int expectedamount;
 	private int userid;
+	private int fundraiseid;
 
 	public Fundraise(String name, String email, String phno, int accNo, String ifscNo, String accName, int userid,
 			String cause, String cover_pic, String title, String story, int expected_amount) {
@@ -26,10 +27,28 @@ public class Fundraise {
 		this.accName = accName;
 		this.userid = userid; 
 		this.cause = cause;
-		this.cover_pic = cover_pic;
+		this.coverpic = cover_pic;
 		this.title = title;
 		this.story = story;
-		this.expected_amount = expected_amount;
+		this.expectedamount = expected_amount;
+	}
+
+	public Fundraise(String name, String email, String phno, int accNo, String ifscNo, String accName, int userid,
+			String cause, String cover_pic, String title, String story, int expected_amount,int fundraiseid) {
+
+		this.name = name;
+		this.email = email;
+		this.phno = phno;
+		this.accNo = accNo;
+		this.ifscNo = ifscNo;
+		this.accName = accName;
+		this.userid = userid; 
+		this.cause = cause;
+		this.coverpic = cover_pic;
+		this.title = title;
+		this.story = story;
+		this.expectedamount = expected_amount;
+		this.setFundraiseid(fundraiseid);
 	}
 
 	public String getName() {
@@ -89,11 +108,11 @@ public class Fundraise {
 	}
 
 	public String getCover_pic() {
-		return cover_pic;
+		return coverpic;
 	}
 
 	public void setCover_pic(String cover_pic) {
-		this.cover_pic = cover_pic;
+		this.coverpic = cover_pic;
 	}
 
 	public String getTitle() {
@@ -113,11 +132,11 @@ public class Fundraise {
 	}
 
 	public int getExpected_amount() {
-		return expected_amount;
+		return expectedamount;
 	}
 
 	public void setExpected_amount(int expected_amount) {
-		this.expected_amount = expected_amount;
+		this.expectedamount = expected_amount;
 	}
 
 	public int getUserid() {
@@ -128,11 +147,23 @@ public class Fundraise {
 		this.userid = userid;
 	}
 
+
+	public int getFundraiseid() {
+		return fundraiseid;
+	}
+
+	public void setFundraiseid(int fundraiseid) {
+		this.fundraiseid = fundraiseid;
+	}
+
 	@Override
 	public String toString() {
 		return "Fundraise [name=" + name + ", email=" + email + ", phno=" + phno + ", accNo=" + accNo + ", ifscNo="
-				+ ifscNo + ", accName=" + accName + ", cause=" + cause + ", cover_pic=" + cover_pic + ", title=" + title
-				+ ", story=" + story + ", expected_amount=" + expected_amount + "]";
+				+ ifscNo + ", accName=" + accName + ", cause=" + cause + ", cover_pic=" + coverpic + ", title=" + title
+				+ ", story=" + story + ", expected_amount=" + expectedamount + ", userid=" + userid + ", fundraiseid="
+				+ fundraiseid + "]";
 	}
+	
+
 
 }

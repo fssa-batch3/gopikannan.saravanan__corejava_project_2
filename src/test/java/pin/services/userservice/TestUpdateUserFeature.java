@@ -1,6 +1,7 @@
 package pin.services.userservice;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse; 
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
@@ -8,7 +9,7 @@ import pin.model.User;
 import pin.service.UserService;
 import pin.service.exception.ServiceException;
 
-class TestUpdateUserService {
+class TestUpdateUserFeature {
 
 //	Success test case for update
 	@Test

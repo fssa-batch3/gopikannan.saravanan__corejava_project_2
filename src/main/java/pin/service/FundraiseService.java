@@ -45,7 +45,7 @@ public class FundraiseService {
 			throw new ServiceException(e.getMessage(), e);
 		}
 	}
-
+ 
 //	Update Fundraise feature Service
 
 	public boolean fundraiseUpdate(Fundraise fundraise) throws ServiceException {
@@ -56,15 +56,16 @@ public class FundraiseService {
 			FundraiseValidation.validateFundraise(fundraise);
 
 			if (fundraiseDAO.updateFundraise(fundraise)) {
-				throw new DAOException(fundraise.getName() + " successfully fundraise updated");
-
+				System.out.println("Update fundraise for" + fundraise.getName() + " was successfull");
+				return true;
 			} else {
-				System.out.println("Update was not successful");
+				System.out.println("Update Fundrasie was not successfull");
 				return false;
+
 			}
 
 		} catch (DAOException | InvalidFundraiseException | InvalidUserException e) {
-			throw new ServiceException(e.getMessage());
+			throw new ServiceException(e.getMessage(), e);
 		}
 
 	}

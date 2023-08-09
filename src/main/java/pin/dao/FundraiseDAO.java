@@ -67,7 +67,7 @@ public class FundraiseDAO {
 
 			int rows = ps.executeUpdate();
 
-			return (rows == 1);
+			return rows == 1;
 		} catch (SQLException e) {
 			throw new DAOException("Error in inserting fundraise in table", e);
 		}
@@ -109,7 +109,7 @@ public class FundraiseDAO {
 //	update fundraise method
 	public boolean updateFundraise(Fundraise fundraise) throws DAOException {
 		try {
-			String updateQuery = "UPDATE fundraisedetails SET name = ?, emailid = ?, mobileno = ?, user_account_no = ?, user_ifsc = ?, user_account_holder = ?, cause = ?, image_url = ?, title = ?, story = ?, amount_expected = ? WHERE userid = ?";
+			String updateQuery = "UPDATE fundraisedetails SET name = ?, emailid = ?, mobileno = ?, user_account_no = ?, user_ifsc = ?, user_account_holder = ?, cause = ?, image_url = ?, title = ?, story = ?, amount_expected = ? WHERE fundraise_id = ?";
 
 			try (PreparedStatement ps = UserDAO.getConnection().prepareStatement(updateQuery)) {
 				ps.setString(1, fundraise.getName());
@@ -123,7 +123,7 @@ public class FundraiseDAO {
 				ps.setString(9, fundraise.getTitle());
 				ps.setString(10, fundraise.getStory());
 				ps.setInt(11, fundraise.getExpected_amount());
-				ps.setInt(12, fundraise.getUserid());
+				ps.setInt(12, fundraise.getFundraiseid());
 
 				int rows = ps.executeUpdate();
 				return (rows == 1);
