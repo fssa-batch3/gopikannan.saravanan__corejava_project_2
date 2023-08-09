@@ -132,7 +132,7 @@ public class FundraiseDAO {
 			e.printStackTrace();
 			throw new DAOException("Error updating fundraise in the table");
 		}
-	}
+	} 
 
 //	delete fundraise method
 	public boolean deleteFundraise(int fundraiseId) throws DAOException {

@@ -1,4 +1,4 @@
-package pin.Validation.fundraiseinputvalidationstest;
+package pin.Validation;
 
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -31,5 +31,6 @@ import pin.validation.exceptions.InvalidFundraiseException;
 	}
 	
 
+ 
    
 }

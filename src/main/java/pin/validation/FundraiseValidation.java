@@ -1,6 +1,6 @@
 package pin.validation;
 
-import java.util.regex.Matcher;
+import java.util.regex.Matcher; 
 import java.util.regex.Pattern;
 
 import pin.model.Fundraise;
@@ -12,12 +12,13 @@ public class FundraiseValidation {
 
 	public static boolean validateFundraise(Fundraise fundraise)
 			throws InvalidFundraiseException, InvalidUserException {
+		
 		if (fundraise != null && UserValidator.validateName(fundraise.getName())
 				&& UserValidator.validateEmail(fundraise.getEmail())
-				&& UserValidator.ValidateMobileNo(fundraise.getPhno())
-				&& UserValidator.ValidateAccountNo(fundraise.getAccNo())
-				&& UserValidator.ValidateAccountHolderName(fundraise.getAccName())
-				&& UserValidator.ValidateIFSCCode(fundraise.getIfscNo()) && validateUserId(fundraise.getUserid())
+				&& UserValidator.validateMobileNo(fundraise.getPhno())
+				&& UserValidator.validateAccountNo(fundraise.getAccNo())
+				&& UserValidator.validateAccountHolderName(fundraise.getAccName())
+				&& UserValidator.validateIfscCode(fundraise.getIfscNo()) && validateUserId(fundraise.getUserid())
 				&& validateExpectedAmount(fundraise.getExpected_amount())
 				&& validateFundraiseImageURL(fundraise.getCover_pic()) && validateFundraiseStory(fundraise.getStory())
 				&& validateTitle(fundraise.getTitle()) && validateCause(fundraise.getCause())) {
@@ -99,4 +100,5 @@ public class FundraiseValidation {
 			throw new InvalidFundraiseException("Invalid userid. The userid must be a positive integer.");
 		}
 	}
+	
 }

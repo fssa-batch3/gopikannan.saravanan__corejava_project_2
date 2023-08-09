@@ -13,7 +13,7 @@ public class UserValidator {
 
 //		User is Valid if username is valid and email is valid and pwd is valid
 		if (user != null && validateName(user.getUsername()) && validateEmail(user.getMail())
-				&& validatePassword(user.getPassword()) && ValidateMobileNo(user.getMobileno())) {
+				&& validatePassword(user.getPassword()) && validateMobileNo(user.getMobileno())) {
 			return true;
 		} else {
 			throw new InvalidUserException("User details not valid");
@@ -27,10 +27,10 @@ public class UserValidator {
 		if (user != null && validateName(user.getUsername()) 
 				&& validateEmail(user.getMail())
 				&& validatePassword(user.getPassword()) 
-				&& ValidateMobileNo(user.getMobileno())
-				&& ValidateAccountNo(user.getAccNo())
-				&& ValidateIFSCCode(user.getIfscNo())
-				&& ValidateAccountHolderName(user.getAccName())) 
+				&& validateMobileNo(user.getMobileno())
+				&& validateAccountNo(user.getAccNo())
+				&& validateIfscCode(user.getIfscNo())
+				&& validateAccountHolderName(user.getAccName())) 
 				{
 				return true;}
 			 
@@ -96,7 +96,7 @@ public class UserValidator {
 
 	}
 
-	public static boolean ValidateMobileNo(String mobileno) throws InvalidUserException {
+	public static boolean validateMobileNo(String mobileno) throws InvalidUserException {
 		boolean isMatch = false;
 		if (mobileno == null)
 			return false;
@@ -109,11 +109,11 @@ public class UserValidator {
 			throw new InvalidUserException("The mobile number is: Invalid");
 
 		}
-		return isMatch;
+		return isMatch; 
 
 	}
 
-	public static boolean ValidateAccountNo(int accno) throws InvalidUserException {
+	public static boolean validateAccountNo(int accno) throws InvalidUserException {
 		String accnoString = String.valueOf(accno);
 		boolean isMatch = false;
 		if (accnoString == null)
@@ -129,7 +129,7 @@ public class UserValidator {
 		return isMatch;
 	}
 
-	public static boolean ValidateIFSCCode(String ifscCode) throws InvalidUserException {
+	public static boolean validateIfscCode(String ifscCode) throws InvalidUserException {
 		boolean isMatch = false;
 		if (ifscCode == null)
 			return false;
@@ -144,7 +144,7 @@ public class UserValidator {
 		return isMatch;
 	}
 
-	public static boolean ValidateAccountHolderName(String name) throws InvalidUserException {
+	public static boolean validateAccountHolderName(String name) throws InvalidUserException {
 		if (name == null || name.trim().isEmpty()) {
 			throw new InvalidUserException("Account holder name cannot be empty.");
 		}
