@@ -13,9 +13,8 @@ class TestFunsdraiseCreateFeature {
 	@Test
 	void testCreateValid() {
 
-		User user = new User("soffan2906@gmail.com", "Soffan", "Wow@2002", "9028848999", 1234567890, "ABCD0123456",
-				"SOFFANKANNAN", 1);
-
+		User user = new User();
+ 
 		FundraiseService fundraiseservice = new FundraiseService();
 		Fundraise fundraise = new Fundraise(user.getUsername(), user.getMail(), user.getMobileno(), user.getAccNo(),
 				user.getIfscNo(), user.getAccName(), user.getUserid(), "Medical",

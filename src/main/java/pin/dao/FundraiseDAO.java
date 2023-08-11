@@ -1,12 +1,13 @@
 package pin.dao;
 
-import java.sql.PreparedStatement;
+import java.sql.PreparedStatement; 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import pin.dao.exceptions.DAOException;
-import pin.model.*;
+import pin.model.Fundraise;
 
 public class FundraiseDAO {
 
@@ -40,7 +41,7 @@ public class FundraiseDAO {
 //			throw new DAOException("Error in inserting fundraise in table");
 //		}
 //
-//	}
+//	} 
 
 //	fundraise create method 
 	public boolean createFundraise(Fundraise fundraise) throws DAOException {
@@ -49,12 +50,10 @@ public class FundraiseDAO {
 			return false;
 		}
 
-		String query = 
-			    "INSERT INTO fundraisedetails (name, emailid, mobileno, user_account_no, user_ifsc, user_account_holder, cause, image_url, title, story, amount_expected, userid) " +
-			    "SELECT userdata.user_name, userdata.user_mail, userdata.mobileno, userdata.user_account_no, userdata.user_ifsc, userdata.user_account_holder, ?, ?, ?, ?, ?, ? " +
-			    "FROM userdata " +
-			    "INNER JOIN fundraisedetails ON fundraisedetails.userid = userdata.userid " +
-			    "WHERE userdata.userid = ?";
+		String query = "INSERT INTO fundraisedetails (name, emailid, mobileno, user_account_no, user_ifsc, user_account_holder, cause, image_url, title, story, amount_expected, userid) "
+				+ "SELECT userdata.user_name, userdata.user_mail, userdata.mobileno, userdata.user_account_no, userdata.user_ifsc, userdata.user_account_holder, ?, ?, ?, ?, ?, ? "
+				+ "FROM userdata " + "INNER JOIN fundraisedetails ON fundraisedetails.userid = userdata.userid "
+				+ "WHERE userdata.userid = ?";
 
 		try (PreparedStatement ps = UserDAO.getConnection().prepareStatement(query)) {
 			ps.setString(1, fundraise.getCause());
@@ -132,7 +131,7 @@ public class FundraiseDAO {
 			e.printStackTrace();
 			throw new DAOException("Error updating fundraise in the table");
 		}
-	} 
+	}
 
 //	delete fundraise method
 	public boolean deleteFundraise(int fundraiseId) throws DAOException {

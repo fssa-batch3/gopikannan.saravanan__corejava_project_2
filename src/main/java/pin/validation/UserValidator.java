@@ -30,11 +30,11 @@ public class UserValidator {
 				&& validateMobileNo(user.getMobileno())
 				&& validateAccountNo(user.getAccNo())
 				&& validateIfscCode(user.getIfscNo())
-				&& validateAccountHolderName(user.getAccName())) 
+				&& validateAccountHolderName(user.getAccName()))  
 				{
 				return true;}
-			 
-			 
+			  
+			  
 		 else {
 			throw new InvalidUserException("User details not valid");
 		}
@@ -93,9 +93,9 @@ public class UserValidator {
 
 		}
 		return isMatch;
-
+  
 	}
-
+ 
 	public static boolean validateMobileNo(String mobileno) throws InvalidUserException {
 		boolean isMatch = false;
 		if (mobileno == null)

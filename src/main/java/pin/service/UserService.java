@@ -1,15 +1,14 @@
 package pin.service;
 
-import pin.model.User;
-import pin.service.exception.ServiceException;
-
 import java.sql.SQLException;
 
 import pin.dao.UserDAO;
 import pin.dao.exceptions.DAOException;
+import pin.model.User;
+import pin.service.exception.ServiceException;
 import pin.validation.UserValidator;
 import pin.validation.exceptions.InvalidUserException;
-
+ 
 public class UserService {
 
 	public boolean registerUser(User user) throws ServiceException {
@@ -88,6 +87,6 @@ public class UserService {
 		} catch (DAOException | InvalidUserException e) {
 			throw new ServiceException(e.getMessage());
 		}
- 
+
 	}
 }

@@ -15,7 +15,9 @@ public class Fundraise {
 	private int expectedamount;
 	private int userid;
 	private int fundraiseid;
+	private User user;
 
+//	create 
 	public Fundraise(String name, String email, String phno, int accNo, String ifscNo, String accName, int userid,
 			String cause, String cover_pic, String title, String story, int expected_amount) {
 
@@ -25,16 +27,16 @@ public class Fundraise {
 		this.accNo = accNo;
 		this.ifscNo = ifscNo;
 		this.accName = accName;
-		this.userid = userid; 
+		this.userid = userid;
 		this.cause = cause;
 		this.coverpic = cover_pic;
 		this.title = title;
 		this.story = story;
 		this.expectedamount = expected_amount;
 	}
-
+//constructor for create usdr
 	public Fundraise(String name, String email, String phno, int accNo, String ifscNo, String accName, int userid,
-			String cause, String cover_pic, String title, String story, int expected_amount,int fundraiseid) {
+			String cause, String cover_pic, String title, String story, int expected_amount, int fundraiseid) {
 
 		this.name = name;
 		this.email = email;
@@ -42,13 +44,13 @@ public class Fundraise {
 		this.accNo = accNo;
 		this.ifscNo = ifscNo;
 		this.accName = accName;
-		this.userid = userid; 
+		this.userid = userid;
 		this.cause = cause;
 		this.coverpic = cover_pic;
 		this.title = title;
 		this.story = story;
 		this.expectedamount = expected_amount;
-		this.setFundraiseid(fundraiseid);
+		this.fundraiseid =fundraiseid;
 	}
 
 	public String getName() {
@@ -147,13 +149,19 @@ public class Fundraise {
 		this.userid = userid;
 	}
 
-
 	public int getFundraiseid() {
 		return fundraiseid;
 	}
 
 	public void setFundraiseid(int fundraiseid) {
 		this.fundraiseid = fundraiseid;
+	}
+	
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	@Override
@@ -164,6 +172,5 @@ public class Fundraise {
 				+ fundraiseid + "]";
 	}
 	
-
 
 }

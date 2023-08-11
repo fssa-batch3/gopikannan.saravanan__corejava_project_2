@@ -12,14 +12,14 @@ class TestFundraiseDeleteFeature {
 	void deleteFundraiseSuccess() {
 		FundraiseService fundraiseservice = new FundraiseService();
 		try {
-			assertTrue(fundraiseservice.fundraiseDelete(3));
+			assertTrue(fundraiseservice.fundraiseDelete(54));
 		} catch (ServiceException e) {
 			System.out.println(e.getMessage());
 		}
 
 	}
 	
-	
+	  
 	@Test
 
 	void deleteFundraiseFailed() {

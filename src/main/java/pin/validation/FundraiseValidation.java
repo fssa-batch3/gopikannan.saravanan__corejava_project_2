@@ -1,10 +1,9 @@
 package pin.validation;
 
-import java.util.regex.Matcher; 
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import pin.model.Fundraise;
-
 import pin.validation.exceptions.InvalidFundraiseException;
 import pin.validation.exceptions.InvalidUserException;
 

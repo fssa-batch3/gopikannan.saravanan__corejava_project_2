@@ -18,7 +18,7 @@ public class TestValidateUsername {
 			System.out.println(e.getMessage());
 		}
 	}
-
+ 
 	@Test
 	public void testInvalidUsernameStartingWithNumber() {
 		try {
