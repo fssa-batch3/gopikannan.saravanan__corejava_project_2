@@ -19,8 +19,8 @@ public class FundraiseValidation {
 			&& UserValidator.validateAccountHolderName(fundraise.getAccName())
 			&& UserValidator.validateIfscCode(fundraise.getIfscNo())
 			&& UserValidator.validateUserId(fundraise.getUserid())
-			&& validateExpectedAmount(fundraise.getExpected_amount())
-			&& validateFundraiseImageURL(fundraise.getCover_pic())
+			&& validateExpectedAmount(fundraise.getExpectedAmount())
+			&& validateFundraiseImageURL(fundraise.getCoverPic())
 			&& validateFundraiseStory(fundraise.getStory())
 			&& validateTitle(fundraise.getTitle())
 			&& validateCause(fundraise.getCause())) {

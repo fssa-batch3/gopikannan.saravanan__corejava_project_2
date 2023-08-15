@@ -1,6 +1,5 @@
 package com.fssa.pin.model;
 
-
 public class Fundraise {
 
 	private String name;
@@ -23,25 +22,13 @@ public class Fundraise {
 
 //	create 
 	public Fundraise(String name, String email, String phno, int accNo, String ifscNo, String accName, int userid,
-			String cause, String cover_pic, String title, String story, int expected_amount) {
-
-		this.name = name;
-		this.email = email;
-		this.phno = phno;
-		this.accNo = accNo;
-		this.ifscNo = ifscNo;
-		this.accName = accName;
-		this.userid = userid;
-		this.cause = cause;
-		this.coverpic = cover_pic;
-		this.title = title;
-		this.story = story;
-		this.expectedamount = expected_amount;
+			String cause, String coverPic, String title, String story, int expectedAmount) {
+		this(name, email, phno, accNo, ifscNo, accName, userid, cause, coverPic, title, story, expectedAmount, -1);
 	}
 
 //constructor for update
 	public Fundraise(String name, String email, String phno, int accNo, String ifscNo, String accName, int userid,
-			String cause, String cover_pic, String title, String story, int expected_amount, int fundraiseid) {
+			String cause, String coverPic, String title, String story, int expectedAmount, int fundraiseid) {
 
 		this.name = name;
 		this.email = email;
@@ -51,10 +38,10 @@ public class Fundraise {
 		this.accName = accName;
 		this.userid = userid;
 		this.cause = cause;
-		this.coverpic = cover_pic;
+		this.coverpic = coverPic;
 		this.title = title;
 		this.story = story;
-		this.expectedamount = expected_amount;
+		this.expectedamount = expectedAmount;
 		this.fundraiseid = fundraiseid;
 	}
 
@@ -114,12 +101,12 @@ public class Fundraise {
 		this.cause = cause;
 	}
 
-	public String getCover_pic() {
+	public String getCoverPic() {
 		return coverpic;
 	}
 
-	public void setCover_pic(String cover_pic) {
-		this.coverpic = cover_pic;
+	public void setCoverPic(String coverPic) {
+		this.coverpic = coverPic;
 	}
 
 	public String getTitle() {
@@ -138,12 +125,12 @@ public class Fundraise {
 		this.story = story;
 	}
 
-	public int getExpected_amount() {
+	public int getExpectedAmount() {
 		return expectedamount;
 	}
 
-	public void setExpected_amount(int expected_amount) {
-		this.expectedamount = expected_amount;
+	public void setExpectedAmount(int expectedAmount) {
+		this.expectedamount = expectedAmount;
 	}
 
 	public int getUserid() {

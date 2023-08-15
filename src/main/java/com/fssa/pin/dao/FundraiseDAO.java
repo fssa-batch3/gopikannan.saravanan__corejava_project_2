@@ -55,10 +55,10 @@ public class FundraiseDAO {
 
 		try (PreparedStatement ps = UserDAO.getConnection().prepareStatement(query)) {
 			ps.setString(1, fundraise.getCause());
-			ps.setString(2, fundraise.getCover_pic());
+			ps.setString(2, fundraise.getCoverPic());
 			ps.setString(3, fundraise.getTitle());
 			ps.setString(4, fundraise.getStory());
-			ps.setInt(5, fundraise.getExpected_amount());
+			ps.setInt(5, fundraise.getExpectedAmount());
 			ps.setInt(6, fundraise.getUserid());
 			ps.setInt(7, fundraise.getUserid());
 
@@ -116,10 +116,10 @@ public class FundraiseDAO {
 				ps.setString(5, fundraise.getIfscNo());
 				ps.setString(6, fundraise.getAccName());
 				ps.setString(7, fundraise.getCause());
-				ps.setString(8, fundraise.getCover_pic());
+				ps.setString(8, fundraise.getCoverPic());
 				ps.setString(9, fundraise.getTitle());
 				ps.setString(10, fundraise.getStory());
-				ps.setInt(11, fundraise.getExpected_amount());
+				ps.setInt(11, fundraise.getExpectedAmount());
 				ps.setInt(12, fundraise.getFundraiseid());
 
 				int rows = ps.executeUpdate();

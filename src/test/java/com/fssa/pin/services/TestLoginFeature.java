@@ -9,7 +9,7 @@ import com.fssa.pin.service.*;
 import com.fssa.pin.service.exception.ServiceException;
 
  class TestLoginFeature {
-
+ 
 	@Test
 	 void loginSuccess() {
 		UserService userService = new UserService();

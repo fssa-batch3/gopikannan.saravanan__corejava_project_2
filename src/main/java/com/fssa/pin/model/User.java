@@ -11,8 +11,7 @@ public class User {
 	private String accName;
 	private int userid;
 
-	public User() {
-	};
+
 
 	public User(String mail, String username, String password, String mobileno) {
 
@@ -34,9 +33,9 @@ public class User {
 		this.accName = accName;
 	}
 
-	public User(String user_mail, String user_pwd) {
-		this.mail = user_mail;
-		this.password = user_pwd;
+	public User(String userMail, String userPwd) {
+		this.mail = userMail;
+		this.password = userPwd;
 	}
 
 	public User(String mail, String username, String password, String mobileno, int accNo, String ifscNo,

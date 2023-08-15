@@ -8,7 +8,7 @@ import com.fssa.pin.model.Fundraise;
 import com.fssa.pin.model.User;
 import com.fssa.pin.service.FundraiseService;
 import com.fssa.pin.service.exception.ServiceException;
-
+ 
 class TestFunsdraiseCreateFeature {
 	@Test
 	void testCreateValid() { 
