@@ -9,9 +9,9 @@ import com.fssa.pin.model.User;
 import com.fssa.pin.validation.UserValidator;
 import com.fssa.pin.validation.exceptions.InvalidUserException;
 
-public class TestUserValidator {
+ class TestUserValidator {
 	@Test
-	public void testValidUser() throws InvalidUserException {
+	 void testValidUser() throws InvalidUserException {
 		User validUser = new User();
 		validUser.setUsername("Soffan");
 		validUser.setMail("soffan2906@gmail.com");
@@ -26,7 +26,7 @@ public class TestUserValidator {
 	}
 
 	@Test
-	public void testInvalidUser() {
+	 void testInvalidUser() {
 		User invalidUser = new User();
 		invalidUser.setUsername("invalid user");
 		invalidUser.setMail("invalid.email");

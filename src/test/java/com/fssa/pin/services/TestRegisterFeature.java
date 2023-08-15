@@ -13,7 +13,7 @@ import com.fssa.pin.service.exception.ServiceException;
 	 void testRegistrationSuccess() {
 
 		UserService userservice = new UserService();
-		User user1 = new User("soffan2906@gmail.com", "Soffan", "Wow@2002", "9092500612");
+		User user1 = new User("gopikannan2906@gmail.com", "Gopikannan", "Wow@2002", "9092500612");
 
 		try {
 			assertTrue(userservice.registerUser(user1));

@@ -18,21 +18,15 @@ public class FundraiseService {
 		FundraiseDAO fundraiseDAO = new FundraiseDAO();
 
 		try {
+			if (!FundraiseValidation.validateFundraise(fundraise)) {
+                return false; 
+            }
 
-			FundraiseValidation.validateFundraise(fundraise);
-
-			if (fundraiseDAO.createFundraise(fundraise)) {
-				return true;
- 
-			} else {
-
-				return false;
-			}
-
-		} catch (DAOException | InvalidFundraiseException | InvalidUserException e) {
-
+            return fundraiseDAO.createFundraise(fundraise);
+		} catch (DAOException | InvalidUserException | InvalidFundraiseException e) {
 			throw new ServiceException(e.getMessage(), e);
 		}
+
 	}
 
 //	Fundraise view service feature
@@ -46,7 +40,7 @@ public class FundraiseService {
 			throw new ServiceException(e.getMessage(), e);
 		}
 	}
- 
+
 //	Update Fundraise feature Service
 
 	public boolean fundraiseUpdate(Fundraise fundraise) throws ServiceException {
@@ -57,7 +51,7 @@ public class FundraiseService {
 			FundraiseValidation.validateFundraise(fundraise);
 
 			if (fundraiseDAO.updateFundraise(fundraise)) {
-				System.out.println("Update fundraise for" + fundraise.getName() + " was successfull");
+				System.out.println("Update fundraise for " + fundraise.getName() + " fundraise was successfull");
 				return true;
 			} else {
 				System.out.println("Update Fundrasie was not successfull");
@@ -78,7 +72,7 @@ public class FundraiseService {
 		try {
 
 			if (fundraiseDAO.deleteFundraise(fundraiseId)) {
-
+				System.out.println("Successfully deleted the fundraise details");
 				return true;
 			} else {
 
@@ -91,4 +85,14 @@ public class FundraiseService {
 		}
 	}
 
+	  public int fundraiseGetFundraiseId() throws ServiceException {
+		  FundraiseDAO fundraiseDAO = new FundraiseDAO();
+	        try {
+	            return fundraiseDAO.getLatestFundraiseId(); 
+	        } catch (DAOException e) {
+	            throw new ServiceException("Error getting fundraise ID", e);
+	        }
+	    }
+
+	
 }

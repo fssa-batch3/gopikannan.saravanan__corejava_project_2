@@ -7,9 +7,9 @@ import org.junit.jupiter.api.Test;
 import com.fssa.pin.validation.UserValidator;
 import com.fssa.pin.validation.exceptions.InvalidUserException;
 
-public class TestValidateMobileNo {
+ class TestValidateMobileNo {
 	@Test
-	public void TestValidMobileNo() {
+	 void testValidMobileNo() {
 		try {
 		
 			assertTrue(UserValidator.validateMobileNo("9876543210"));
@@ -21,7 +21,7 @@ public class TestValidateMobileNo {
 	}
 
 	@Test
-	public void TestInvalidMobileNoWithLessThan10Digits() {
+	 void testInvalidMobileNoWithLessThan10Digits() {
 		try {
 			
 			assertFalse(UserValidator.validateMobileNo("987654321"));
@@ -33,7 +33,7 @@ public class TestValidateMobileNo {
 	}
 
 	@Test
-	public void TestInvalidMobileNoWithMoreThan10Digits() {
+	 void testInvalidMobileNoWithMoreThan10Digits() {
 		try {
 			
 			assertFalse(UserValidator.validateMobileNo("98765432101"));
@@ -44,7 +44,7 @@ public class TestValidateMobileNo {
 	}
 
 	@Test
-	public void TestInvalidMobileNoWithPrefixOtherThan6789() {
+	 void testInvalidMobileNoWithPrefixOtherThan6789() {
 		try {
 		
 			assertFalse(UserValidator.validateMobileNo("5678901234"));
@@ -55,7 +55,7 @@ public class TestValidateMobileNo {
 	}
 
 	@Test
-	public void TestInvalidMobileNoWithNonNumericCharacters() {
+	 void TestInvalidMobileNoWithNonNumericCharacters() {
 		try {
 			
 			assertFalse(UserValidator.validateMobileNo("9876a43210"));
@@ -67,7 +67,7 @@ public class TestValidateMobileNo {
 	}
 
 	@Test
-	public void TestInvalidMobileNoStartingWithZero() {
+	 void testInvalidMobileNoStartingWithZero() {
 		try {
 			
 			assertFalse(UserValidator.validateMobileNo("0123456789"));

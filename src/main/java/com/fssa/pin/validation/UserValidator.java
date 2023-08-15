@@ -3,9 +3,11 @@ package com.fssa.pin.validation;
 
 import java.util.regex.Matcher;
 
+
 import java.util.regex.Pattern;
 
 import com.fssa.pin.model.*;
+import com.fssa.pin.validation.exceptions.InvalidFundraiseException;
 import com.fssa.pin.validation.exceptions.InvalidUserException;
 
 public class UserValidator {
@@ -161,4 +163,14 @@ public class UserValidator {
 		return isMatch;
 	}  
 
+	public static boolean validateUserId(int userId) throws InvalidFundraiseException {
+	
+		if (userId > 0) {
+			System.out.println("The userid is valid.");
+			return true;
+		} else {
+			throw new InvalidFundraiseException("Invalid userid. The userid must be a positive integer.");
+		}
+	}
+	
 }

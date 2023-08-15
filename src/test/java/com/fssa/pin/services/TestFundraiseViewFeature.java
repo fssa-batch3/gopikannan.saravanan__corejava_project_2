@@ -17,8 +17,8 @@ class TestFundraiseViewFeature {
 	@Test
 	void testviewFundraisesValid() throws DAOException, ServiceException {
 
-		User user = new User("soffan2906@gmail.com", "Soffan", "Wow@2002", "9028848999", 1234567890, "ABCD0123456",
-				"SOFFAN KANNAN", 12432618);
+		User user = new User("soffan2906@gmail.com", "Soffan", "Wow@2002", "9092500612", 1234567890, "ABCD0123456",
+				"SOFFAN KANNAN", 1);
 		FundraiseDAO fundraiseDAO = new FundraiseDAO();
 		FundraiseService fundraiseservice = new FundraiseService();
 		Fundraise fundraise = new Fundraise(user.getUsername(), user.getMail(), user.getMobileno(), user.getAccNo(),
@@ -46,7 +46,7 @@ class TestFundraiseViewFeature {
 			System.out.println(e.getMessage());
 		}
 	}
- 
+  
 	@Test
 	void testViewFundraisesInValid() {
 		FundraiseService fundraiseService = new FundraiseService();

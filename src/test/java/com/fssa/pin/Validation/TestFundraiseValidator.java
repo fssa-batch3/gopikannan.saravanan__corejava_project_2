@@ -17,7 +17,9 @@ import com.fssa.pin.validation.exceptions.InvalidUserException;
 	@Test
 	 void testValidFundraise() {
 
-		User user = new User();
+		User user = new User("soffan2906@gmail.com", "Soffan", "Wow@2002", "9028848999", 1234567890, "ABCD0123456",
+				"SOFFANKANNAN", 1);
+ 
 
 		Fundraise fundraise = new Fundraise(user.getUsername(), user.getMail(), user.getMobileno(), user.getAccNo(),
 				user.getIfscNo(), user.getAccName(), user.getUserid(), "Medical",
@@ -31,7 +33,6 @@ import com.fssa.pin.validation.exceptions.InvalidUserException;
 		try {
 			assertTrue(FundraiseValidation.validateFundraise(fundraise));
 		} catch (InvalidFundraiseException | InvalidUserException e) {
-			e.printStackTrace();
 			fail("Unexpected exception: " + e.getMessage());
 		}
 	}

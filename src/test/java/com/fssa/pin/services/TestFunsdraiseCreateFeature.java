@@ -11,11 +11,11 @@ import com.fssa.pin.service.exception.ServiceException;
 
 class TestFunsdraiseCreateFeature {
 	@Test
-	void testCreateValid() {
+	void testCreateValid() { 
 
-		User user = new User("soffan2906@gmail.com", "Soffan", "Wow@2002", "9028848999", 1234567890, "ABCD0123456",
-				"SOFFANKANNAN", 1);
- 
+		User user = new User("soffan2906@gmail.com", "Soffan", "Wow@2002", "9092500612", 1234567890, "ABCD0123456",
+				"SOFFAN KANNAN", 1);
+
 		FundraiseService fundraiseservice = new FundraiseService();
 		Fundraise fundraise = new Fundraise(user.getUsername(), user.getMail(), user.getMobileno(), user.getAccNo(),
 				user.getIfscNo(), user.getAccName(), user.getUserid(), "Medical",
@@ -25,14 +25,12 @@ class TestFunsdraiseCreateFeature {
 				150000);
 
 		try {
-		
-			assertTrue(fundraiseservice.createFundraise(fundraise));
-			System.out.println("Successfully created a fundraise");
-			
+		    assertTrue(fundraiseservice.createFundraise(fundraise));
+		    System.out.println("Successfully created a fundraise");
 		} catch (ServiceException e) {
-			e.printStackTrace();
-			
+		    e.printStackTrace();
 		}
+
 	}
 
 	@Test
@@ -46,7 +44,7 @@ class TestFunsdraiseCreateFeature {
 
 			assertFalse(fundraiseservice.createFundraise(invalidFundraise));
 		} catch (ServiceException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		}
 	}
 

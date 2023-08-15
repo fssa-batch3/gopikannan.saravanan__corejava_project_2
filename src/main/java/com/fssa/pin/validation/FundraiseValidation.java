@@ -1,6 +1,6 @@
 package com.fssa.pin.validation;
 
-import java.util.regex.Matcher;
+import java.util.regex.Matcher; 
 import java.util.regex.Pattern;
 
 import com.fssa.pin.model.Fundraise;
@@ -11,22 +11,25 @@ public class FundraiseValidation {
 
 	public static boolean validateFundraise(Fundraise fundraise)
 			throws InvalidFundraiseException, InvalidUserException {
-		
-		if (fundraise != null && UserValidator.validateName(fundraise.getName())
-				&& UserValidator.validateEmail(fundraise.getEmail())
-				&& UserValidator.validateMobileNo(fundraise.getPhno())
-				&& UserValidator.validateAccountNo(fundraise.getAccNo())
-				&& UserValidator.validateAccountHolderName(fundraise.getAccName())
-				&& UserValidator.validateIfscCode(fundraise.getIfscNo()) && validateUserId(fundraise.getUserid())
-				&& validateExpectedAmount(fundraise.getExpected_amount())
-				&& validateFundraiseImageURL(fundraise.getCover_pic()) && validateFundraiseStory(fundraise.getStory())
-				&& validateTitle(fundraise.getTitle()) && validateCause(fundraise.getCause())) {
+
+		if (fundraise!=null && UserValidator.validateName(fundraise.getName())
+			&& UserValidator.validateEmail(fundraise.getEmail())
+			&& UserValidator.validateMobileNo(fundraise.getPhno())
+			&& UserValidator.validateAccountNo(fundraise.getAccNo())
+			&& UserValidator.validateAccountHolderName(fundraise.getAccName())
+			&& UserValidator.validateIfscCode(fundraise.getIfscNo())
+			&& UserValidator.validateUserId(fundraise.getUserid())
+			&& validateExpectedAmount(fundraise.getExpected_amount())
+			&& validateFundraiseImageURL(fundraise.getCover_pic())
+			&& validateFundraiseStory(fundraise.getStory())
+			&& validateTitle(fundraise.getTitle())
+			&& validateCause(fundraise.getCause())) {
 			return true;
 		} else {
 			throw new InvalidFundraiseException("Fundraise details not valid");
 		}
 	}
- 
+
 	public static boolean validateExpectedAmount(int cost) throws InvalidFundraiseException {
 		boolean match = false;
 
@@ -36,7 +39,7 @@ public class FundraiseValidation {
 		match = m.matches();
 
 		if (match) {
-			System.out.println("The product cost is valid.");
+			System.out.println("The fundraise amount is valid.");
 		} else {
 			throw new InvalidFundraiseException("The fundraise amount should be a atleast 10000.");
 		}
@@ -89,15 +92,4 @@ public class FundraiseValidation {
 		}
 	}
 
-	public static boolean validateUserId(int userId) throws InvalidFundraiseException {
-		// Validate that the userid is a positive integer.
-		int user_id = userId;
-		if (user_id > 0) {
-			System.out.println("The userid is valid.");
-			return true;
-		} else {
-			throw new InvalidFundraiseException("Invalid userid. The userid must be a positive integer.");
-		}
-	}
-	
 }

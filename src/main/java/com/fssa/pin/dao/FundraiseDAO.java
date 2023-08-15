@@ -1,6 +1,6 @@
 package com.fssa.pin.dao;
 
-import java.sql.PreparedStatement; 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -49,11 +49,9 @@ public class FundraiseDAO {
 			System.out.println("Fundraise must not be null");
 			return false;
 		}
-
 		String query = "INSERT INTO fundraisedetails (name, emailid, mobileno, user_account_no, user_ifsc, user_account_holder, cause, image_url, title, story, amount_expected, userid) "
 				+ "SELECT userdata.user_name, userdata.user_mail, userdata.mobileno, userdata.user_account_no, userdata.user_ifsc, userdata.user_account_holder, ?, ?, ?, ?, ?, ? "
-				+ "FROM userdata " + "INNER JOIN fundraisedetails ON fundraisedetails.userid = userdata.userid "
-				+ "WHERE userdata.userid = ?";
+				+ "FROM userdata " + "WHERE userdata.userid = ?";
 
 		try (PreparedStatement ps = UserDAO.getConnection().prepareStatement(query)) {
 			ps.setString(1, fundraise.getCause());
@@ -145,6 +143,21 @@ public class FundraiseDAO {
 			throw new DAOException("Error in delete product method", e);
 		}
 
+	}
+
+	public int getLatestFundraiseId() throws DAOException {
+		String query = "SELECT MAX(fundraise_id) FROM fundraisedetails";
+
+		try (PreparedStatement ps = UserDAO.getConnection().prepareStatement(query); ResultSet rs = ps.executeQuery()) {
+			if (rs.next()) {
+				int latestId = rs.getInt(1); 
+				return latestId;
+			} else {
+				throw new DAOException("Error getting latest fundraise id");
+			}
+		} catch (SQLException e) {
+			throw new DAOException("Error getting latest fundraise id", e);
+		}
 	}
 
 }

@@ -11,7 +11,7 @@ import com.fssa.pin.dao.exceptions.DAOException;
 import com.fssa.pin.model.User;
 
 import io.github.cdimascio.dotenv.Dotenv;
-
+ 
 public class UserDAO {
 	public static Connection getConnection() throws SQLException {
 		String DB_URL;

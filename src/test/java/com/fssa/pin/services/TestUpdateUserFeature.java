@@ -12,13 +12,13 @@ import com.fssa.pin.service.exception.ServiceException;
 class TestUpdateUserFeature {
 
 //	Success test case for update
-	@Test
+	@Test 
 	void testUpdateSuccess() {
 
 		UserService userservice = new UserService();
 
-		User user1 = new User("soffan2906@gmail.com", "Soffan", "Wow@2002", "9092500612", 1234567890,
-				"ABCD0123456", "SOFFAN KANNAN");
+		User user1 = new User("gopikannan2906@gmail.com", "Gopikannan", "Wow@2002", "9092500612", 1234567890,
+				"ABCD0123456", "GOPI KANNAN");
 		try {
 			assertTrue(userservice.updateUser(user1));
 		} catch (ServiceException e) {

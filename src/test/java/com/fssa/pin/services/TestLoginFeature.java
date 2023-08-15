@@ -14,7 +14,7 @@ import com.fssa.pin.service.exception.ServiceException;
 	 void loginSuccess() {
 		UserService userService = new UserService();
 
-		User user1 = new User("soffan2906@gmail.com",  "Wow@2002");
+		User user1 = new User("gopikannan2906@gmail.com",  "Wow@2002");
 		try {
 			
 			assertTrue(userService.loginUser(user1));

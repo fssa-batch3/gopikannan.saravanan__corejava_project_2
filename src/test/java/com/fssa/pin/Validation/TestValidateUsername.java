@@ -7,9 +7,9 @@ import org.junit.jupiter.api.Test;
 import com.fssa.pin.validation.UserValidator;
 import com.fssa.pin.validation.exceptions.InvalidUserException;
 
-public class TestValidateUsername {
+ class TestValidateUsername {
 	@Test
-	public void testValidUsername() {
+	 void testValidUsername() {
 		try {
 
 			assertTrue(UserValidator.validateName("Soffan"));
@@ -20,7 +20,7 @@ public class TestValidateUsername {
 	}
  
 	@Test
-	public void testInvalidUsernameStartingWithNumber() {
+	 void testInvalidUsernameStartingWithNumber() {
 		try {
 
 			assertFalse(UserValidator.validateName("1Soffan"));
@@ -44,7 +44,7 @@ public class TestValidateUsername {
 	}
 
 	@Test
-	public void testInvalidUsernameWithSpaces() {
+	 void testInvalidUsernameWithSpaces() {
 		try {
 
 			assertFalse(UserValidator.validateName("Soffan gk"));
@@ -66,7 +66,7 @@ public class TestValidateUsername {
 	}
 
 	@Test
-	public void testInvalidUsernameTooLong() {
+	 void testInvalidUsernameTooLong() {
 		try {
 
 			assertFalse(UserValidator.validateName("Sofannnnnnnnnnnnnnnnnnnnnnnnnna"));

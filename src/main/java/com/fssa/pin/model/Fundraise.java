@@ -1,5 +1,6 @@
 package com.fssa.pin.model;
 
+
 public class Fundraise {
 
 	private String name;
@@ -16,6 +17,9 @@ public class Fundraise {
 	private int userid;
 	private int fundraiseid;
 	private User user;
+
+	public Fundraise() {
+	}
 
 //	create 
 	public Fundraise(String name, String email, String phno, int accNo, String ifscNo, String accName, int userid,
@@ -34,7 +38,8 @@ public class Fundraise {
 		this.story = story;
 		this.expectedamount = expected_amount;
 	}
-//constructor for create usdr
+
+//constructor for update
 	public Fundraise(String name, String email, String phno, int accNo, String ifscNo, String accName, int userid,
 			String cause, String cover_pic, String title, String story, int expected_amount, int fundraiseid) {
 
@@ -50,7 +55,7 @@ public class Fundraise {
 		this.title = title;
 		this.story = story;
 		this.expectedamount = expected_amount;
-		this.fundraiseid =fundraiseid;
+		this.fundraiseid = fundraiseid;
 	}
 
 	public String getName() {
@@ -156,10 +161,11 @@ public class Fundraise {
 	public void setFundraiseid(int fundraiseid) {
 		this.fundraiseid = fundraiseid;
 	}
-	
+
 	public User getUser() {
 		return user;
 	}
+
 	public void setUser(User user) {
 		this.user = user;
 	}
@@ -171,6 +177,5 @@ public class Fundraise {
 				+ ", story=" + story + ", expected_amount=" + expectedamount + ", userid=" + userid + ", fundraiseid="
 				+ fundraiseid + "]";
 	}
-	
 
 }
