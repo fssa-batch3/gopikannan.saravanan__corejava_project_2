@@ -1,6 +1,6 @@
 package com.fssa.pin.validation;
 
-import java.util.regex.Matcher; 
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.fssa.pin.model.Fundraise;
@@ -12,18 +12,11 @@ public class FundraiseValidation {
 	public static boolean validateFundraise(Fundraise fundraise)
 			throws InvalidFundraiseException, InvalidUserException {
 
-		if (fundraise!=null && UserValidator.validateName(fundraise.getName())
-			&& UserValidator.validateEmail(fundraise.getEmail())
-			&& UserValidator.validateMobileNo(fundraise.getPhno())
-			&& UserValidator.validateAccountNo(fundraise.getAccNo())
-			&& UserValidator.validateAccountHolderName(fundraise.getAccName())
-			&& UserValidator.validateIfscCode(fundraise.getIfscNo())
-			&& UserValidator.validateUserId(fundraise.getUserid())
-			&& validateExpectedAmount(fundraise.getExpectedAmount())
-			&& validateFundraiseImageURL(fundraise.getCoverPic())
-			&& validateFundraiseStory(fundraise.getStory())
-			&& validateTitle(fundraise.getTitle())
-			&& validateCause(fundraise.getCause())) {
+		if (fundraise != null &&
+
+				validateExpectedAmount(fundraise.getExpectedAmount())
+				&& validateFundraiseImageURL(fundraise.getCoverPic()) && validateFundraiseStory(fundraise.getStory())
+				&& validateTitle(fundraise.getTitle()) && validateCause(fundraise.getCause())) {
 			return true;
 		} else {
 			throw new InvalidFundraiseException("Fundraise details not valid");
@@ -40,10 +33,11 @@ public class FundraiseValidation {
 
 		if (match) {
 			System.out.println("The fundraise amount is valid.");
+			return true;
 		} else {
 			throw new InvalidFundraiseException("The fundraise amount should be a atleast 10000.");
 		}
-		return match;
+
 	}
 
 	public static boolean validateFundraiseImageURL(String imageUrl) throws InvalidFundraiseException {

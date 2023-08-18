@@ -34,7 +34,7 @@ public class UserService {
 			throw new ServiceException(e.getMessage());
 		}
 	}
- 
+  
 //	Login service logic code
 
 	public boolean loginUser(User user) throws ServiceException {
@@ -51,7 +51,7 @@ public class UserService {
 
 			throw new ServiceException(e.getMessage());
 		}
-		return false;
+		return false; 
 	}
 
 //	update user service logic

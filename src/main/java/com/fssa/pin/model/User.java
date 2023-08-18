@@ -11,7 +11,8 @@ public class User {
 	private String accName;
 	private int userid;
 
-
+	public User() {
+	};
 
 	public User(String mail, String username, String password, String mobileno) {
 

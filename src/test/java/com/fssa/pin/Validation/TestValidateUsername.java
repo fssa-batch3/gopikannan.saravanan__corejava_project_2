@@ -17,7 +17,7 @@ import com.fssa.pin.validation.exceptions.InvalidUserException;
 		} catch (InvalidUserException e) {
 			System.out.println(e.getMessage());
 		}
-	}
+	} 
  
 	@Test
 	 void testInvalidUsernameStartingWithNumber() {
@@ -55,7 +55,7 @@ import com.fssa.pin.validation.exceptions.InvalidUserException;
 	}
 
 	@Test
-	public void testInvalidUsernameTooShort() {
+	 void testInvalidUsernameTooShort() {
 		try {
 
 			assertFalse(UserValidator.validateName("So"));

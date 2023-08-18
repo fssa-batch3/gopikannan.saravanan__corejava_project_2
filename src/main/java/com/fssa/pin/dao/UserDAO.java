@@ -39,7 +39,7 @@ public class UserDAO {
 			return false;
 		}
 
-		String query = "INSERT INTO userdata (user_name, user_mail, user_pwd, mobileno) VALUES (?, ?, ?, ?);";
+		String query = "INSERT INTO userdata (user_name, user_mail, user_pwd, mobileno) VALUES (?, ?, ?, ?)";
 		try (PreparedStatement pst = getConnection().prepareStatement(query);) {
 			pst.setString(1, user.getUsername());
 			pst.setString(2, user.getMail());
@@ -140,9 +140,9 @@ public class UserDAO {
 				}
 			}
 		} catch (SQLException e) {
-			throw new DAOException("Error in loggin in");
+			throw new DAOException("Error in login");
 		}
 		return false;
-	} 
+	}  
 
 } 

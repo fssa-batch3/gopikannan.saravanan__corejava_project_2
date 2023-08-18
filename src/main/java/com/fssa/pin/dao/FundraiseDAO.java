@@ -45,13 +45,11 @@ public class FundraiseDAO {
 
 //	fundraise create method 
 	public boolean createFundraise(Fundraise fundraise) throws DAOException {
-		if (fundraise == null) {
+		 if (fundraise == null || fundraise.getUser() == null) {
 			System.out.println("Fundraise must not be null");
 			return false;
 		}
-		String query = "INSERT INTO fundraisedetails (name, emailid, mobileno, user_account_no, user_ifsc, user_account_holder, cause, image_url, title, story, amount_expected, userid) "
-				+ "SELECT userdata.user_name, userdata.user_mail, userdata.mobileno, userdata.user_account_no, userdata.user_ifsc, userdata.user_account_holder, ?, ?, ?, ?, ?, ? "
-				+ "FROM userdata " + "WHERE userdata.userid = ?";
+		String query = "INSERT INTO fundraisedetails (cause, image_url, title, story, amount_expected, userid) VALUES (?, ?, ?, ?, ?, ?)";
 
 		try (PreparedStatement ps = UserDAO.getConnection().prepareStatement(query)) {
 			ps.setString(1, fundraise.getCause());
@@ -59,8 +57,7 @@ public class FundraiseDAO {
 			ps.setString(3, fundraise.getTitle());
 			ps.setString(4, fundraise.getStory());
 			ps.setInt(5, fundraise.getExpectedAmount());
-			ps.setInt(6, fundraise.getUserid());
-			ps.setInt(7, fundraise.getUserid());
+			ps.setInt(6, fundraise.getUser().getUserid());
 
 			int rows = ps.executeUpdate();
 
@@ -74,12 +71,16 @@ public class FundraiseDAO {
 	public List<Fundraise> viewFundraises() throws DAOException {
 		List<Fundraise> fundraises = new ArrayList<>();
 
-		String query = "SELECT name, emailid, mobileno, user_account_no, user_ifsc, user_account_holder, cause, image_url, title, story, amount_expected, userid FROM fundraisedetails";
+		String query = "SELECT userdata.user_name, userdata.user_mail, userdata.mobileno, userdata.user_account_no, userdata.user_ifsc, userdata.user_account_holder, " +
+	               "fundraisedetails.cause, fundraisedetails.image_url, fundraisedetails.title, fundraisedetails.story, fundraisedetails.amount_expected, fundraisedetails.userid " +
+	               "FROM userdata " +
+	               "INNER JOIN fundraisedetails ON userdata.userid = fundraisedetails.userid";
 
 		try (PreparedStatement ps = UserDAO.getConnection().prepareStatement(query); ResultSet rs = ps.executeQuery()) {
+
 			while (rs.next()) {
-				String name = rs.getString("name");
-				String email = rs.getString("emailid");
+				String name = rs.getString("user_name");
+				String email = rs.getString("user_mail");
 				String phno = rs.getString("mobileno");
 				int accNo = rs.getInt("user_account_no");
 				String ifscNo = rs.getString("user_ifsc");
@@ -105,31 +106,28 @@ public class FundraiseDAO {
 
 //	update fundraise method
 	public boolean updateFundraise(Fundraise fundraise) throws DAOException {
-		try {
-			String updateQuery = "UPDATE fundraisedetails SET name = ?, emailid = ?, mobileno = ?, user_account_no = ?, user_ifsc = ?, user_account_holder = ?, cause = ?, image_url = ?, title = ?, story = ?, amount_expected = ? WHERE fundraise_id = ?";
+	    try {
+	        String query = "UPDATE fundraisedetails " +
+	                       "SET cause = ?, image_url = ?, title = ?, story = ?, amount_expected = ? " +
+	                       "WHERE fundraise_id = ?";
 
-			try (PreparedStatement ps = UserDAO.getConnection().prepareStatement(updateQuery)) {
-				ps.setString(1, fundraise.getName());
-				ps.setString(2, fundraise.getEmail());
-				ps.setString(3, fundraise.getPhno());
-				ps.setInt(4, fundraise.getAccNo());
-				ps.setString(5, fundraise.getIfscNo());
-				ps.setString(6, fundraise.getAccName());
-				ps.setString(7, fundraise.getCause());
-				ps.setString(8, fundraise.getCoverPic());
-				ps.setString(9, fundraise.getTitle());
-				ps.setString(10, fundraise.getStory());
-				ps.setInt(11, fundraise.getExpectedAmount());
-				ps.setInt(12, fundraise.getFundraiseid());
+	        try (PreparedStatement ps = UserDAO.getConnection().prepareStatement(query)) {
+	            ps.setString(1, fundraise.getCause());
+	            ps.setString(2, fundraise.getCoverPic());
+	            ps.setString(3, fundraise.getTitle());
+	            ps.setString(4, fundraise.getStory());
+	            ps.setInt(5, fundraise.getExpectedAmount());
+	            ps.setInt(6, fundraise.getFundraiseid());
 
-				int rows = ps.executeUpdate();
-				return (rows == 1);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-			throw new DAOException("Error updating fundraise in the table");
-		}
+	            int rows = ps.executeUpdate();
+	            return (rows == 1);
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	        throw new DAOException("Error updating fundraise in the table");
+	    }
 	}
+
 
 //	delete fundraise method
 	public boolean deleteFundraise(int fundraiseId) throws DAOException {
@@ -150,7 +148,7 @@ public class FundraiseDAO {
 
 		try (PreparedStatement ps = UserDAO.getConnection().prepareStatement(query); ResultSet rs = ps.executeQuery()) {
 			if (rs.next()) {
-				int latestId = rs.getInt(1); 
+				int latestId = rs.getInt(1);
 				return latestId;
 			} else {
 				throw new DAOException("Error getting latest fundraise id");
