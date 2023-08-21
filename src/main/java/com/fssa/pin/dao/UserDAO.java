@@ -31,7 +31,7 @@ public class UserDAO {
 		Connection con = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
 		return con;
 	}
-
+ 
 	// Add new user to DB - register
 	public boolean createUser(User user) throws DAOException {
 		if (user == null) {
@@ -80,7 +80,7 @@ public class UserDAO {
 		}
 
 	}
- 
+  
 //  delete user
 
 	public boolean deleteUser(String email) throws DAOException {

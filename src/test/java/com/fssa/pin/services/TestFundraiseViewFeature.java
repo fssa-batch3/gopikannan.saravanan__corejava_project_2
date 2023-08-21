@@ -64,4 +64,4 @@ class TestFundraiseViewFeature {
 		}
 	}
 
-}
+} 

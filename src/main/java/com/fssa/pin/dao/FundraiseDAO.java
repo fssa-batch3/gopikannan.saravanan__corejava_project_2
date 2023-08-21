@@ -11,37 +11,6 @@ import com.fssa.pin.model.Fundraise;
 
 public class FundraiseDAO {
 
-//	Create fundraise
-//	public boolean createFundraise(Fundraise fundraise) throws DAOException {
-//
-//		if (fundraise == null) {
-//			System.out.println("Fundraise Must not be null");
-//			return false;
-//		}
-//
-//		String query = "INSERT INTO fundraisedetails (name, emailid, mobileno, cause, image_url, title, story, amount_expected) VALUES (?, ?, ?, ?, ?, ?, ? ,?);";
-//
-//		try (Connection connection = UserDAO.getConnection();
-//				PreparedStatement ps = connection.prepareStatement(query)) {
-//			ps.setString(1, fundraise.getName());
-//			ps.setString(2, fundraise.getEmail());
-//			ps.setString(3, fundraise.getPhno());
-//			ps.setString(4, fundraise.getCause());
-//			ps.setString(5, fundraise.getCover_pic());
-//			ps.setString(6, fundraise.getTitle());
-//			ps.setString(7, fundraise.getStory());
-//			ps.setInt(8, fundraise.getExpected_amount());
-//
-//			int rows = ps.executeUpdate();
-//
-//			return (rows == 1);
-//
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//			throw new DAOException("Error in inserting fundraise in table");
-//		}
-//
-//	} 
 
 //	fundraise create method 
 	public boolean createFundraise(Fundraise fundraise) throws DAOException {
@@ -104,7 +73,7 @@ public class FundraiseDAO {
 		return fundraises;
 	}
 
-//	update fundraise method
+//	update fund raise method
 	public boolean updateFundraise(Fundraise fundraise) throws DAOException {
 	    try {
 	        String query = "UPDATE fundraisedetails " +
@@ -142,14 +111,13 @@ public class FundraiseDAO {
 		}
 
 	}
-
-	public int getLatestFundraiseId() throws DAOException {
+ 
+	public int getFundraiseId() throws DAOException {
 		String query = "SELECT MAX(fundraise_id) FROM fundraisedetails";
 
 		try (PreparedStatement ps = UserDAO.getConnection().prepareStatement(query); ResultSet rs = ps.executeQuery()) {
 			if (rs.next()) {
-				int latestId = rs.getInt(1);
-				return latestId;
+				return rs.getInt(1);
 			} else {
 				throw new DAOException("Error getting latest fundraise id");
 			}
@@ -157,5 +125,5 @@ public class FundraiseDAO {
 			throw new DAOException("Error getting latest fundraise id", e);
 		}
 	}
-
+  
 }

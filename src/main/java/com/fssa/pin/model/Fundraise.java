@@ -17,17 +17,7 @@ public class Fundraise {
 	private int fundraiseid;
 	private User user;
 
-	public Fundraise() {
-	}
-
-//	create 
-	public Fundraise(String cause, String coverPic, String title, String story, int expectedAmount) {
-		this.cause = cause;
-		this.coverpic = coverPic;
-		this.title = title;
-		this.story = story;
-		this.expectedamount = expectedAmount;
-
+	public Fundraise() { 
 	}
 
 //constructor for view data
@@ -49,6 +39,7 @@ public class Fundraise {
 		this.expectedamount = expectedAmount;
 
 	}
+
 // update user
 	public Fundraise(String cause, String coverPic, String title, String story, int expectedAmount, int fundraiseid) {
 		this.cause = cause;

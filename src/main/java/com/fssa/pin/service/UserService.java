@@ -8,7 +8,7 @@ import com.fssa.pin.model.User;
 import com.fssa.pin.service.exception.ServiceException;
 import com.fssa.pin.validation.UserValidator;
 import com.fssa.pin.validation.exceptions.InvalidUserException;
- 
+  
 public class UserService {
 
 	public boolean registerUser(User user) throws ServiceException {
@@ -33,7 +33,7 @@ public class UserService {
 
 			throw new ServiceException(e.getMessage());
 		}
-	}
+	} 
   
 //	Login service logic code
 

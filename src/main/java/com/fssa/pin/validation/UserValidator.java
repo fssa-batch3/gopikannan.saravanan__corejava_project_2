@@ -2,12 +2,9 @@
 package com.fssa.pin.validation;
 
 import java.util.regex.Matcher;
-
-
 import java.util.regex.Pattern;
 
-import com.fssa.pin.model.*;
-import com.fssa.pin.validation.exceptions.InvalidFundraiseException;
+import com.fssa.pin.model.User;
 import com.fssa.pin.validation.exceptions.InvalidUserException;
 
 public class UserValidator {
@@ -21,7 +18,7 @@ public class UserValidator {
 			throw new InvalidUserException("User details not valid");
 		}
 
-	}
+	}  
 
 	public static boolean validateUpdateUser(User user) throws InvalidUserException {
 
@@ -67,8 +64,8 @@ public class UserValidator {
 		if (password == null)
 			return false;
 
-		String pattern_string = "(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@#$%^&+=])(?=.*[^\\s]).{8,}$";
-		match = Pattern.matches(pattern_string, password);
+		String patternString = "(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@#$%^&+=])(?=.*[^\\s]).{8,}$";
+		match = Pattern.matches(patternString, password);
 
 		if (match) {
 
@@ -150,9 +147,10 @@ public class UserValidator {
 		if (name == null || name.trim().isEmpty()) {
 			throw new InvalidUserException("Account holder name cannot be empty.");
 		}
+		boolean isMatch = false;
 
 		String regex = "^[A-Za-z\\s.'-]{1,100}$";
-		boolean isMatch = Pattern.matches(regex, name);
+		isMatch = Pattern.matches(regex, name);
 
 		if (isMatch) {
 			System.out.println("The account holder name is: Valid");
@@ -163,14 +161,6 @@ public class UserValidator {
 		return isMatch;
 	}  
 
-	public static boolean validateUserId(int userId) throws InvalidFundraiseException {
 	
-		if (userId > 0) {
-			System.out.println("The userid is valid.");
-			return true;
-		} else {
-			throw new InvalidFundraiseException("Invalid userid. The userid must be a positive integer.");
-		}
-	}
 	
 }

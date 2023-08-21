@@ -74,7 +74,7 @@ public class FundraiseValidation {
 			throw new InvalidFundraiseException("The title must not be more than 100 characters.");
 		}
 	}
-
+ 
 	public static boolean validateCause(String cause) throws InvalidFundraiseException {
 		int maxLength = 50;
 

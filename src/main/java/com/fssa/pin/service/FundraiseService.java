@@ -27,7 +27,7 @@ public class FundraiseService {
 			throw new ServiceException(e.getMessage(), e);
 		}
 
-	}
+	} 
 
 //	Fundraise view service feature
 	public List<Fundraise> viewFundraisesServices() throws ServiceException {
@@ -88,7 +88,7 @@ public class FundraiseService {
 	  public int fundraiseGetFundraiseId() throws ServiceException {
 		  FundraiseDAO fundraiseDAO = new FundraiseDAO();
 	        try {
-	            return fundraiseDAO.getLatestFundraiseId(); 
+	            return fundraiseDAO.getFundraiseId(); 
 	        } catch (DAOException e) {
 	            throw new ServiceException("Error getting fundraise ID", e);
 	        }

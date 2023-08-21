@@ -6,11 +6,11 @@ public class User {
 	private String username;
 	private String password;
 	private String mobileno;
-	private int accNo;
+	private int accNo; 
 	private String ifscNo;
 	private String accName;
 	private int userid;
-
+ 
 	public User() {
 	};
 
