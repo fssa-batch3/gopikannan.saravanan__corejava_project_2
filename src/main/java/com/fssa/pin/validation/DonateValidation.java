@@ -15,7 +15,7 @@ public class DonateValidation {
 			throw new InvalidDonationException("donation details is not valid");
 		}
 
-	}
+	} 
 
 	public static boolean validateUserId(int userId) throws InvalidDonationException {
 

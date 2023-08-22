@@ -2,6 +2,7 @@ package com.fssa.pin.services;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.Test;
 
@@ -34,8 +35,9 @@ class TestFunsdraiseCreateFeature {
 			System.out.println("Successfully created a fundraise");
 		} catch (ServiceException e) {
 			e.printStackTrace();
+			fail();
 		}
-	}
+	}     
  
 	// tests create fund raise for success
 
@@ -52,7 +54,7 @@ class TestFunsdraiseCreateFeature {
 		fundraise.setTitle(null);
 		fundraise.setStory(null);
 		fundraise.setExpectedAmount(0);
-
+ 
 		try {
 			assertFalse(fundraiseservice.createFundraise(fundraise));
 			System.out.println("Failed to create an invalid fundraise");

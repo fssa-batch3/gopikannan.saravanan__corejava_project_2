@@ -14,13 +14,9 @@ public class FundraiseDAO {
 
 //	fundraise create method 
 	public boolean createFundraise(Fundraise fundraise) throws DAOException {
-		 if (fundraise == null || fundraise.getUser() == null) {
-			System.out.println("Fundraise must not be null");
-			return false;
-		}
+		
 		String query = "INSERT INTO fundraisedetails (cause, image_url, title, story, amount_expected, userid) VALUES (?, ?, ?, ?, ?, ?)";
-
-		try (PreparedStatement ps = UserDAO.getConnection().prepareStatement(query)) {
+		try (PreparedStatement ps = ConnectionUtil.getConnection().prepareStatement(query)) {
 			ps.setString(1, fundraise.getCause());
 			ps.setString(2, fundraise.getCoverPic());
 			ps.setString(3, fundraise.getTitle());
@@ -45,7 +41,7 @@ public class FundraiseDAO {
 	               "FROM userdata " +
 	               "INNER JOIN fundraisedetails ON userdata.userid = fundraisedetails.userid";
 
-		try (PreparedStatement ps = UserDAO.getConnection().prepareStatement(query); ResultSet rs = ps.executeQuery()) {
+		try (PreparedStatement ps = ConnectionUtil.getConnection().prepareStatement(query); ResultSet rs = ps.executeQuery()) {
 
 			while (rs.next()) {
 				String name = rs.getString("user_name");
@@ -80,7 +76,7 @@ public class FundraiseDAO {
 	                       "SET cause = ?, image_url = ?, title = ?, story = ?, amount_expected = ? " +
 	                       "WHERE fundraise_id = ?";
 
-	        try (PreparedStatement ps = UserDAO.getConnection().prepareStatement(query)) {
+	        try (PreparedStatement ps = ConnectionUtil.getConnection().prepareStatement(query)) {
 	            ps.setString(1, fundraise.getCause());
 	            ps.setString(2, fundraise.getCoverPic());
 	            ps.setString(3, fundraise.getTitle());
@@ -96,12 +92,12 @@ public class FundraiseDAO {
 	        throw new DAOException("Error updating fundraise in the table");
 	    }
 	}
+ 
 
-
-//	delete fundraise method
+//	delete fund raise method
 	public boolean deleteFundraise(int fundraiseId) throws DAOException {
 		String deleteQuery = "DELETE from fundraisedetails WHERE fundraise_id=?";
-		try (PreparedStatement ps = UserDAO.getConnection().prepareStatement(deleteQuery)) {
+		try (PreparedStatement ps = ConnectionUtil.getConnection().prepareStatement(deleteQuery)) {
 
 			ps.setInt(1, fundraiseId);
 			int rows = ps.executeUpdate();
@@ -111,11 +107,12 @@ public class FundraiseDAO {
 		}
 
 	}
- 
+	
+  
 	public int getFundraiseId() throws DAOException {
 		String query = "SELECT MAX(fundraise_id) FROM fundraisedetails";
 
-		try (PreparedStatement ps = UserDAO.getConnection().prepareStatement(query); ResultSet rs = ps.executeQuery()) {
+		try (PreparedStatement ps = ConnectionUtil.getConnection().prepareStatement(query); ResultSet rs = ps.executeQuery()) {
 			if (rs.next()) {
 				return rs.getInt(1);
 			} else {

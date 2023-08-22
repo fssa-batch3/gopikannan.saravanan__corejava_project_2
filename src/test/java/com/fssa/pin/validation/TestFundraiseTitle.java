@@ -1,4 +1,4 @@
-package com.fssa.pin.Validation;
+package com.fssa.pin.validation;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;

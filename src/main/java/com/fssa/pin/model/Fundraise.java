@@ -15,9 +15,9 @@ public class Fundraise {
 	private int expectedamount;
 	private int userid;
 	private int fundraiseid;
-	private User user;
+	private User user; 
 
-	public Fundraise() { 
+	public Fundraise() {  
 	}
 
 //constructor for view data

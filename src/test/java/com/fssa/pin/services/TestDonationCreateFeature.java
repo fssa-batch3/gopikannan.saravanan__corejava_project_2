@@ -17,7 +17,7 @@ class TestDonationCreateFeature {
 
 //		Test to create donate
 	@Test
-	void testCreateDonationSuccess() {
+	void testCreateDonationSuccess() { 
 		User user = new User();
 		user.setUserid(1);
 		donate.setUser(user);
@@ -36,7 +36,7 @@ class TestDonationCreateFeature {
 		}
 
 	}
-	
+
 	@Test
 	void testCreateDonationFail() {
 		User user = new User();
@@ -55,7 +55,6 @@ class TestDonationCreateFeature {
 		} catch (ServiceException e) {
 			e.printStackTrace();
 		}
-		
-		
+
 	}
 }

@@ -7,13 +7,12 @@ import com.fssa.pin.model.Fundraise;
 import com.fssa.pin.validation.exceptions.InvalidFundraiseException;
 import com.fssa.pin.validation.exceptions.InvalidUserException;
 
-public class FundraiseValidation {
+public class FundraiseValidation { 
 
 	public static boolean validateFundraise(Fundraise fundraise)
 			throws InvalidFundraiseException, InvalidUserException {
 
 		if (fundraise != null &&
-
 				validateExpectedAmount(fundraise.getExpectedAmount())
 				&& validateFundraiseImageURL(fundraise.getCoverPic()) && validateFundraiseStory(fundraise.getStory())
 				&& validateTitle(fundraise.getTitle()) && validateCause(fundraise.getCause())) {

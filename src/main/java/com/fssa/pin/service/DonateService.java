@@ -6,7 +6,7 @@ import com.fssa.pin.model.Donate;
 import com.fssa.pin.service.exception.ServiceException;
 import com.fssa.pin.validation.DonateValidation;
 import com.fssa.pin.validation.exceptions.InvalidDonationException;
-
+ 
 //
 public class DonateService {
 

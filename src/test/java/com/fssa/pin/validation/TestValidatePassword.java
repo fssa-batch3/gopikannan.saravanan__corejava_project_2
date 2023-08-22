@@ -1,4 +1,4 @@
-package com.fssa.pin.Validation;
+package com.fssa.pin.validation;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -9,7 +9,7 @@ import com.fssa.pin.validation.exceptions.InvalidUserException;
 
  class TestValidatePassword {
 @Test
- void TestValidPassword() {
+ void testValidPassword() {
 	try {
 		
 		assertTrue(UserValidator.validatePassword("Wow@2002"));
@@ -21,7 +21,7 @@ import com.fssa.pin.validation.exceptions.InvalidUserException;
 	
 } 
 @Test
- void TestInValidPassword() {
+ void testInValidPassword() {
 	try {
 		
 		assertFalse(UserValidator.validatePassword("Wow2002"));
@@ -33,7 +33,7 @@ import com.fssa.pin.validation.exceptions.InvalidUserException;
 }
 
 @Test
- void TestInValidPasswordWithoutNumbers() {
+ void testInValidPasswordWithoutNumbers() {
 	try {
 		
 		assertFalse(UserValidator.validatePassword("Wow@"));
@@ -44,7 +44,7 @@ import com.fssa.pin.validation.exceptions.InvalidUserException;
 	}
 }
 @Test
- void TestInValidPasswordWithoutCapitalLetters() {
+ void testInValidPasswordWithoutCapitalLetters() {
 	try {
 		
 		assertFalse(UserValidator.validatePassword("wow@2002"));
@@ -55,7 +55,7 @@ import com.fssa.pin.validation.exceptions.InvalidUserException;
 	}
 }
 @Test
- void TestInValidPasswordWithoutSmallLetters() {
+ void testInValidPasswordWithoutSmallLetters() {
 	try {
 		
 		assertFalse(UserValidator.validatePassword("WOW@2002"));
@@ -66,7 +66,7 @@ import com.fssa.pin.validation.exceptions.InvalidUserException;
 	}
 }
 @Test
- void TestInValidPasswordShorterLength() {
+ void testInValidPasswordShorterLength() {
 	try {
 		
 		assertFalse(UserValidator.validatePassword("W@2002"));

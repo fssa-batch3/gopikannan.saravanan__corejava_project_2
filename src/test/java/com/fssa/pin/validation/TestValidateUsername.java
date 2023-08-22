@@ -1,4 +1,4 @@
-package com.fssa.pin.Validation;
+package com.fssa.pin.validation;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -62,7 +62,7 @@ import com.fssa.pin.validation.exceptions.InvalidUserException;
 			System.out.println("username should not be too small ");
 		} catch (InvalidUserException e) {
 			System.out.println(e.getMessage());
-		}
+		} 
 	}
 
 	@Test

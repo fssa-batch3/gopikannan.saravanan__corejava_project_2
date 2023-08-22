@@ -1,8 +1,5 @@
 package com.fssa.pin.dao;
 
-import java.sql.Connection;
-
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,28 +7,8 @@ import java.sql.SQLException;
 import com.fssa.pin.dao.exceptions.DAOException;
 import com.fssa.pin.model.User;
 
-import io.github.cdimascio.dotenv.Dotenv;
- 
 public class UserDAO {
-	public static Connection getConnection() throws SQLException {
-		String DB_URL;
-		String DB_USER;
-		String DB_PASSWORD;
-		if (System.getenv("CI") != null) {
-			DB_URL = System.getenv("DB_URL");
-			DB_USER = System.getenv("DB_USER");
-			DB_PASSWORD = System.getenv("DB_PASSWORD");
-		} else {
-			Dotenv env = Dotenv.load();
-			DB_URL = env.get("DB_URL");
-			DB_USER = env.get("DB_USER");
-			DB_PASSWORD = env.get("DB_PASSWORD");
-		}
-		// Connecting to DB
-		Connection con = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
-		return con;
-	}
- 
+
 	// Add new user to DB - register
 	public boolean createUser(User user) throws DAOException {
 		if (user == null) {
@@ -40,11 +17,11 @@ public class UserDAO {
 		}
 
 		String query = "INSERT INTO userdata (user_name, user_mail, user_pwd, mobileno) VALUES (?, ?, ?, ?)";
-		try (PreparedStatement pst = getConnection().prepareStatement(query);) {
+		try (PreparedStatement pst = ConnectionUtil.getConnection().prepareStatement(query);) {
 			pst.setString(1, user.getUsername());
 			pst.setString(2, user.getMail());
 			pst.setString(3, user.getPassword());
-			pst.setString(4, user.getMobileno());   
+			pst.setString(4, user.getMobileno());
 
 			int rows = pst.executeUpdate();
 
@@ -59,7 +36,7 @@ public class UserDAO {
 	public boolean updateUser(User user) throws SQLException, DAOException {
 		final String query = "UPDATE userdata SET user_name = ?, user_pwd = ?, mobileno = ?, user_account_no = ?, user_ifsc = ?, user_account_holder = ? WHERE user_mail = ?;";
 
-		try (PreparedStatement pst = getConnection().prepareStatement(query)) {
+		try (PreparedStatement pst = ConnectionUtil.getConnection().prepareStatement(query)) {
 
 			pst.setString(1, user.getUsername());
 			pst.setString(2, user.getPassword());
@@ -80,12 +57,12 @@ public class UserDAO {
 		}
 
 	}
-  
+
 //  delete user
 
 	public boolean deleteUser(String email) throws DAOException {
 		String deleteQuery = "DELETE FROM userdata where user_mail=?";
-		try (PreparedStatement ps = UserDAO.getConnection().prepareStatement(deleteQuery)) {
+		try (PreparedStatement ps = ConnectionUtil.getConnection().prepareStatement(deleteQuery)) {
 
 			ps.setString(1, email);
 			int rows = ps.executeUpdate();
@@ -100,7 +77,7 @@ public class UserDAO {
 	public boolean isEmailAlreadyRegistered(String email) throws DAOException {
 		final String query = "SELECT user_mail FROM userdata WHERE user_mail = ?";
 
-		try (PreparedStatement pstmt = getConnection().prepareStatement(query)) {
+		try (PreparedStatement pstmt = ConnectionUtil.getConnection().prepareStatement(query)) {
 
 			pstmt.setString(1, email);
 
@@ -122,13 +99,13 @@ public class UserDAO {
 		this.userPasswordFromDb = userPasswordFromDb;
 	}
 
-	// login user 
+	// login user
 
 	public boolean loginUser(User user) throws DAOException {
 		String email = user.getMail();
 
 		String query = "SELECT user_mail,user_pwd FROM userdata WHERE user_mail = ?;";
-		try (PreparedStatement pst = getConnection().prepareStatement(query)) {
+		try (PreparedStatement pst = ConnectionUtil.getConnection().prepareStatement(query)) {
 			pst.setString(1, email);
 			try (ResultSet rs = pst.executeQuery()) {
 
@@ -143,6 +120,6 @@ public class UserDAO {
 			throw new DAOException("Error in login");
 		}
 		return false;
-	}  
+	}
 
-} 
+}

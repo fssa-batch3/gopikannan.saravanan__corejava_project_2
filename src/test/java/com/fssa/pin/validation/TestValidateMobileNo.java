@@ -1,4 +1,4 @@
-package com.fssa.pin.Validation;
+package com.fssa.pin.validation;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -55,7 +55,7 @@ import com.fssa.pin.validation.exceptions.InvalidUserException;
 	}
 
 	@Test
-	 void TestInvalidMobileNoWithNonNumericCharacters() {
+	 void testInvalidMobileNoWithNonNumericCharacters() {
 		try {
 			
 			assertFalse(UserValidator.validateMobileNo("9876a43210"));

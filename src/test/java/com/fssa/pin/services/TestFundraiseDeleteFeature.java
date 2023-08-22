@@ -23,10 +23,10 @@ class TestFundraiseDeleteFeature {
 			e.printStackTrace();
 			System.out.println(e.getMessage());
 		}
-
+ 
 	}
 
-	@Test
+	@Test 
 
 	void deleteFundraiseFailed() {
 		FundraiseService fundraiseservice = new FundraiseService();
