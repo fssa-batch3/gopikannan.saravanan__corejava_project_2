@@ -1,13 +1,11 @@
 package com.fssa.pin.dao;
 
 import java.sql.PreparedStatement;
+
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 import com.fssa.pin.dao.exceptions.DAOException;
 import com.fssa.pin.model.Donate;
-import com.fssa.pin.model.Fundraise;
 
 public class DonateDAO {
 
