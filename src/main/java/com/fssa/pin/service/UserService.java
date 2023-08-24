@@ -8,13 +8,23 @@ import com.fssa.pin.model.User;
 import com.fssa.pin.service.exception.ServiceException;
 import com.fssa.pin.validation.UserValidator;
 import com.fssa.pin.validation.exceptions.InvalidUserException;
-  
-public class UserService {
 
+
+/**
+ * Manages user-related services like register,login,update,delete user .
+ */
+public class UserService {
+	/**
+	 * Registers a new user.
+	 *
+	 * @param user The User object containing user information.
+	 * @return True if user registration is successful, otherwise false.
+	 * @throws ServiceException If a service-related issue occurs.
+	 */
 	public boolean registerUser(User user) throws ServiceException {
 
 		UserDAO userDAO = new UserDAO();
- 
+
 		try {
 
 			UserValidator.validateUser(user);
@@ -22,21 +32,24 @@ public class UserService {
 				throw new DAOException("Email already exists");
 			}
 			if (userDAO.createUser(user)) {
-				System.out.println(user.getUsername() + " Successfully Register");
 				return true;
 			} else {
-				System.out.println("Registration was not Successful");
-				return false;
+				throw new ServiceException("Registration was not Successful");
 			}
 
 		} catch (DAOException | InvalidUserException e) {
 
 			throw new ServiceException(e.getMessage());
 		}
-	} 
-  
-//	Login service logic code
+	}
 
+	/**
+	 * Logs in a user.
+	 *
+	 * @param user The User object containing user login details.
+	 * @return True if login is successful, otherwise false.
+	 * @throws ServiceException If a service-related issue occurs.
+	 */
 	public boolean loginUser(User user) throws ServiceException {
 		try {
 
@@ -45,16 +58,22 @@ public class UserService {
 
 			UserDAO userDAO = new UserDAO();
 			if (userDAO.loginUser(user) && (userDAO.getUserPasswordFromDb().equals(user.getPassword()))) {
-				return true; // Return true for successful login.
+				return true;
 			}
 		} catch (DAOException | InvalidUserException e) {
 
 			throw new ServiceException(e.getMessage());
 		}
-		return false; 
+		return false;
 	}
 
-//	update user service logic
+	/**
+	 * Updates user information.
+	 *
+	 * @param user The User object containing updated user information.
+	 * @return True if user information is successfully updated, otherwise false.
+	 * @throws ServiceException If a service-related issue occurs.
+	 */
 	public boolean updateUser(User user) throws ServiceException {
 
 		UserDAO userDAO = new UserDAO();
@@ -63,11 +82,10 @@ public class UserService {
 			UserValidator.validateUpdateUser(user);
 
 			if (userDAO.updateUser(user)) {
-				throw new DAOException(user.getUsername() + " successfully updated");
-
+				return true;
 			} else {
-				System.out.println("Update was not successful");
-				return false;
+				throw new ServiceException("Update was not successful");
+
 			}
 
 		} catch (DAOException | InvalidUserException | SQLException e) {
@@ -76,7 +94,13 @@ public class UserService {
 
 	}
 
-//	delete user service logic
+	/**
+	 * Deletes a user.
+	 *
+	 * @param email The email of the user to be deleted.
+	 * @return True if user is successfully deleted, otherwise false.
+	 * @throws ServiceException If a service-related issue occurs.
+	 */
 	public boolean deleteUser(String email) throws ServiceException {
 
 		UserDAO userDAO = new UserDAO();

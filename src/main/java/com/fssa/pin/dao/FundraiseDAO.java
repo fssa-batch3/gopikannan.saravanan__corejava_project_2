@@ -9,10 +9,19 @@ import java.util.List;
 import com.fssa.pin.dao.exceptions.DAOException;
 import com.fssa.pin.model.Fundraise;
 
+/**
+ * Provides database operations for managing fundraising details.
+ */
 public class FundraiseDAO {
 
 
-//	fundraise create method 
+	 /**
+     * Creates a new fundraise record in the database.
+     *
+     * @param fundraise The Fundraise object containing details to be added.
+     * @return True if the creation was successful, otherwise false.
+     * @throws DAOException If an error occurs during database interaction.
+     */
 	public boolean createFundraise(Fundraise fundraise) throws DAOException {
 		
 		String query = "INSERT INTO fundraisedetails (cause, image_url, title, story, amount_expected, userid) VALUES (?, ?, ?, ?, ?, ?)";
@@ -30,9 +39,15 @@ public class FundraiseDAO {
 		} catch (SQLException e) {
 			throw new DAOException("Error in inserting fundraise in table", e);
 		}
-	}
+	}  
 
-//	fundraise view method
+	
+	  /**
+     * Retrieves a list of all fundraising records with associated user details.
+     *
+     * @return List of Fundraise objects containing fundraising details.
+     * @throws DAOException If an error occurs during database interaction.
+     */
 	public List<Fundraise> viewFundraises() throws DAOException {
 		List<Fundraise> fundraises = new ArrayList<>();
 
@@ -69,7 +84,14 @@ public class FundraiseDAO {
 		return fundraises;
 	}
 
-//	update fund raise method
+
+	 /**
+     * Updates an existing fundraising record in the database.
+     *
+     * @param fundraise The Fundraise object containing updated details.
+     * @return True if the update was successful, otherwise false.
+     * @throws DAOException If an error occurs during database interaction.
+     */
 	public boolean updateFundraise(Fundraise fundraise) throws DAOException {
 	    try {
 	        String query = "UPDATE fundraisedetails " +
@@ -94,7 +116,13 @@ public class FundraiseDAO {
 	}
  
 
-//	delete fund raise method
+	/**
+     * Deletes a fundraising record from the database.
+     *
+     * @param fundraiseId The ID of the fundraising record to be deleted.
+     * @return True if the deletion was successful, otherwise false.
+     * @throws DAOException If an error occurs during database interaction.
+     */
 	public boolean deleteFundraise(int fundraiseId) throws DAOException {
 		String deleteQuery = "DELETE from fundraisedetails WHERE fundraise_id=?";
 		try (PreparedStatement ps = ConnectionUtil.getConnection().prepareStatement(deleteQuery)) {
@@ -108,6 +136,13 @@ public class FundraiseDAO {
 
 	}
 	
+	
+	  /**
+     * Retrieves the latest fundraise ID from the database.
+     *
+     * @return The latest fundraise ID.
+     * @throws DAOException If an error occurs during database interaction.
+     */
   
 	public int getFundraiseId() throws DAOException {
 		String query = "SELECT MAX(fundraise_id) FROM fundraisedetails";

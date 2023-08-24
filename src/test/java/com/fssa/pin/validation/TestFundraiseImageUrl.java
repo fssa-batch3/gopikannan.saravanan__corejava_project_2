@@ -34,7 +34,7 @@ class TestFundraiseImageUrl {
 			assertEquals("The fundraise image URL is not valid.", e.getMessage());
 		}
 	}
-	
+	 
 		    @Test
 		    void emptyImageUrl() {
 		        try {

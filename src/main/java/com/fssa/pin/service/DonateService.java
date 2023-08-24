@@ -6,10 +6,17 @@ import com.fssa.pin.model.Donate;
 import com.fssa.pin.service.exception.ServiceException;
 import com.fssa.pin.validation.DonateValidation;
 import com.fssa.pin.validation.exceptions.InvalidDonationException;
- 
-//
+/**
+ * Manages donation-related services.
+ */
 public class DonateService {
-
+	 /**
+     * Creates a new donation.
+     *
+     * @param donate The donation object.
+     * @return True if the donation is created successfully, otherwise false.
+     * @throws ServiceException If a serviceRelated issue occurs.
+     */
 	public boolean createDonationService (Donate donate) throws ServiceException {
 		DonateDAO donateDAO = new DonateDAO();
 		

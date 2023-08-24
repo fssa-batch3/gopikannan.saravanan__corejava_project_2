@@ -17,7 +17,7 @@ public class Donate {
 	private String toAccHolderName;
 	private User user;
 	private Fundraise fundraise;
-
+ 
 	public Donate() {
 	}
 //	 constructor to view donation detail 
@@ -159,6 +159,7 @@ public class Donate {
 		this.fundraise = fundraise;
 	}
 
+	
 	@Override
 	public String toString() {
 		return "DonateModel [donaterName=" + donaterName + ", donaterEmail=" + donaterEmail + ", donaterContribution="

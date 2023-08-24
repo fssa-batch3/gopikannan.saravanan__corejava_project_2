@@ -1,10 +1,11 @@
 package com.fssa.pin.validation;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import com.fssa.pin.validation.UserValidator;
 import com.fssa.pin.validation.exceptions.InvalidUserException;
 
  class TestValidateUsername {
@@ -32,7 +33,7 @@ import com.fssa.pin.validation.exceptions.InvalidUserException;
 	}
 
 	@Test
-	public void testInvalidUsernameStartingWithSpecialCharacter() {
+	 void testInvalidUsernameStartingWithSpecialCharacter() {
 		try {
 
 			assertFalse(UserValidator.validateName("@soffan"));

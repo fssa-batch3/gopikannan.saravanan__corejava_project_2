@@ -7,6 +7,11 @@ import java.sql.SQLException;
 import io.github.cdimascio.dotenv.Dotenv;
 
 public class ConnectionUtil {
+	 /*
+     * This class provides a utility method for obtaining a database connection.
+     * The getConnection() method retrieves connection details from environment variables or a .env file.
+     * It returns a Connection object for interacting with the database.
+     */
 	public static Connection getConnection() throws SQLException {
 		String DB_URL;
 		String DB_USER;

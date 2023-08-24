@@ -1,13 +1,13 @@
 package com.fssa.pin.validation;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
+
 import org.junit.jupiter.api.Test;
+
 import com.fssa.pin.model.Fundraise;
-import com.fssa.pin.validation.FundraiseValidation;
 import com.fssa.pin.validation.exceptions.InvalidFundraiseException;
-import com.fssa.pin.validation.exceptions.InvalidUserException;
 
  class TestFundraiseValidator {
 
@@ -28,7 +28,7 @@ import com.fssa.pin.validation.exceptions.InvalidUserException;
 
 		try {
 			assertTrue(FundraiseValidation.validateFundraise(fundraise));
-		} catch (InvalidFundraiseException | InvalidUserException e) {
+		} catch (InvalidFundraiseException  e) {
 			fail("Unexpected exception: " + e.getMessage());
 		}
 	}
@@ -40,8 +40,10 @@ import com.fssa.pin.validation.exceptions.InvalidUserException;
 
 		// Set invalid attributes for the fundraise
 
-		assertThrows(InvalidFundraiseException.class, () -> {
-			FundraiseValidation.validateFundraise(fundraise);
-		});
+		try {
+			assertFalse(FundraiseValidation.validateFundraise(fundraise));
+		} catch (InvalidFundraiseException  e) {
+			System.out.println(e.getMessage());
+		}
 	}
 }

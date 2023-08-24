@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import com.fssa.pin.validation.UserValidator;
 import com.fssa.pin.validation.exceptions.InvalidUserException;
 
-public class TestValidateEmail {
+ class TestValidateEmail {
 	@Test
 	void testValidEmail() {
 
