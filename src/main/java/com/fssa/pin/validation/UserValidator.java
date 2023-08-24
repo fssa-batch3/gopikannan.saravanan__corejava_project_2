@@ -126,7 +126,7 @@ public class UserValidator {
 			return false;
 		}
 
-		String regex = "^.*@.*\\..*$";
+		 String regex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$";
 		isMatch = Pattern.matches(regex, email);
 		if (isMatch) {
 			return true;

@@ -78,7 +78,6 @@ public class FundraiseDAO {
 			}
 
 		} catch (SQLException e) {
-			e.printStackTrace();
 			throw new DAOException("Error reading fundraises from the table");
 		}
 		return fundraises;
@@ -110,7 +109,6 @@ public class FundraiseDAO {
 	            return (rows == 1);
 	        }
 	    } catch (SQLException e) {
-	        e.printStackTrace();
 	        throw new DAOException("Error updating fundraise in the table");
 	    }
 	}
