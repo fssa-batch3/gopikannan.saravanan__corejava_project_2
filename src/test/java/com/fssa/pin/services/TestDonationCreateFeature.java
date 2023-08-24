@@ -19,7 +19,7 @@ class TestDonationCreateFeature {
 	@Test
 	void testCreateDonationSuccess() { 
 		User user = new User();
-		user.setUserid(1);
+		user.setUserid(2);
 		donate.setUser(user);
 
 		Fundraise fundraise = new Fundraise();

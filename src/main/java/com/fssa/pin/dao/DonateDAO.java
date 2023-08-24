@@ -25,10 +25,6 @@ public class DonateDAO {
 
 	}
 
-//	public List<Donate> viewDonation() throws DAOException {
-//		List<Donate> donations = new ArrayList<>();
-//		
-//		
-//	}
+
 
 }

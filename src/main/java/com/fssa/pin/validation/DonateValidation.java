@@ -45,6 +45,9 @@ public class DonateValidation {
      */
 	public static boolean validateUserId(int userId) throws InvalidDonationException {
 
+		if(userId<0) {
+			return false;
+		}
 		if (userId > 0) {
 			return true;
 		} else {
@@ -60,6 +63,9 @@ public class DonateValidation {
      */
 	public static boolean validateFundrasieId(int fundrasieId) throws InvalidDonationException {
 
+		if(fundrasieId<0) {
+			return false;
+		}
 		if (fundrasieId > 0) {
 			return true;
 		} else {
@@ -77,6 +83,10 @@ public class DonateValidation {
      */ 
 	public static boolean validateContributionAmt(int contibution) throws InvalidDonationException {
 
+		if(contibution<0) {
+			return false;
+		}
+		
 		if (contibution > 0) {
 			return true;
 		} else {

@@ -21,7 +21,7 @@ public class UserValidator {
 	
 	public static boolean validateUser(User user) throws InvalidUserException {
 
-//		User is Valid if username is valid and email is valid and pwd is valid
+//		User is Valid if user name is valid and email is valid and pwd is valid
 		if (user == null) {
 			throw new InvalidUserException("User details cannot be null");
 		}
@@ -44,7 +44,7 @@ public class UserValidator {
 	 */
 	public static boolean validateUpdateUser(User user) throws InvalidUserException {
 
-//		User is Valid if username is valid and email is valid and pwd is valid
+//		User is Valid if user name is valid and email is valid and pwd is valid
 		if (user == null) {
 			throw new InvalidUserException("User details cannot be null");
 		}
@@ -174,14 +174,15 @@ public class UserValidator {
 		if (accnoString == null || accnoString.trim().isEmpty()) {
 			return false;
 		}
-		String regex = "[0-9]{10,}";
+		String regex = "\\d{10,}";
+
 		isMatch = Pattern.matches(regex, accnoString);
 		if (isMatch) {
 			return true;
 		} else {
 			throw new InvalidUserException("The account number is: Invalid");
 		}
-	}
+	} 
 
 	/**
 	 * Validates the user's IFSC code.

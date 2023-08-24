@@ -69,7 +69,6 @@ public class FundraiseService {
 			FundraiseValidation.validateFundraise(fundraise);
 
 			if (fundraiseDAO.updateFundraise(fundraise)) {
-				System.out.println("Update fundraise for fundraise was successfull");
 				return true;
 			} else {
 				System.out.println("Update Fundrasie was not successfull");
@@ -95,7 +94,6 @@ public class FundraiseService {
 		try {
 
 			if (fundraiseDAO.deleteFundraise(fundraiseId)) {
-				System.out.println("Successfully deleted the fundraise details");
 				return true;
 			} else {
 

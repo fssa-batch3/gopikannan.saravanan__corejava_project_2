@@ -52,7 +52,7 @@ public class FundraiseValidation {
 		Matcher m = p.matcher(Integer.toString(cost));
 		match = m.matches();
 
-		if(cost>0) {
+		if(cost<0) {
 			return false;
 		}
 		if (!match) {
