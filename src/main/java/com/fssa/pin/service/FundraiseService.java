@@ -71,8 +71,8 @@ public class FundraiseService {
 			if (fundraiseDAO.updateFundraise(fundraise)) {
 				return true;
 			} else {
-				System.out.println("Update Fundrasie was not successfull");
-				return false;
+				throw new ServiceException("Update Fundrasie was not successfull");
+				
 
 			}
 
@@ -93,13 +93,7 @@ public class FundraiseService {
 		FundraiseDAO fundraiseDAO = new FundraiseDAO();
 		try {
 
-			if (fundraiseDAO.deleteFundraise(fundraiseId)) {
-				return true;
-			} else {
-
-				return false;
-			}
-
+			return fundraiseDAO.deleteFundraise(fundraiseId);
 		} catch (DAOException e) {
 
 			throw new ServiceException(e.getMessage(), e);
@@ -119,6 +113,6 @@ public class FundraiseService {
 		} catch (DAOException e) {
 			throw new ServiceException("Error getting fundraise ID", e);
 		}
-	}
+	} 
 
 }
