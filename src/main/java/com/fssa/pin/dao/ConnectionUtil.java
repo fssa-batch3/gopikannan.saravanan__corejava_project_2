@@ -1,10 +1,10 @@
 package com.fssa.pin.dao;
 
 import java.sql.Connection;
+
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-import io.github.cdimascio.dotenv.Dotenv;
 
 public class ConnectionUtil {
 	private ConnectionUtil() {}
@@ -17,16 +17,11 @@ public class ConnectionUtil {
 		String dbUrl;
 		String dbUser;
 		String dbPassword;
-		if (System.getenv("CI") != null) {
+		
 			dbUrl = System.getenv("DB_URL");
 			dbUser = System.getenv("DB_USER");
 			dbPassword = System.getenv("DB_PASSWORD");
-		} else {
-			Dotenv env = Dotenv.load();
-			dbUrl = env.get("DB_URL");
-			dbUser = env.get("DB_USER");
-			dbPassword = env.get("DB_PASSWORD");
-		}
+	
 		// Connecting to DB
 		return DriverManager.getConnection(dbUrl, dbUser, dbPassword);
 	}
