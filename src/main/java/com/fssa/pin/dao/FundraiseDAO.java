@@ -40,7 +40,7 @@ public class FundraiseDAO {
 			throw new DAOException("Error in inserting fundraise in table", e);
 		}
 	}  
-
+ 
 	
 	  /**
      * Retrieves a list of all fundraising records with associated user details.
@@ -59,6 +59,8 @@ public class FundraiseDAO {
 		try (PreparedStatement ps = ConnectionUtil.getConnection().prepareStatement(query); ResultSet rs = ps.executeQuery()) {
 
 			while (rs.next()) {
+				
+				
 				String name = rs.getString("user_name");
 				String email = rs.getString("user_mail");
 				String phno = rs.getString("mobileno");
@@ -71,6 +73,8 @@ public class FundraiseDAO {
 				String story = rs.getString("story");
 				int expectedAmount = rs.getInt("amount_expected");
 				int userid = rs.getInt("userid");
+				
+				
 
 				Fundraise fundraise = new Fundraise(name, email, phno, accNo, ifscNo, accName, userid, cause, coverPic,
 						title, story, expectedAmount);

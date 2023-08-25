@@ -18,7 +18,7 @@ class TestFundraiseViewFeature {
 	@Test
 	void testviewFundraisesValid() throws ServiceException {
 		User user = new User();
-		user.setUserid(1);
+		user.setUserid(1); 
 		fundraise.setUser(user);
 
 		FundraiseService fundraiseservice = new FundraiseService();

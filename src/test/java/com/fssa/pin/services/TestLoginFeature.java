@@ -14,7 +14,10 @@ import com.fssa.pin.service.exception.ServiceException;
 	 void loginSuccess() {
 		UserService userService = new UserService();
 
-		User user1 = new User("gopikannan2906@gmail.com",  "Wow@2002");
+		User user1 = new User();
+		user1.setMail("gopikannan2906@gmail.com");
+		user1.setPassword("Wow@2002");
+		;
 		try {
 			
 			assertTrue(userService.loginUser(user1));
@@ -23,13 +26,15 @@ import com.fssa.pin.service.exception.ServiceException;
 
 			System.out.println(e.getMessage());
 		}
-	}  
+	}   
  
 	@Test
 
 	 void loginFailed() {
 		UserService userService = new UserService();
-		User user1 = new User("vicky2001@gmail.com",  "Vick@2002");
+		User user1 = new User();
+		user1.setMail("vicky2001@gmail.com");
+		user1.setPassword("Vick@2002");
 		try {
 			assertFalse(userService.loginUser(user1));
 			throw new ServiceException("Login Failed.Kindly Register");

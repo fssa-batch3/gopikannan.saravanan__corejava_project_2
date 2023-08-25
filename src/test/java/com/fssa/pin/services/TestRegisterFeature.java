@@ -13,8 +13,12 @@ import com.fssa.pin.service.exception.ServiceException;
 	 void testRegistrationSuccess() {
 
 		UserService userservice = new UserService();
-		User user1 = new User("gopikannan2906@gmail.com", "Gopikannan", "Wow@2002", "9092500612");
-
+//		User user1 = new User("gopikannan2906@gmail.com", "Gopikannan", "Wow@2002", "9092500612");
+		User user1 = new User();
+		user1.setMail("punithavathi2906@gmail.com");
+		user1.setUsername("Punithavathi");
+		user1.setPassword("Good@2002");
+		user1.setMobileno("9092500612");
 		try {
 			assertTrue(userservice.registerUser(user1));
 		} catch (ServiceException e) {
@@ -22,15 +26,18 @@ import com.fssa.pin.service.exception.ServiceException;
 			System.out.println(e);
  
 		}
-
+ 
 	}
 
 	@Test
 	 void testRegistrationFail() {
 
 		UserService userservice = new UserService();
-		User user1 = new User("soffafuywg892698gmail.com", "Soffan", "Wow@2002", "9092500612");
-
+		User user1 = new User();
+		user1.setMail("soffafuywg892698gmail.com");
+		user1.setUsername("Soffan");
+		user1.setPassword("Wow@2002");
+		user1.setMobileno("9092500612");
 		try {
 			assertFalse(userservice.registerUser(user1));
 		} catch (ServiceException e) {

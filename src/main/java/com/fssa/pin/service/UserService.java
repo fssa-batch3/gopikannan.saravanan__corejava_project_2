@@ -111,6 +111,6 @@ public class UserService {
 		} catch (DAOException | InvalidUserException e) {
 			throw new ServiceException(e.getMessage());
 		}
-
+ 
 	}
 }

@@ -37,7 +37,7 @@ class TestFunsdraiseCreateFeature {
 			e.printStackTrace();
 			fail();
 		}
-	}     
+	}      
  
 	// tests create fund raise for success
 
