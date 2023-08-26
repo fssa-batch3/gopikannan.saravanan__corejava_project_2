@@ -1,10 +1,10 @@
 package com.fssa.pin.validation;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import com.fssa.pin.validation.UserValidator;
 import com.fssa.pin.validation.exceptions.InvalidUserException;
 
  class TestValidateMobileNo {
@@ -50,7 +50,7 @@ import com.fssa.pin.validation.exceptions.InvalidUserException;
 			assertFalse(UserValidator.validateMobileNo("5678901234"));
 			System.out.println("Mobile number do not start with 5 ");
 		} catch (InvalidUserException e) {
-			System.out.println(e.getMessage());
+			System.out.println(e.getMessage()); 
 		}
 	}
 

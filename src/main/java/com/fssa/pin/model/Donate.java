@@ -17,26 +17,8 @@ public class Donate {
 	private String toAccHolderName;
 	private User user;
 	private Fundraise fundraise;
- 
-	public Donate() {
-	}
-//	 constructor to view donation detail 
 
-	public Donate(String donaterName, String donaterEmail, int donaterContribution, String donationFor,
-			String fundraiserName, String fundrasierEmail, int fromAccNo, String fromAccIfscNo,
-			String fromAccHolderName, int toAccNo, String toAccIfscNo, String toAccHolderName) {
-		this.donaterName = donaterName;
-		this.donaterEmail = donaterEmail;
-		this.donaterContribution = donaterContribution;
-		this.donationFor = donationFor;
-		this.fundraiserName = fundraiserName;
-		this.fundrasierEmail = fundrasierEmail;
-		this.fromAccNo = fromAccNo;
-		this.fromAccIfscNo = fromAccIfscNo;
-		this.fromAccHolderName = fromAccHolderName;
-		this.toAccNo = toAccNo;
-		this.toAccIfscNo = toAccIfscNo;
-		this.toAccHolderName = toAccHolderName;
+	public Donate() {
 	}
 
 	public String getDonaterName() {
@@ -151,6 +133,8 @@ public class Donate {
 		this.user = user;
 	}
 
+	
+
 	public Fundraise getFundraise() {
 		return fundraise;
 	}
@@ -158,11 +142,9 @@ public class Donate {
 	public void setFundraise(Fundraise fundraise) {
 		this.fundraise = fundraise;
 	}
-
-	
 	@Override
 	public String toString() {
-		return "DonateModel [donaterName=" + donaterName + ", donaterEmail=" + donaterEmail + ", donaterContribution="
+		return "Donate [donaterName=" + donaterName + ", donaterEmail=" + donaterEmail + ", donaterContribution="
 				+ donaterContribution + ", donationFor=" + donationFor + ", fundraiserName=" + fundraiserName
 				+ ", fundrasierEmail=" + fundrasierEmail + ", fromAccNo=" + fromAccNo + ", fromAccIfscNo="
 				+ fromAccIfscNo + ", fromAccHolderName=" + fromAccHolderName + ", toAccNo=" + toAccNo + ", toAccIfscNo="

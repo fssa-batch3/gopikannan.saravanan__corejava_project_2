@@ -22,34 +22,6 @@ public class Fundraise {
 
 //constructor for view data
 
-	public Fundraise(String name, String email, String phno, int accNo, String ifscNo, String accName, int userid,
-			String cause, String coverPic, String title, String story, int expectedAmount) {
-
-		this.name = name;
-		this.email = email;
-		this.phno = phno;
-		this.accNo = accNo;
-		this.ifscNo = ifscNo;
-		this.accName = accName;
-		this.userid = userid;
-		this.cause = cause;
-		this.coverpic = coverPic;
-		this.title = title;
-		this.story = story;
-		this.expectedamount = expectedAmount;
-
-	}
-
-// update user
-	public Fundraise(String cause, String coverPic, String title, String story, int expectedAmount, int fundraiseid) {
-		this.cause = cause;
-		this.coverpic = coverPic;
-		this.title = title;
-		this.story = story;
-		this.expectedamount = expectedAmount;
-		this.fundraiseid = fundraiseid;
-	}
-
 	public String getName() {
 		return name;
 	}
@@ -165,9 +137,9 @@ public class Fundraise {
 	@Override
 	public String toString() {
 		return "Fundraise [name=" + name + ", email=" + email + ", phno=" + phno + ", accNo=" + accNo + ", ifscNo="
-				+ ifscNo + ", accName=" + accName + ", cause=" + cause + ", cover_pic=" + coverpic + ", title=" + title
-				+ ", story=" + story + ", expected_amount=" + expectedamount + ", userid=" + userid + ", fundraiseid="
-				+ fundraiseid + "]";
+				+ ifscNo + ", accName=" + accName + ", cause=" + cause + ", coverpic=" + coverpic + ", title=" + title
+				+ ", story=" + story + ", expectedamount=" + expectedamount + "]";
 	}
 
+	
 }

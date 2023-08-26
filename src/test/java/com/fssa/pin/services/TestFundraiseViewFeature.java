@@ -3,6 +3,7 @@ package com.fssa.pin.services;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.List;
 
@@ -16,7 +17,7 @@ import com.fssa.pin.service.exception.ServiceException;
 class TestFundraiseViewFeature {
 	private final Fundraise fundraise = new Fundraise();
 	@Test
-	void testviewFundraisesValid() throws ServiceException {
+	void testviewFundraisesValid()   {
 		User user = new User();
 		user.setUserid(1); 
 		fundraise.setUser(user);
@@ -47,6 +48,7 @@ class TestFundraiseViewFeature {
 		} catch (ServiceException e) {
 			e.printStackTrace();
 			System.out.println(e.getMessage());
+			fail();
 		}
 	}
 

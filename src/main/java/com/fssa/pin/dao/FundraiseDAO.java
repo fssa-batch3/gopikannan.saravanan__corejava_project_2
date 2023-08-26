@@ -72,12 +72,23 @@ public class FundraiseDAO {
 				String title = rs.getString("title");
 				String story = rs.getString("story");
 				int expectedAmount = rs.getInt("amount_expected");
-				int userid = rs.getInt("userid");
 				
 				
 
-				Fundraise fundraise = new Fundraise(name, email, phno, accNo, ifscNo, accName, userid, cause, coverPic,
-						title, story, expectedAmount);
+				Fundraise fundraise = new Fundraise();
+				
+				
+				fundraise.setName(name);
+				fundraise.setEmail(email);
+				fundraise.setPhno(phno);
+				fundraise.setAccNo(accNo);
+				fundraise.setIfscNo(ifscNo);
+				fundraise.setAccName(accName);
+				fundraise.setCause(cause);
+				fundraise.setCoverPic(coverPic);
+				fundraise.setTitle(title);
+				fundraise.setStory(story);
+				fundraise.setExpectedAmount(expectedAmount);
 				fundraises.add(fundraise);
 			}
 

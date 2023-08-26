@@ -1,5 +1,7 @@
 package com.fssa.pin.service;
 
+import java.util.List;
+
 import com.fssa.pin.dao.DonateDAO;
 import com.fssa.pin.dao.exceptions.DAOException;
 import com.fssa.pin.model.Donate;
@@ -29,6 +31,23 @@ public class DonateService {
 			throw new ServiceException(e.getMessage(), e);
 		}
 		}
+	
+	/**
+	 * Retrieves a list of all donations from DB.
+	 *
+	 * @return A list of Donations objects .
+	 * @throws ServiceException If a service-related issue occurs.
+	 */
+	public List<Donate> viewDonationsService() throws ServiceException {
+		DonateDAO donations = new DonateDAO();
+
+		try {
+			return donations.viewAllDonations();
+
+		} catch (DAOException e) {
+			throw new ServiceException(e.getMessage(), e);
+		}
+	}
 	}
 
 	

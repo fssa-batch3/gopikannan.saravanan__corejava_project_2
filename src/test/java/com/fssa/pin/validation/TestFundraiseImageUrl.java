@@ -6,8 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import com.fssa.pin.validation.FundraiseValidation;
 import com.fssa.pin.validation.exceptions.InvalidFundraiseException;
+
 
 class TestFundraiseImageUrl {
 	@Test

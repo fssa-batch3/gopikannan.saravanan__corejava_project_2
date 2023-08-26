@@ -1,7 +1,6 @@
 package com.fssa.pin.dao;
 
 import java.sql.Connection;
-
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
@@ -13,7 +12,7 @@ public class ConnectionUtil {
      * The getConnection() method retrieves connection details from environment variables or a .env file.
      * It returns a Connection object for interacting with the database.
      */
-	public static Connection getConnection() throws SQLException {
+	public static Connection getConnection()  {
 		String dbUrl;
 		String dbUser;
 		String dbPassword;
@@ -23,7 +22,15 @@ public class ConnectionUtil {
 			dbPassword = System.getenv("DB_PASSWORD");
 	
 		// Connecting to DB
-		return DriverManager.getConnection(dbUrl, dbUser, dbPassword);
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			return DriverManager.getConnection(dbUrl, dbUser, dbPassword);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException("Unable to connect database",e);
+		} catch (ClassNotFoundException e) {
+			throw new RuntimeException("Database driver class not found",e);
+		}
 	}
 
 }
