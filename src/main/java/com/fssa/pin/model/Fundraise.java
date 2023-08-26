@@ -1,145 +1,158 @@
 package com.fssa.pin.model;
 
+/**
+ * Represents a fundRaising campaign.
+ */
 public class Fundraise {
 
-	private String name;
-	private String email;
-	private String phno;
-	private int accNo;
-	private String ifscNo;
-	private String accName;
-	private String cause;
-	private String coverpic;
-	private String title;
-	private String story;
-	private int expectedamount;
-	private int userid;
-	private int fundraiseid;
-	private User user; 
+    private String cause; // The cause of the fundRaising campaign.
+    private String coverpic; // URL of the cover picture for the campaign.
+    private String title; // The title of the campaign.
+    private String story; // The story or description of the campaign.
+    private int expectedamount; // The expected amount to be raised.
+    private int fundraiseid; // The unique identifier for the campaign.
+    private User user; // The user associated with the campaign.
 
-	public Fundraise() {  
-	}
+    /**
+     * Gets the cause of the fundRaising campaign.
+     *
+     * @return The cause.
+     */
+    public String getCause() {
+        return cause;
+    }
 
-//constructor for view data
+    /**
+     * Sets the cause of the fundRaising campaign.
+     *
+     * @param cause The cause to set.
+     */
+    public void setCause(String cause) {
+        this.cause = cause;
+    }
 
-	public String getName() {
-		return name;
-	}
+    /**
+     * Gets the URL of the cover picture for the campaign.
+     *
+     * @return The cover picture URL.
+     */
+    public String getCoverPic() {
+        return coverpic;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    /**
+     * Sets the URL of the cover picture for the campaign.
+     *
+     * @param coverPic The cover picture URL to set.
+     */
+    public void setCoverPic(String coverPic) {
+        this.coverpic = coverPic;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    /**
+     * Gets the title of the fundRaising campaign.
+     *
+     * @return The title.
+     */
+    public String getTitle() {
+        return title;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    /**
+     * Sets the title of the fundraising campaign.
+     *
+     * @param title The title to set.
+     */
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-	public String getPhno() {
-		return phno;
-	}
+    /**
+     * Gets the story of the fundRaising campaign.
+     *
+     * @return The story.
+     */
+    public String getStory() {
+        return story;
+    }
 
-	public void setPhno(String phno) {
-		this.phno = phno;
-	}
+    /**
+     * Sets the story or description of the fundRaising campaign.
+     *
+     * @param story The story to set.
+     */
+    public void setStory(String story) {
+        this.story = story;
+    }
 
-	public int getAccNo() {
-		return accNo;
-	}
+    /**
+     * Gets the expected amount to be raised for the campaign.
+     *
+     * @return The expected amount.
+     */
+    public int getExpectedAmount() {
+        return expectedamount;
+    }
 
-	public void setAccNo(int accNo) {
-		this.accNo = accNo;
-	}
+    /**
+     * Sets the expected amount to be raised for the campaign.
+     *
+     * @param expectedAmount The expected amount to set.
+     */
+    public void setExpectedAmount(int expectedAmount) {
+        this.expectedamount = expectedAmount;
+    }
 
-	public String getIfscNo() {
-		return ifscNo;
-	}
+    /**
+     * Gets the unique identifier for the fundRaising campaign.
+     *
+     * @return The campaign identifier.
+     */
+    public int getFundraiseid() {
+        return fundraiseid;
+    }
 
-	public void setIfscNo(String ifscNo) {
-		this.ifscNo = ifscNo;
-	}
+    /**
+     * Sets the unique identifier for the fundRaising campaign.
+     *
+     * @param fundraiseid The campaign identifier to set.
+     */
+    public void setFundraiseid(int fundraiseid) {
+        this.fundraiseid = fundraiseid;
+    }
 
-	public String getAccName() {
-		return accName;
-	}
+    /**
+     * Gets the user associated with the fundRaising campaign.
+     *
+     * @return The user.
+     */
+    public User getUser() {
+        return user;
+    }
 
-	public void setAccName(String accName) {
-		this.accName = accName;
-	}
+    /**
+     * Sets the user associated with the fundRaising campaign.
+     *
+     * @param user The user to set.
+     */
+    public void setUser(User user) {
+        this.user = user;
+    }
 
-	public String getCause() {
-		return cause;
-	}
-
-	public void setCause(String cause) {
-		this.cause = cause;
-	}
-
-	public String getCoverPic() {
-		return coverpic;
-	}
-
-	public void setCoverPic(String coverPic) {
-		this.coverpic = coverPic;
-	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public String getStory() {
-		return story;
-	}
-
-	public void setStory(String story) {
-		this.story = story;
-	}
-
-	public int getExpectedAmount() {
-		return expectedamount;
-	}
-
-	public void setExpectedAmount(int expectedAmount) {
-		this.expectedamount = expectedAmount;
-	}
-
-	public int getUserid() {
-		return userid;
-	}
-
-	public void setUserid(int userid) {
-		this.userid = userid;
-	}
-
-	public int getFundraiseid() {
-		return fundraiseid;
-	}
-
-	public void setFundraiseid(int fundraiseid) {
-		this.fundraiseid = fundraiseid;
-	}
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
-	@Override
-	public String toString() {
-		return "Fundraise [name=" + name + ", email=" + email + ", phno=" + phno + ", accNo=" + accNo + ", ifscNo="
-				+ ifscNo + ", accName=" + accName + ", cause=" + cause + ", coverpic=" + coverpic + ", title=" + title
-				+ ", story=" + story + ", expectedamount=" + expectedamount + "]";
-	}
-
-	
+    /**
+     * Returns a string representation of the fundRaising campaign.
+     *
+     * @return A string representation.
+     */
+    @Override
+    public String toString() {
+        return "Fundraise [" +
+               "cause=" + cause +
+               ", coverpic=" + coverpic +
+               ", title=" + title +
+               ", story=" + story +
+               ", expectedamount=" + expectedamount +
+               ", user=" + user.toString() +
+               "]";
+    }
 }

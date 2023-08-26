@@ -8,6 +8,7 @@ import java.util.List;
 
 import com.fssa.pin.dao.exceptions.DAOException;
 import com.fssa.pin.model.Fundraise;
+import com.fssa.pin.model.User;
 
 /**
  * Provides database operations for managing fundraising details.
@@ -73,17 +74,19 @@ public class FundraiseDAO {
 				String story = rs.getString("story");
 				int expectedAmount = rs.getInt("amount_expected");
 				
-				
-
 				Fundraise fundraise = new Fundraise();
 				
 				
-				fundraise.setName(name);
-				fundraise.setEmail(email);
-				fundraise.setPhno(phno);
-				fundraise.setAccNo(accNo);
-				fundraise.setIfscNo(ifscNo);
-				fundraise.setAccName(accName);
+				User user = new User();
+				user.setUsername(name);
+				user.setMail(email);
+				user.setMobileno(phno);
+				user.setAccNo(accNo);
+				user.setIfscNo(ifscNo);
+				user.setAccName(accName);
+				
+				fundraise.setUser(user);
+				
 				fundraise.setCause(cause);
 				fundraise.setCoverPic(coverPic);
 				fundraise.setTitle(title);
@@ -148,7 +151,7 @@ public class FundraiseDAO {
 		}
 
 	}
-	
+	 
 	
 	  /**
      * Retrieves the latest fundraise ID from the database.

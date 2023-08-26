@@ -18,8 +18,7 @@ public class Donate {
 	private User user;
 	private Fundraise fundraise;
 
-	public Donate() {
-	}
+
 
 	public String getDonaterName() {
 		return donaterName;

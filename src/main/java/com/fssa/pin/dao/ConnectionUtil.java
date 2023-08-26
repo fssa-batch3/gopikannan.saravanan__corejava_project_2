@@ -21,12 +21,11 @@ public class ConnectionUtil {
 			dbUser = System.getenv("DB_USER");
 			dbPassword = System.getenv("DB_PASSWORD");
 	
-		// Connecting to DB
+		// Connecting to DB 
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			return DriverManager.getConnection(dbUrl, dbUser, dbPassword);
 		} catch (SQLException e) {
-			e.printStackTrace();
 			throw new RuntimeException("Unable to connect database",e);
 		} catch (ClassNotFoundException e) {
 			throw new RuntimeException("Database driver class not found",e);
