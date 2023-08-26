@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"com.fssa.pin.dao"},{"l":"com.fssa.pin.dao.exceptions"},{"l":"com.fssa.pin.model"},{"l":"com.fssa.pin.service"},{"l":"com.fssa.pin.service.exception"},{"l":"com.fssa.pin.services"},{"l":"com.fssa.pin.validation"},{"l":"com.fssa.pin.validation.exceptions"}];updateSearchResults();
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"com.fssa.pin.model"}];updateSearchResults();

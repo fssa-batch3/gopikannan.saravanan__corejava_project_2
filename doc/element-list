@@ -1,8 +1,1 @@
-com.fssa.pin.dao
-com.fssa.pin.dao.exceptions
 com.fssa.pin.model
-com.fssa.pin.service
-com.fssa.pin.service.exception
-com.fssa.pin.services
-com.fssa.pin.validation
-com.fssa.pin.validation.exceptions
