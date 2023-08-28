@@ -18,7 +18,7 @@ import com.fssa.pin.validation.exceptions.InvalidUserException;
 
 			System.out.println(e.getMessage());
 		}
-	}
+	} 
 
 	@Test
 	 void testInvalidMobileNoWithLessThan10Digits() {

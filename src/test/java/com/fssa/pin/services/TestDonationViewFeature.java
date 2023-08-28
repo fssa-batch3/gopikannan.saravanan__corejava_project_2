@@ -20,7 +20,7 @@ class TestDonationViewFeature {
 	
 	try { 
 
-
+ 
 		List<Donate> donations = donationservice.viewDonationsService();
 
 		assertNotNull(donations);

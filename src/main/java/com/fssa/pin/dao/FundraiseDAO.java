@@ -86,7 +86,6 @@ public class FundraiseDAO {
 				user.setAccName(accName);
 				
 				fundraise.setUser(user);
-				
 				fundraise.setCause(cause);
 				fundraise.setCoverPic(coverPic);
 				fundraise.setTitle(title);

@@ -13,7 +13,7 @@ import com.fssa.pin.service.exception.ServiceException;
 class TestFundraiseUpdateFeature {
 
 	@Test
-	void testUpdateSuccess() {
+	void testUpdateSuccess() { 
 
 
 		FundraiseService fundraiseservice = new FundraiseService();
@@ -37,7 +37,7 @@ class TestFundraiseUpdateFeature {
 			fail();
 
 		}
-	}
+	} 
 
 	@Test
 	void testUpdateFail() {

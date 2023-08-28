@@ -116,5 +116,5 @@ public class User {
                ", ifscNo=" + ifscNo +
                ", accName=" + accName +
                "]";
-    }
+    } 
 }

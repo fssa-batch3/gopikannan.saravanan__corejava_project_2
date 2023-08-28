@@ -33,7 +33,7 @@ public class DonateDAO {
 
 	}
 	
-	
+	 
 	/***
 	 * Retrieves a list of all donations records.
 	 * @return List of donation objects containing donation details.

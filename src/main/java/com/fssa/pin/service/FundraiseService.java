@@ -55,7 +55,7 @@ public class FundraiseService {
 	}
 
 	/**
-	 * Updates a fundraising campaign.
+	 * Updates a Fundraising campaign.
 	 *
 	 * @param fundraise The Fundraise object containing updated campaign details.
 	 * @return True if the campaign is successfully updated, otherwise false.

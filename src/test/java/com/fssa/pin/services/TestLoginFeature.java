@@ -9,7 +9,7 @@ import com.fssa.pin.service.*;
 import com.fssa.pin.service.exception.ServiceException;
 
  class TestLoginFeature {
- 
+  
 	@Test
 	 void loginSuccess() {
 		UserService userService = new UserService();
@@ -17,7 +17,7 @@ import com.fssa.pin.service.exception.ServiceException;
 		User user1 = new User();
 		user1.setMail("gopikannan2906@gmail.com");
 		user1.setPassword("Wow@2002");
-		;
+		
 		try {
 			
 			assertTrue(userService.loginUser(user1));
