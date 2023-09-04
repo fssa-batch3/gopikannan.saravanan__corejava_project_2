@@ -151,7 +151,6 @@ public class UserDAO {
 			pst.setString(1, email);
 			try (ResultSet rs = pst.executeQuery()) {
 
-				// User found, login successful else
 				if (rs.next()) {
 					String passwordfromDb = rs.getString("user_pwd");
 					setUserPasswordFromDb(passwordfromDb);
