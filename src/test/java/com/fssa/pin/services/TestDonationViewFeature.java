@@ -37,7 +37,6 @@ class TestDonationViewFeature {
 	}
 	
 	
-	
 	@Test
 	void testViewDonationsFailed() {
 		DonateService donationservice = new DonateService();

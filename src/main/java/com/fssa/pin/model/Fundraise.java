@@ -152,6 +152,7 @@ public class Fundraise {
                ", title=" + title +
                ", story=" + story +
                ", expectedamount=" + expectedamount +
+               ", fundraiseid=" + fundraiseid + 
                ", user=" + user.toString() +
                "]";
     }

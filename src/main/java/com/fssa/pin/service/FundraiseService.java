@@ -21,6 +21,9 @@ public class FundraiseService {
 	 * @return True if the campaign is successfully created, otherwise false.
 	 * @throws ServiceException If a service-related issue occurs.
 	 */
+	
+	
+	
 	public boolean createFundraise(Fundraise fundraise) throws ServiceException {
 
 		FundraiseDAO fundraiseDAO = new FundraiseDAO();
@@ -100,19 +103,16 @@ public class FundraiseService {
 		}
 	}
 
-	/**
-	 * Retrieves the ID of a fundraising campaign.
-	 *
-	 * @return The ID of the campaign.
-	 * @throws ServiceException If a service-related issue occurs.
-	 */
-	public int fundraiseGetFundraiseId() throws ServiceException {
-		FundraiseDAO fundraiseDAO = new FundraiseDAO();
-		try {
-			return fundraiseDAO.getFundraiseId();
-		} catch (DAOException e) {
-			throw new ServiceException("Error getting fundraise ID", e);
-		}
-	} 
+	
+	   public Fundraise getFundraiseByIdService(int fundraiseId) throws ServiceException {
+		   FundraiseDAO fundraiseDAO = new FundraiseDAO();
+	        try {
+	            return fundraiseDAO.getFundraiseById(fundraiseId);
+	        } catch (DAOException e) {
+	            throw new ServiceException(e.getMessage(), e);
+	        }
+	    }
+	   
+
 
 }

@@ -1,5 +1,6 @@
 package com.fssa.pin.dao;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -53,7 +54,7 @@ public class FundraiseDAO {
 		List<Fundraise> fundraises = new ArrayList<>();
 
 		String query = "SELECT userdata.user_name, userdata.user_mail, userdata.mobileno, userdata.user_account_no, userdata.user_ifsc, userdata.user_account_holder, " +
-	               "fundraisedetails.cause, fundraisedetails.image_url, fundraisedetails.title, fundraisedetails.story, fundraisedetails.amount_expected, fundraisedetails.userid " +
+	               "fundraisedetails.cause, fundraisedetails.image_url, fundraisedetails.title, fundraisedetails.story, fundraisedetails.amount_expected,  fundraisedetails.fundraise_id, fundraisedetails.userid " +
 	               "FROM userdata " +
 	               "INNER JOIN fundraisedetails ON userdata.userid = fundraisedetails.userid";
 
@@ -73,6 +74,7 @@ public class FundraiseDAO {
 				String title = rs.getString("title");
 				String story = rs.getString("story");
 				int expectedAmount = rs.getInt("amount_expected");
+				int fundraiseId = rs.getInt("fundraise_id");
 				
 				Fundraise fundraise = new Fundraise();
 				
@@ -91,6 +93,7 @@ public class FundraiseDAO {
 				fundraise.setTitle(title);
 				fundraise.setStory(story);
 				fundraise.setExpectedAmount(expectedAmount);
+				fundraise.setFundraiseid(fundraiseId);
 				fundraises.add(fundraise);
 			}
 
@@ -132,7 +135,7 @@ public class FundraiseDAO {
  
 
 	/**
-     * Deletes a fundraising record from the database.
+     * Deletes a fundRaising record from the database.
      *
      * @param fundraiseId The ID of the fundraising record to be deleted.
      * @return True if the deletion was successful, otherwise false.
@@ -158,19 +161,33 @@ public class FundraiseDAO {
      * @return The latest fundraise ID.
      * @throws DAOException If an error occurs during database interaction.
      */
-  
-	public int getFundraiseId() throws DAOException {
-		String query = "SELECT MAX(fundraise_id) FROM fundraisedetails";
+	public Fundraise getFundraiseById(int fundraiseId) throws DAOException {
+	    String query = "SELECT * FROM fundraisedetails WHERE fundraise_id = ?";
 
-		try (PreparedStatement ps = ConnectionUtil.getConnection().prepareStatement(query); ResultSet rs = ps.executeQuery()) {
-			if (rs.next()) {
-				return rs.getInt(1);
-			} else {
-				throw new DAOException("Error getting latest fundraise id");
-			}
-		} catch (SQLException e) {
-			throw new DAOException("Error getting latest fundraise id", e);
-		}
+	    try (Connection connection = ConnectionUtil.getConnection();
+	         PreparedStatement ps = connection.prepareStatement(query)) {
+	        ps.setInt(1, fundraiseId);
+
+	        try (ResultSet rs = ps.executeQuery()) {
+	            if (rs.next()) {
+	                Fundraise fundraise = new Fundraise();
+	                fundraise.setFundraiseid(rs.getInt("fundraise_id"));
+	                fundraise.setCause(rs.getString("cause"));
+	                fundraise.setCoverPic(rs.getString("image_url"));
+	                fundraise.setTitle(rs.getString("title"));
+	                fundraise.setStory(rs.getString("story"));
+	                fundraise.setExpectedAmount(rs.getInt("amount_expected"));
+
+	              
+
+	                return fundraise;
+	            } else {
+	                throw new DAOException("Fundraise with ID " + fundraiseId + " not found");
+	            }
+	        }
+	    } catch (SQLException e) {
+	        throw new DAOException("Error getting fundraise by ID", e);
+	    }
 	}
-  
+
 }

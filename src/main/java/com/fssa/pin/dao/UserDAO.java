@@ -55,7 +55,7 @@ public class UserDAO {
 			pst.setString(1, user.getUsername());
 			pst.setString(2, user.getPassword());
 			pst.setString(3, user.getMobileno());
-			pst.setInt(4, user.getAccNo());
+			pst.setLong(4, user.getAccNo());
 			pst.setString(5, user.getIfscNo());
 			pst.setString(6, user.getAccName());
 			pst.setString(7, user.getMail());
@@ -71,6 +71,7 @@ public class UserDAO {
 		}
 
 	}
+
 
 
 
@@ -106,7 +107,7 @@ public class UserDAO {
 
 		try (PreparedStatement pstmt = ConnectionUtil.getConnection().prepareStatement(query)) {
 
-			pstmt.setString(1, email);
+			pstmt.setString(1, email); 
 
 			try (ResultSet rs = pstmt.executeQuery()) {
 				return rs.next(); // Return true if the email exists
@@ -162,5 +163,35 @@ public class UserDAO {
 		}
 		return false;
 	}
+	
+	
+	public User findUserByEmail(String email) throws DAOException {
+	    final String query = "SELECT user_name, user_mail, user_pwd, mobileno,user_account_no, user_ifsc, user_account_holder,userid FROM userdata WHERE user_mail = ?";
+
+	    try (PreparedStatement pstmt = ConnectionUtil.getConnection().prepareStatement(query)) {
+	        pstmt.setString(1, email);
+
+	        try (ResultSet rs = pstmt.executeQuery()) {
+	            if (rs.next()) {
+	                User user = new User();
+	                user.setUsername(rs.getString("user_name"));
+	                user.setMail(rs.getString("user_mail"));
+	                user.setPassword(rs.getString("user_pwd"));
+	                user.setMobileno(rs.getString("mobileno"));
+	                user.setAccNo(rs.getInt("user_account_no"));
+	                user.setIfscNo(rs.getString("user_ifsc"));;
+	                user.setAccName(rs.getString("user_account_holder"));
+	                user.setUserid(rs.getInt("userid"));
+	               
+	                return user;
+	            } else {
+	                return null; // Return null if the email does not exist
+	            }
+	        }
+	    } catch (SQLException e) {
+	        throw new DAOException("Error in getting the user bank account details by email", e);
+	    }
+	}
+
 
 }

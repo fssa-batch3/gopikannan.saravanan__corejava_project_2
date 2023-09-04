@@ -168,7 +168,7 @@ public class UserValidator {
 	 * @return true if the account number is valid.
 	 * @throws InvalidUserException If the account number is not valid.
 	 */
-	public static boolean validateAccountNo(int accno) throws InvalidUserException {
+	public static boolean validateAccountNo(long accno) throws InvalidUserException {
 		String accnoString = String.valueOf(accno);
 		boolean isMatch = false;
 		if (accnoString == null || accnoString.trim().isEmpty()) {

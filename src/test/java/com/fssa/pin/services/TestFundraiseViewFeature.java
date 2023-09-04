@@ -2,7 +2,6 @@ package com.fssa.pin.services;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.List;
@@ -10,7 +9,6 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import com.fssa.pin.model.Fundraise;
-import com.fssa.pin.model.User;
 import com.fssa.pin.service.FundraiseService;
 import com.fssa.pin.service.exception.ServiceException;
 

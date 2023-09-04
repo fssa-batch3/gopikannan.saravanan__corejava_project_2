@@ -21,9 +21,8 @@ import com.fssa.pin.service.exception.ServiceException;
 		try {
 			
 			assertTrue(userService.loginUser(user1));
-			throw new ServiceException("Login successfully. Welcome, " + user1.getMail() + "!");
 		} catch (ServiceException e) {
-
+			e.printStackTrace();
 			System.out.println(e.getMessage());
 		}
 	}   

@@ -60,11 +60,14 @@ public class UserService {
 			if (userDAO.loginUser(user) && (userDAO.getUserPasswordFromDb().equals(user.getPassword()))) {
 				return true;
 			}
+			else {
+				
+				throw new ServiceException("Check Your Email And Password that you entered while you registered");
+			}
 		} catch (DAOException | InvalidUserException e) {
 
 			throw new ServiceException(e.getMessage());
 		}
-		return false;
 	}
 
 	/**
@@ -113,4 +116,17 @@ public class UserService {
 		}
  
 	}
+
+	 
+	 public User findUserByEmailService(String email) throws ServiceException {
+		 UserDAO userDAO = new UserDAO();
+	        try {
+	            return userDAO.findUserByEmail(email);
+	        } catch (DAOException e) {
+	            throw new ServiceException(e.getMessage());
+	        }
+	    }	
+	
+	 
+	 
 }

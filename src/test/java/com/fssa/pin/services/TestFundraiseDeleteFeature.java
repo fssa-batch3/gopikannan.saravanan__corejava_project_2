@@ -16,9 +16,8 @@ class TestFundraiseDeleteFeature {
 		FundraiseService fundraiseservice = new FundraiseService();
 		try {
 
-			int fundraiseId = fundraiseservice.fundraiseGetFundraiseId();
 
-			assertTrue(fundraiseservice.fundraiseDelete(fundraiseId));
+			assertTrue(fundraiseservice.fundraiseDelete(480));
 		} catch (ServiceException e) {
 			e.printStackTrace();
 			System.out.println(e.getMessage());
