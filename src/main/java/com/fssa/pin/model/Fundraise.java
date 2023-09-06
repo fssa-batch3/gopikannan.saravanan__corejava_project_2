@@ -146,14 +146,24 @@ public class Fundraise {
      */
     @Override
     public String toString() {
-        return "Fundraise [" +
+        StringBuilder sb = new StringBuilder();
+        sb.append("Fundraise [" +
                "cause=" + cause +
                ", coverpic=" + coverpic +
                ", title=" + title +
                ", story=" + story +
                ", expectedamount=" + expectedamount +
-               ", fundraiseid=" + fundraiseid + 
-               ", user=" + user.toString() +
-               "]";
+               ", fundraiseid=" + fundraiseid);
+
+        if (user != null) {
+            sb.append(", user=" + user.toString());
+        } else {
+            sb.append(", user=null");
+        }
+
+        sb.append("]");
+
+        return sb.toString();
     }
+
 } 

@@ -66,7 +66,7 @@ public class FundraiseDAO {
 				String name = rs.getString("user_name");
 				String email = rs.getString("user_mail");
 				String phno = rs.getString("mobileno");
-				int accNo = rs.getInt("user_account_no");
+				long accNo = rs.getLong("user_account_no");
 				String ifscNo = rs.getString("user_ifsc");
 				String accName = rs.getString("user_account_holder");
 				String cause = rs.getString("cause");
@@ -98,7 +98,7 @@ public class FundraiseDAO {
 			}
 
 		} catch (SQLException e) {
-			throw new DAOException("Error reading fundraises from the table");
+			throw new DAOException("Error reading fundraises from the table",e);
 		}
 		return fundraises;
 	}

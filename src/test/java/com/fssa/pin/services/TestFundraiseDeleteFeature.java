@@ -17,7 +17,7 @@ class TestFundraiseDeleteFeature {
 		try {
 
 
-			assertTrue(fundraiseservice.fundraiseDelete(480));
+			assertTrue(fundraiseservice.fundraiseDelete(547));
 		} catch (ServiceException e) {
 			e.printStackTrace();
 			System.out.println(e.getMessage());

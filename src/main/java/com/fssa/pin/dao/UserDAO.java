@@ -177,7 +177,7 @@ public class UserDAO {
 	                user.setMail(rs.getString("user_mail"));
 	                user.setPassword(rs.getString("user_pwd"));
 	                user.setMobileno(rs.getString("mobileno"));
-	                user.setAccNo(rs.getInt("user_account_no"));
+	                user.setAccNo(rs.getLong("user_account_no"));
 	                user.setIfscNo(rs.getString("user_ifsc"));;
 	                user.setAccName(rs.getString("user_account_holder"));
 	                user.setUserid(rs.getInt("userid"));
@@ -188,9 +188,9 @@ public class UserDAO {
 	            }
 	        }
 	    } catch (SQLException e) {
-	        throw new DAOException("Error in getting the user bank account details by email", e);
+	        throw new DAOException("Error in getting the user details by email", e);
 	    }
 	}
 
-
+ 
 }

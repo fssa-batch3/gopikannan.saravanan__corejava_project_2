@@ -53,8 +53,7 @@ public class UserService {
 	public boolean loginUser(User user) throws ServiceException {
 		try {
 
-			UserValidator.validateEmail(user.getMail());
-			UserValidator.validatePassword(user.getPassword());
+			UserValidator.validLoginCredentials(user);
 
 			UserDAO userDAO = new UserDAO();
 			if (userDAO.loginUser(user) && (userDAO.getUserPasswordFromDb().equals(user.getPassword()))) {
@@ -123,9 +122,12 @@ public class UserService {
 	        try {
 	            return userDAO.findUserByEmail(email);
 	        } catch (DAOException e) {
-	            throw new ServiceException(e.getMessage());
+	            throw new ServiceException(e.getMessage(),e);
 	        }
 	    }	
+	 
+	 
+	
 	
 	 
 	 
