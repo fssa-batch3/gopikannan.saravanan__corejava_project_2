@@ -29,7 +29,7 @@ class TestFunsdraiseCreateFeature {
 		fundraise.setStory(
 				"As I lay in the hospital bed, surrounded by white walls and medical equipment, a mix of emotions overwhelmed me. Diagnosed with a serious condition after experiencing fatigue and headaches, I faced a challenging journey. The care from dedicated medical professionals, support from family and friends, and moments of joy brought comfort. Each day, I found strength in hope and gratitude, cherishing life's small joys. The hospital became a sanctuary of healing and taught me resilience. Though uncertain, I embraced the path to recovery with courage. This life-altering experience taught me to value health, cherish relationships, and find strength in adversity.");
 		fundraise.setExpectedAmount(150000);
-
+ 
 		try {
 			assertTrue(fundraiseservice.createFundraise(fundraise));
 			System.out.println("Successfully created a fundraise");

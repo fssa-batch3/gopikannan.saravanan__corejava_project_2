@@ -35,7 +35,7 @@ public class FundraiseService {
 
 			return fundraiseDAO.createFundraise(fundraise);
 		} catch (DAOException | InvalidFundraiseException e) {
-			throw new ServiceException(e.getMessage(), e);
+			throw new ServiceException(e.getMessage());
 		}
 
 	}

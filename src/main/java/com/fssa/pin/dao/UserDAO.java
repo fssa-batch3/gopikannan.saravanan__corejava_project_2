@@ -181,7 +181,6 @@ public class UserDAO {
 	                user.setIfscNo(rs.getString("user_ifsc"));;
 	                user.setAccName(rs.getString("user_account_holder"));
 	                user.setUserid(rs.getInt("userid"));
-	               
 	                return user;
 	            } else {
 	                return null; // Return null if the email does not exist
