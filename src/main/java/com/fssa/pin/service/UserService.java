@@ -108,9 +108,8 @@ public class UserService {
 		UserDAO userDAO = new UserDAO();
 
 		try {
-			UserValidator.validateEmail(email);
 			return userDAO.deleteUser(email);
-		} catch (DAOException | InvalidUserException e) {
+		} catch (DAOException  e) {
 			throw new ServiceException(e.getMessage());
 		}
  

@@ -27,23 +27,9 @@ public class UserValidator {
 			throw new InvalidUserException("User details cannot be null");
 		}
 
-		if (!validateName(user.getUsername())) {
-			throw new InvalidUserException("User name is invalid: Enter your name like this ex:Gopikannan");
-		}
-
-		if (!validateEmail(user.getMail())) {
-			throw new InvalidUserException(
-					"User email is invalid: Enter your email like this ex:gopikannan2906@gmail.com");
-		}
-		if (!validatePassword(user.getPassword())) {
-			throw new InvalidUserException("User password is invalid: Enter your password like this ex:Wow@2002");
-		}
-		if (!validateMobileNo(user.getMobileno())) {
-			throw new InvalidUserException(
-					"User mobile number is invalid: Enter your mobile number like this ex:6374449092");
-
-		}
-
+		if (!validateName(user.getUsername()) || !validateEmail(user.getMail()) || !validatePassword(user.getPassword())
+				|| !validateMobileNo(user.getMobileno())) {
+			throw new InvalidUserException("User details not valid");}
 		return true;
 
 	}
@@ -62,48 +48,17 @@ public class UserValidator {
 			throw new InvalidUserException("User details cannot be null");
 		}
 
-		if (!validateName(user.getUsername())) {
-			throw new InvalidUserException("User name is invalid: Enter your name like this ex:Gopikannan");
+		if (!validateName(user.getUsername()) || !validateEmail(user.getMail()) || !validatePassword(user.getPassword())
+				|| !validateMobileNo(user.getMobileno()) || !validateAccountNo(user.getAccNo())
+				|| !validateIfscCode(user.getIfscNo()) || !validateAccountHolderName(user.getAccName())) {
+			throw new InvalidUserException("User details not valid");
 		}
-
-		if (!validateEmail(user.getMail())) {
-			throw new InvalidUserException(
-					"User email is invalid: Enter your email like this ex:gopikannan2906@gmail.com");
-		}
-		if (!validatePassword(user.getPassword())) {
-			throw new InvalidUserException("User password is invalid: Enter your password like this ex:Wow@2002");
-		}
-		if (!validateMobileNo(user.getMobileno())) {
-			throw new InvalidUserException(
-					"User mobile number is invalid: Enter your mobile number like this ex:6374449092");
-
-		}
-
-		if (!validateAccountNo(user.getAccNo())) {
-
-			throw new InvalidUserException(
-					"User Account number is invalid: Enter your account number like this ex:179879873191");
-		}
-
-		if (!validateIfscCode(user.getIfscNo())) {
-
-			throw new InvalidUserException(
-					"User Account ifsc is invalid: Enter your account ifsc code like this ex:ABCD0123400");
-		}
-
-		if (!validateAccountHolderName(user.getAccName())) {
-			throw new InvalidUserException(
-					"User Account Name is invalid: Enter your account name like this ex:GOPI KANNAN");
-		}
-
 		return true;
 
 	}
-	
-	
-	public static boolean validLoginCredentials(User user) throws InvalidUserException 
-	{
-		
+
+	public static boolean validLoginCredentials(User user) throws InvalidUserException {
+
 		if (!validateEmail(user.getMail())) {
 			throw new InvalidUserException(
 					"User email is invalid: Enter your email like this ex:gopikannan2906@gmail.com");
@@ -112,7 +67,7 @@ public class UserValidator {
 			throw new InvalidUserException("User password is invalid: Enter your password like this ex:Wow@2002");
 		}
 		return true;
-		
+
 	}
 
 	/**
@@ -133,7 +88,12 @@ public class UserValidator {
 		Pattern p = Pattern.compile(regex);
 		Matcher m = p.matcher(name);
 		match = m.matches();
-		return match;
+		if (match) {
+			return true;
+		} else {
+			throw new InvalidUserException("User name is invalid: Enter your name like this ex:Gopikannan");
+
+		}
 
 	}
 
@@ -154,7 +114,12 @@ public class UserValidator {
 		String patternString = "(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@#$%^&+=])(?=.*[^\\s]).{8,}$";
 		match = Pattern.matches(patternString, password);
 
-		return match;
+		if (match) {
+			return true;
+		} else {
+			throw new InvalidUserException("User password is invalid: Enter your password like this ex:Wow@2002");
+
+		}
 
 	}
 
@@ -174,7 +139,12 @@ public class UserValidator {
 
 		String regex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$";
 		isMatch = Pattern.matches(regex, email);
-		return isMatch;
+		if (isMatch) {
+			return true;
+		} else {
+			throw new InvalidUserException("User email is invalid: Enter your email like this ex:gopikannan2906@gmail.com");
+
+		}
 
 	}
 
@@ -193,7 +163,12 @@ public class UserValidator {
 
 		String regex = "^[6789]\\d{9}$";
 		isMatch = Pattern.matches(regex, mobileno);
-		return isMatch;
+		if (isMatch) {
+			return true;
+		} else {
+			throw new InvalidUserException("User mobile number is invalid: Enter your mobile number like this ex:6374449092");
+
+		}
 
 	}
 
@@ -213,7 +188,11 @@ public class UserValidator {
 		String regex = "\\d{10,}";
 
 		isMatch = Pattern.matches(regex, accnoString);
-		return isMatch;
+		if (isMatch) {
+			return true;
+		} else {
+			throw new InvalidUserException("User Account number is invalid: Enter your account number like this ex:179879873191");
+		}
 	}
 
 	/**
@@ -231,7 +210,11 @@ public class UserValidator {
 
 		String regex = "^[A-Za-z]{4}0[0-9A-Za-z]{6}$";
 		isMatch = Pattern.matches(regex, ifscCode);
-		return isMatch;
+		if (isMatch) {
+			return true;
+		} else {
+			throw new InvalidUserException("User Account ifsc is invalid: Enter your account ifsc code like this ex:ABCD0123400");
+		}
 	}
 
 	/**
@@ -251,7 +234,11 @@ public class UserValidator {
 		String regex = "^[A-Za-z\\s.'-]{1,100}$";
 		isMatch = Pattern.matches(regex, name);
 
-		return isMatch;
+		if (isMatch) {
+			return true;
+		} else {
+			throw new InvalidUserException("User Account Name is invalid: Enter your account name like this ex:GOPI KANNAN");
+		}
 
 	}
 
