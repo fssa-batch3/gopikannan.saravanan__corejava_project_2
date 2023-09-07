@@ -20,12 +20,8 @@ public class ConnectionUtil {
 			dbUrl = System.getenv("DB_URL");
 			dbUser = System.getenv("DB_USER");
 			dbPassword = System.getenv("DB_PASSWORD");
-//			
-//			dbUrl = "jdbc:mysql://localhost:3306/gopikannan_saravanan_corejava_project";
-//			dbUser = "root";
-//			dbPassword = "123456";
-//	
-		// Connecting to DB 
+			
+			// Connecting to DB 
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			return DriverManager.getConnection(dbUrl, dbUser, dbPassword);

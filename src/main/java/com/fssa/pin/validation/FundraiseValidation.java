@@ -43,11 +43,13 @@ public class FundraiseValidation {
 	 * @throws InvalidFundraiseException If the expected amount is not valid.
 	 */
 	public static boolean validateExpectedAmount(int expectedAmount) throws InvalidFundraiseException {
-		
-		if(expectedAmount==0) {return false;}
-		 if (expectedAmount < 0) {
-		        throw new InvalidFundraiseException("The fundraise amount cannot be negative.");
-		    }
+
+		if (expectedAmount == 0) {
+			return false;
+		}
+		if (expectedAmount < 0) {
+			throw new InvalidFundraiseException("The fundraise amount cannot be negative.");
+		}
 		if (expectedAmount < 10000) {
 			throw new InvalidFundraiseException("The fundraise amount should be at least 10000");
 		}
@@ -63,13 +65,15 @@ public class FundraiseValidation {
 	 */
 	public static boolean validateFundraiseImageURL(String imageUrl) throws InvalidFundraiseException {
 		if (imageUrl == null || imageUrl.trim().isEmpty()) {
-return false;		}
+			return false;
+		}
 
 		String regex = "^(https?|ftp)://.*$";
 		if (Pattern.matches(regex, imageUrl)) {
 			return true;
 		} else {
-			throw new InvalidFundraiseException("The fundraise image URL is invalid. Enter your url like this ex: https://unsplash.com/s/photos/social-cause");
+			throw new InvalidFundraiseException(
+					"The fundraise image URL is invalid. Enter your url like this ex: https://unsplash.com/s/photos/social-cause");
 		}
 	}
 
@@ -82,7 +86,8 @@ return false;		}
 	 */
 	public static boolean validateFundraiseStory(String story) throws InvalidFundraiseException {
 		if (story == null || story.trim().isEmpty()) {
-			return false;		}
+			return false;
+		}
 		if (story.trim().length() < 100) {
 			throw new InvalidFundraiseException("The story detail is not valid: must not be less than 100 letters.");
 
@@ -99,7 +104,8 @@ return false;		}
 	 */
 	public static boolean validateTitle(String title) throws InvalidFundraiseException {
 		if (title == null || title.trim().isEmpty()) {
-			return false;		}
+			return false;
+		}
 		if (title.trim().length() > 100) {
 			throw new InvalidFundraiseException("The title must not be more than 100 characters.");
 		}
@@ -115,12 +121,12 @@ return false;		}
 	 * 
 	 */
 	public static boolean validateCause(String cause) throws InvalidFundraiseException {
-		if (cause == null || cause.trim().isEmpty() ) {
+		if (cause == null || cause.trim().isEmpty()) {
 			return false;
 		}
-		
-		if( cause.trim().length() > 50) {
-			
+
+		if (cause.trim().length() > 50) {
+
 			throw new InvalidFundraiseException("The cause must not be more than 50 characters.");
 		}
 		return true;

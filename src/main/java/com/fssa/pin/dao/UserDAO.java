@@ -178,7 +178,7 @@ public class UserDAO {
 	                user.setPassword(rs.getString("user_pwd"));
 	                user.setMobileno(rs.getString("mobileno"));
 	                user.setAccNo(rs.getLong("user_account_no"));
-	                user.setIfscNo(rs.getString("user_ifsc"));;
+	                user.setIfscNo(rs.getString("user_ifsc"));
 	                user.setAccName(rs.getString("user_account_holder"));
 	                user.setUserid(rs.getInt("userid"));
 	                return user;
