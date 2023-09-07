@@ -43,6 +43,8 @@ public class FundraiseValidation {
 	 * @throws InvalidFundraiseException If the expected amount is not valid.
 	 */
 	public static boolean validateExpectedAmount(int expectedAmount) throws InvalidFundraiseException {
+		
+		if(expectedAmount==0) {return false;}
 		 if (expectedAmount < 0) {
 		        throw new InvalidFundraiseException("The fundraise amount cannot be negative.");
 		    }
@@ -61,8 +63,7 @@ public class FundraiseValidation {
 	 */
 	public static boolean validateFundraiseImageURL(String imageUrl) throws InvalidFundraiseException {
 		if (imageUrl == null || imageUrl.trim().isEmpty()) {
-			throw new InvalidFundraiseException("The fundraise image must not be a null.");
-		}
+return false;		}
 
 		String regex = "^(https?|ftp)://.*$";
 		if (Pattern.matches(regex, imageUrl)) {
@@ -81,8 +82,7 @@ public class FundraiseValidation {
 	 */
 	public static boolean validateFundraiseStory(String story) throws InvalidFundraiseException {
 		if (story == null || story.trim().isEmpty()) {
-			throw new InvalidFundraiseException("The story detail must not be null.");
-		}
+			return false;		}
 		if (story.trim().length() < 100) {
 			throw new InvalidFundraiseException("The story detail is not valid: must not be less than 100 letters.");
 
@@ -99,8 +99,7 @@ public class FundraiseValidation {
 	 */
 	public static boolean validateTitle(String title) throws InvalidFundraiseException {
 		if (title == null || title.trim().isEmpty()) {
-			throw new InvalidFundraiseException("The title must not be null");
-		}
+			return false;		}
 		if (title.trim().length() > 100) {
 			throw new InvalidFundraiseException("The title must not be more than 100 characters.");
 		}
@@ -117,8 +116,9 @@ public class FundraiseValidation {
 	 */
 	public static boolean validateCause(String cause) throws InvalidFundraiseException {
 		if (cause == null || cause.trim().isEmpty() ) {
-			throw new InvalidFundraiseException("The cause must not be null.");
+			return false;
 		}
+		
 		if( cause.trim().length() > 50) {
 			
 			throw new InvalidFundraiseException("The cause must not be more than 50 characters.");
