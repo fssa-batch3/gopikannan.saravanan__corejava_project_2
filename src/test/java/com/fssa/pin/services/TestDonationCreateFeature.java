@@ -26,7 +26,7 @@ class TestDonationCreateFeature {
 		fundraise.setFundraiseid(490);
 		donate.setFundraise(fundraise);
 
-		donate.setDonaterContribution(20000);
+		donate.setDonaterContribution(100000);
 		DonateService donateService = new DonateService();
 		try {
 			assertTrue(donateService.createDonationService(donate));

@@ -48,7 +48,7 @@ public class UserDAO {
      * @throws DAOException If there is an issue with the database operation.
      */
 	public boolean updateUser(User user) throws SQLException, DAOException {
-		final String query = "UPDATE userdata SET user_name = ?, user_pwd = ?, mobileno = ?, user_account_no = ?, user_ifsc = ?, user_account_holder = ? WHERE user_mail = ?;";
+		final String query = "UPDATE userdata SET user_name = ?, user_pwd = ?, mobileno = ?, user_account_no = ?, user_ifsc = ?, user_account_holder = ?, profile_pic = ? WHERE user_mail = ?";
 
 		try (PreparedStatement pst = ConnectionUtil.getConnection().prepareStatement(query)) {
 
@@ -58,7 +58,9 @@ public class UserDAO {
 			pst.setLong(4, user.getAccNo());
 			pst.setString(5, user.getIfscNo());
 			pst.setString(6, user.getAccName());
-			pst.setString(7, user.getMail());
+			
+			pst.setString(7, user.getProfilePic());
+			pst.setString(8, user.getMail());
 			int rows = pst.executeUpdate();
 			if (rows == 0) {
 				throw new DAOException("User with email: " + user.getMail() + " not found in the database.");
@@ -67,7 +69,7 @@ public class UserDAO {
 
 		} catch (SQLException e) {
 
-			throw new DAOException("Error updating user in the database");
+			throw new DAOException("Error updating user in the database",e);
 		}
 
 	}
@@ -165,10 +167,39 @@ public class UserDAO {
 	
 	
 	public User findUserByEmail(String email) throws DAOException {
-	    final String query = "SELECT user_name, user_mail, user_pwd, mobileno,user_account_no, user_ifsc, user_account_holder,userid FROM userdata WHERE user_mail = ?";
+	    final String query = "SELECT user_name, user_mail, user_pwd, mobileno,user_account_no, user_ifsc, user_account_holder,userid,profile_pic FROM userdata WHERE user_mail = ?";
 
 	    try (PreparedStatement pstmt = ConnectionUtil.getConnection().prepareStatement(query)) {
 	        pstmt.setString(1, email);
+
+	        try (ResultSet rs = pstmt.executeQuery()) {
+	            if (rs.next()) {
+	                User user = new User();
+	                user.setUsername(rs.getString("user_name"));
+	                user.setMail(rs.getString("user_mail"));
+	                user.setPassword(rs.getString("user_pwd"));
+	                user.setMobileno(rs.getString("mobileno"));
+	                user.setAccNo(rs.getLong("user_account_no"));
+	                user.setIfscNo(rs.getString("user_ifsc"));
+	                user.setAccName(rs.getString("user_account_holder"));
+	                user.setUserid(rs.getInt("userid"));
+	                user.setProfilePic(rs.getString("profile_pic"));
+	                return user;
+	            } else {
+	                return null; // Return null if the email does not exist
+	            }
+	        }
+	    } catch (SQLException e) {
+	        throw new DAOException("Error in getting the user details by email", e);
+	    }
+	}
+	
+	
+	public User findUserById(int email) throws DAOException {
+	    final String query = "SELECT user_name, user_mail, user_pwd, mobileno,user_account_no, user_ifsc, user_account_holder,userid FROM userdata WHERE userid = ?";
+
+	    try (PreparedStatement pstmt = ConnectionUtil.getConnection().prepareStatement(query)) {
+	        pstmt.setInt(1, email);
 
 	        try (ResultSet rs = pstmt.executeQuery()) {
 	            if (rs.next()) {
@@ -187,7 +218,7 @@ public class UserDAO {
 	            }
 	        }
 	    } catch (SQLException e) {
-	        throw new DAOException("Error in getting the user details by email", e);
+	        throw new DAOException("Error in getting the user details by id", e);
 	    }
 	}
 

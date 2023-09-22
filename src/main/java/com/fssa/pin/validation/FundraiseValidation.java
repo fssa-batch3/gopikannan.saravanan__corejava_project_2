@@ -21,7 +21,7 @@ public class FundraiseValidation {
 	 * @param fundraise The Fundraise object to be validated.
 	 * @return true if the Fundraise object is valid.
 	 * @throws InvalidFundraiseException If the Fundraise object is not valid.
-	 */
+	 */ 
 	public static boolean validateFundraise(Fundraise fundraise) throws InvalidFundraiseException {
 		if (fundraise == null) {
 			throw new InvalidFundraiseException("Fundraise details cannot be null");
@@ -69,7 +69,7 @@ public class FundraiseValidation {
 		}
 
 		String regex = "^(https?|ftp)://.*$";
-		if (Pattern.matches(regex, imageUrl)) {
+		if (Pattern.matches(regex, imageUrl)) { 
 			return true;
 		} else {
 			throw new InvalidFundraiseException(
@@ -130,5 +130,27 @@ public class FundraiseValidation {
 			throw new InvalidFundraiseException("The cause must not be more than 50 characters.");
 		}
 		return true;
+	}
+	
+	
+	/**
+	 * Validates a document URL for the fundraise .
+	 *
+	 * @param document The URL of the fundraise image.
+	 * @return true if the document URL is valid.
+	 * @throws InvalidFundraiseException If the document URL is not valid.
+	 */
+	public static boolean validateFundraiseDocument(String document) throws InvalidFundraiseException {
+		if (document == null || document.trim().isEmpty()) {
+			return false;
+		}
+
+		String regex = "^(https?|ftp)://.*$";
+		if (Pattern.matches(regex, document)) { 
+			return true;
+		} else {
+			throw new InvalidFundraiseException(
+			"The fundraise document URL is invalid. Enter your url like this ex: https://unsplash.com/s/photos/social-cause");
+		}
 	}
 }

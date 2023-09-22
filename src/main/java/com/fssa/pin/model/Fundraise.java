@@ -9,9 +9,12 @@ public class Fundraise {
     private String coverpic; // URL of the cover picture for the campaign.
     private String title; // The title of the campaign.
     private String story; // The story or description of the campaign.
+	private String document; // The required document the campaign
     private int expectedamount; // The expected amount to be raised.
+	private int amountReceived;// The actual amount raised.
     private int fundraiseid; // The unique identifier for the campaign.
-    private User user; // The user associated with the campaign.
+    private int fundraiseUserId;// The unique identifier for the campaign who created.
+	private User user; // The user associated with the campaign.
 
     /**
      * Gets the cause of the fundRaising campaign.
@@ -102,6 +105,16 @@ public class Fundraise {
     public void setExpectedAmount(int expectedAmount) {
         this.expectedamount = expectedAmount;
     }
+    
+    
+    public int getAmountReceived() {
+		return amountReceived;
+	}
+
+	public void setAmountReceived(int amountReceived) {
+		this.amountReceived = amountReceived;
+	}
+
 
     /**
      * Gets the unique identifier for the fundRaising campaign.
@@ -138,6 +151,40 @@ public class Fundraise {
     public void setUser(User user) {
         this.user = user;
     }
+    
+
+    /**
+     * Sets the document for the fundRaising campaign.
+     *
+     * @param document for The campaign fundraiser to set.
+     */
+    public String getDocument() {
+		return document;
+	}
+    /**
+     * Gets the document  with the fundRaising campaign.
+     *
+     * @return The document.
+     */
+	public void setDocument(String document) {
+		this.document = document;
+	}
+
+	
+	  /**
+     * Sets the userIdforfundraise for the fundRaising campaign.
+     *
+     * @param userIdforfundraise for The campaign to set.
+     */
+	public int getFundraiseUserId() {
+		return fundraiseUserId;
+	}
+
+	public void setFundraiseUserId(int fundraiseUserId) {
+		this.fundraiseUserId = fundraiseUserId;
+	}
+
+
 
     /**
      * Returns a string representation of the fundRaising campaign.
@@ -153,7 +200,11 @@ public class Fundraise {
                ", title=" + title +
                ", story=" + story +
                ", expectedamount=" + expectedamount +
-               ", fundraiseid=" + fundraiseid);
+               ", amountReceived=" + amountReceived + 
+               ", document=" + document + 
+               ", fundraiseid=" + fundraiseid +
+               ", fundraiseUserId=" + fundraiseUserId
+        		);
 
         if (user != null) {
             sb.append(", user=" + user.toString());
@@ -165,5 +216,4 @@ public class Fundraise {
 
         return sb.toString();
     }
-
 } 

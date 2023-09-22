@@ -26,6 +26,7 @@ class TestFundraiseUpdateFeature {
 			fundraise.setTitle("Help this students to achieve their dreams");
 			fundraise.setStory(" In a poverty-stricken community, there was a strong desire for education. The residents, despite their financial hardships, recognized the value of education in breaking the cycle of poverty. Determined to make a change, a group of individuals came forward and established a non-profit organization. With limited resources but infinite determination, they created a program that provided scholarships, mentorship, and skill development opportunities to the needy members of the community. Through their selfless efforts, children and adults who had once been denied access to education were given a chance to learn and grow. As the community embraced this opportunity, remarkable transformations took place. Graduates from this program went on to pursue higher education, secure better jobs, and contribute to the development of their community. Their success stories continue to inspire others, proving that education truly has the power to lift individuals and communities out of poverty.");
 			fundraise.setExpectedAmount(900000);
+			fundraise.setDocument("https://signaturely.com/wp-content/uploads/2022/08/non-disclosure-agreement-uplead-791x1024.jpg");
 			fundraise.setFundraiseid(490);
 			assertTrue(fundraiseservice.fundraiseUpdate(fundraise));
 			

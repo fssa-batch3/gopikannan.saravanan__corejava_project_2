@@ -121,7 +121,17 @@ public class UserService {
 	        try {
 	            return userDAO.findUserByEmail(email);
 	        } catch (DAOException e) {
-	            throw new ServiceException(e.getMessage(),e);
+	            throw new ServiceException(e.getMessage());
+	        }
+	    }	
+	 
+	 
+	 public User findUserByIdService(int id) throws ServiceException {
+		 UserDAO userDAO = new UserDAO();
+	        try {
+	            return userDAO.findUserById(id);
+	        } catch (DAOException e) {
+	            throw new ServiceException(e.getMessage());
 	        }
 	    }	
 	 

@@ -13,6 +13,7 @@ public class User {
 	private String ifscNo;
 	private String accName;
 	private int userid;
+	private String profilePic;
 
 	/**
 	 * Constructs a new User instance.
@@ -105,6 +106,15 @@ public class User {
 	public void setUserid(int userid) {
 		this.userid = userid;
 	}
+	
+
+	public String getProfilePic() {
+		return profilePic;
+	}
+
+	public void setProfilePic(String profilePic) {
+		this.profilePic = profilePic;
+	}
 
 	@Override
 	public String toString() {
@@ -116,13 +126,10 @@ public class User {
 	            ", IFSC Code='" + ifscNo + '\'' +
 	            ", Account Holder='" + accName + '\'' +
 	            ", UserId=" + userid +
-	            ", Password='" + password + '\'' + 
+	            ", Password='" + password + '\'' +
+	            ", Profile Pic='" + profilePic + '\'' +
 	            '}';
 	}
 
-
-	public String getAccountDetailsAsString() {
-		return "User [" + "accNo=" + accNo + ", ifscNo=" + ifscNo + ", accName=" + accName + "]";
-	}
 
 }

@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 import com.fssa.pin.model.User;
 import com.fssa.pin.validation.exceptions.InvalidUserException;
 
-/**
+/** 
  * Validates user details for creation.
  *
  * @param user The user to be validated.
@@ -29,7 +29,7 @@ public class UserValidator {
 
 		if (!validateName(user.getUsername()) || !validateEmail(user.getMail()) || !validatePassword(user.getPassword())
 				|| !validateMobileNo(user.getMobileno())) {
-			throw new InvalidUserException("User details not valid");}
+			throw new InvalidUserException("Input must not contain only spaces");}
 		return true;
 
 	}

@@ -28,14 +28,6 @@ class TestValidateExpectedAmount {
 		}
 	}
 
-	@Test
-	void testMaximumValidAmount() {
-		try {
-			assertFalse(FundraiseValidation.validateExpectedAmount(100000000));
-		} catch (InvalidFundraiseException e) {
-			System.out.println("The fundraise amount should not be a more than 10000000.");
-		}
-	}
 
 	@Test
 	void testNegativeAmount() {

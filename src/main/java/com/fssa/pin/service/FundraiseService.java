@@ -23,7 +23,7 @@ public class FundraiseService {
 	 */
 	
 	
-	
+	 
 	public boolean createFundraise(Fundraise fundraise) throws ServiceException {
 
 		FundraiseDAO fundraiseDAO = new FundraiseDAO();
@@ -53,7 +53,7 @@ public class FundraiseService {
 			return fundraiseDAO.viewFundraises();
 
 		} catch (DAOException e) {
-			throw new ServiceException(e.getMessage(), e);
+			throw new ServiceException(e.getMessage());
 		}
 	}
 
@@ -76,11 +76,11 @@ public class FundraiseService {
 			} else {
 				throw new ServiceException("Update Fundrasie was not successfull");
 				
-
+ 
 			}
 
 		} catch (DAOException | InvalidFundraiseException e) {
-			throw new ServiceException(e.getMessage(), e);
+			throw new ServiceException(e.getMessage());
 		}
 
 	}
@@ -99,7 +99,7 @@ public class FundraiseService {
 			return fundraiseDAO.deleteFundraise(fundraiseId);
 		} catch (DAOException e) {
 
-			throw new ServiceException(e.getMessage(), e);
+			throw new ServiceException(e.getMessage());
 		}
 	}
 
@@ -109,7 +109,7 @@ public class FundraiseService {
 	        try {
 	            return fundraiseDAO.getFundraiseById(fundraiseId);
 	        } catch (DAOException e) {
-	            throw new ServiceException(e.getMessage(), e);
+	            throw new ServiceException(e.getMessage());
 	        }
 	    }
 	   

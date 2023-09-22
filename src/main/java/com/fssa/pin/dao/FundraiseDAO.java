@@ -23,10 +23,10 @@ public class FundraiseDAO {
      * @param fundraise The Fundraise object containing details to be added.
      * @return True if the creation was successful, otherwise false.
      * @throws DAOException If an error occurs during database interaction.
-     */
+     */ 
 	public boolean createFundraise(Fundraise fundraise) throws DAOException {
 		
-		String query = "INSERT INTO fundraisedetails (cause, image_url, title, story, amount_expected, userid) VALUES (?, ?, ?, ?, ?, ?)";
+		String query = "INSERT INTO fundraisedetails (cause, image_url, title, story, amount_expected, userid, document) VALUES (?, ?, ?, ?, ?, ?, ?)";
 		try (PreparedStatement ps = ConnectionUtil.getConnection().prepareStatement(query)) {
 			ps.setString(1, fundraise.getCause());
 			ps.setString(2, fundraise.getCoverPic());
@@ -34,6 +34,7 @@ public class FundraiseDAO {
 			ps.setString(4, fundraise.getStory());
 			ps.setInt(5, fundraise.getExpectedAmount());
 			ps.setInt(6, fundraise.getUser().getUserid());
+			ps.setString(7,fundraise.getDocument());
 
 			int rows = ps.executeUpdate();
 
@@ -53,8 +54,8 @@ public class FundraiseDAO {
 	public List<Fundraise> viewFundraises() throws DAOException {
 		List<Fundraise> fundraises = new ArrayList<>();
 
-		String query = "SELECT userdata.user_name, userdata.user_mail, userdata.mobileno, userdata.user_account_no, userdata.user_ifsc, userdata.user_account_holder, " +
-	               "fundraisedetails.cause, fundraisedetails.image_url, fundraisedetails.title, fundraisedetails.story, fundraisedetails.amount_expected,  fundraisedetails.fundraise_id, fundraisedetails.userid " +
+		String query = "SELECT userdata.userid, userdata.user_name, userdata.user_mail, userdata.mobileno, userdata.user_account_no, userdata.user_ifsc, userdata.user_account_holder, " +
+	               "fundraisedetails.cause, fundraisedetails.image_url, fundraisedetails.title, fundraisedetails.story, fundraisedetails.document, fundraisedetails.amount_expected,  fundraisedetails.amount_received,  fundraisedetails.fundraise_id, fundraisedetails.userid " +
 	               "FROM userdata " +
 	               "INNER JOIN fundraisedetails ON userdata.userid = fundraisedetails.userid";
 
@@ -62,7 +63,7 @@ public class FundraiseDAO {
 
 			while (rs.next()) {
 				
-				
+				int userId = rs.getInt("userid");
 				String name = rs.getString("user_name");
 				String email = rs.getString("user_mail");
 				String phno = rs.getString("mobileno");
@@ -73,7 +74,9 @@ public class FundraiseDAO {
 				String coverPic = rs.getString("image_url");
 				String title = rs.getString("title");
 				String story = rs.getString("story");
+				String document = rs.getString("document");
 				int expectedAmount = rs.getInt("amount_expected");
+				int amountReceived = rs.getInt("amount_received");
 				int fundraiseId = rs.getInt("fundraise_id");
 				
 				Fundraise fundraise = new Fundraise();
@@ -86,13 +89,17 @@ public class FundraiseDAO {
 				user.setAccNo(accNo);
 				user.setIfscNo(ifscNo);
 				user.setAccName(accName);
+				user.setUserid(userId);
+				
 				
 				fundraise.setUser(user);
 				fundraise.setCause(cause);
 				fundraise.setCoverPic(coverPic);
 				fundraise.setTitle(title);
 				fundraise.setStory(story);
+				fundraise.setDocument(document);
 				fundraise.setExpectedAmount(expectedAmount);
+				fundraise.setAmountReceived(amountReceived);
 				fundraise.setFundraiseid(fundraiseId);
 				fundraises.add(fundraise);
 			}
@@ -114,7 +121,7 @@ public class FundraiseDAO {
 	public boolean updateFundraise(Fundraise fundraise) throws DAOException {
 	    try {
 	        String query = "UPDATE fundraisedetails " +
-	                       "SET cause = ?, image_url = ?, title = ?, story = ?, amount_expected = ? " +
+	                       "SET cause = ?, image_url = ?, title = ?, story = ?, amount_expected = ?, document = ? " +
 	                       "WHERE fundraise_id = ?";
 
 	        try (PreparedStatement ps = ConnectionUtil.getConnection().prepareStatement(query)) {
@@ -123,7 +130,8 @@ public class FundraiseDAO {
 	            ps.setString(3, fundraise.getTitle());
 	            ps.setString(4, fundraise.getStory());
 	            ps.setInt(5, fundraise.getExpectedAmount());
-	            ps.setInt(6, fundraise.getFundraiseid());
+	            ps.setString(6, fundraise.getDocument());
+	            ps.setInt(7, fundraise.getFundraiseid());
 
 	            int rows = ps.executeUpdate();
 	            return (rows == 1);
@@ -171,14 +179,15 @@ public class FundraiseDAO {
 	        try (ResultSet rs = ps.executeQuery()) {
 	            if (rs.next()) {
 	                Fundraise fundraise = new Fundraise();
-	                fundraise.setFundraiseid(rs.getInt("fundraise_id"));
+	              
 	                fundraise.setCause(rs.getString("cause"));
 	                fundraise.setCoverPic(rs.getString("image_url"));
 	                fundraise.setTitle(rs.getString("title"));
 	                fundraise.setStory(rs.getString("story"));
 	                fundraise.setExpectedAmount(rs.getInt("amount_expected"));
-
-	              
+	                fundraise.setFundraiseid(rs.getInt("fundraise_id"));
+	                fundraise.setFundraiseUserId(rs.getInt("userid"));
+	                fundraise.setDocument(rs.getString("document"));
 
 	                return fundraise;
 	            } else {
