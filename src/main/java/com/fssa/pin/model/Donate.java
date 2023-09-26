@@ -63,6 +63,7 @@ public class Donate {
 
 	public void setDonationDate(String donationDate) {
 		this.donationDate = donationDate;
+		
 	}
 
 	public String toString() {
