@@ -16,14 +16,12 @@ public class ConnectionUtil {
 		String dbUrl;
 		String dbUser;
 		String dbPassword;
-//		
-//			dbUrl = System.getenv("DB_URL");
-//			dbUser = System.getenv("DB_USER");
-//			dbPassword = System.getenv("DB_PASSWORD");
+		
+		dbUrl = System.getenv("DB_URL");
+		dbUser = System.getenv("DB_USER");
+		dbPassword = System.getenv("DB_PASSWORD");
 			
-			dbUrl = "jdbc:mysql://localhost:3306/gopikannan_saravanan_corejava_project";
-			dbUser = "root";
-			dbPassword = "123456";
+		
 			
 			// Connecting to DB 
 		try {
