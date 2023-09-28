@@ -22,8 +22,6 @@ public class ConnectionUtil {
 		dbPassword = System.getenv("DB_PASSWORD");
 			
 		
-			
-			// Connecting to DB 
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			return DriverManager.getConnection(dbUrl, dbUser, dbPassword);
